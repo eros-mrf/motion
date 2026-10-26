@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase 19 · Investigación documental de una ITS</title>
+<meta name="description" content="Ciencias Naturales 7° básico · Unidad 4 · Clase 19 (Computación): investigación documental de una ITS con fuentes oficiales. Presentación interactiva con motion graphics y Three.js.">
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="scan" aria-hidden="true"></div>
+<div id="rotate" role="note"><div><b>↻</b>Gira el dispositivo<br><small>Esta presentación está diseñada para pantalla horizontal.</small></div></div>
+
+<main id="stage" aria-label="Presentación Clase 19">
+
+  <!-- ============ HUD ============ -->
+  <div class="hud hud-top">
+    <div class="brand"><span class="brand-mark"></span><span>CLASE 19 // COMPUTACIÓN · UNIDAD 4 · CIENCIAS 7°</span></div>
+    <div class="hud-right">
+      <button class="chip phase-chip" id="phaseChip" title="Iniciar / pausar reloj de clase (T)"><span class="phase-name">Inicio</span><span class="phase-min">10 min</span></button>
+      <span class="clock" id="clock" aria-label="Reloj de clase">00:00 / 90:00</span>
+    </div>
+  </div>
+  <div class="hud hud-bottom">
+    <div class="nav-left">
+      <button class="icon-btn" id="btnPrev" aria-label="Diapositiva anterior (←)">←</button>
+      <button class="icon-btn" id="btnNext" aria-label="Diapositiva siguiente (→)">→</button>
+    </div>
+    <div class="segs" id="segs" role="tablist" aria-label="Diapositivas"></div>
+    <div class="nav-right">
+      <span class="counter" id="counter">01 / 14</span>
+      <button class="icon-btn txt" id="btnMenu" aria-label="Índice (G)">Índice</button>
+      <button class="icon-btn txt" id="btnNotes" aria-label="Notas del docente (N)">Notas</button>
+      <button class="icon-btn txt" id="btnMotion" aria-pressed="false" aria-label="Reducir movimiento (M)">Movimiento</button>
+      <button class="icon-btn txt" id="btnFs" aria-label="Pantalla completa (F)">⛶</button>
+    </div>
+  </div>
+
+  <aside id="notes" class="notes panel" hidden aria-label="Notas del docente">
+    <div class="notes-head"><b>NOTAS DEL DOCENTE</b><span id="notesPhase"></span><button class="icon-btn" id="notesClose" aria-label="Cerrar notas">×</button></div>
+    <div id="notesBody"></div>
+  </aside>
+  <nav id="menu" class="menu" hidden aria-label="Índice de diapositivas"><div class="menu-grid" id="menuGrid"></div></nav>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="shortcuts" class="toast" aria-live="polite"></div>
+  <div id="shutter" aria-hidden="true"></div>
+
+  <div id="slides">
+
+    <!-- ===== 1 · PORTADA ===== -->
+    <section class="slide s-cover" data-title="Portada" data-phase="intro" aria-roledescription="diapositiva" aria-label="Portada">
+      <div class="cover-kicker mono" data-a>OA 3 &nbsp;|&nbsp; OAH b · e · f · g · h · k · l</div>
+      <h1 class="cover-title" aria-label="Investigación documental de una ITS">
+        <span class="cl" data-a="line"><span class="scr" data-text="Investigación">Investigación</span></span>
+        <span class="cl l2" data-a="line"><span class="scr" data-text="documental">documental</span></span>
+        <span class="cl l3" data-a="line"><span class="scr" data-text="de una ITS">de una ITS</span></span>
+      </h1>
+      <div class="search" data-a aria-hidden="true">
+        <span class="s-ico">⌕</span>
+        <span class="s-text" id="typed"></span><span class="caret"></span>
+        <span class="s-go">BUSCAR</span>
+      </div>
+      <p class="cover-sub" data-a>Ficha científica digital con fuentes oficiales</p>
+      <div class="cover-legend" data-a>
+        <span class="lg lg-lime"><i></i>fuente oficial</span>
+        <span class="lg lg-blue"><i></i>dato registrado</span>
+        <span class="lg lg-pink"><i></i>no es fuente</span>
+      </div>
+      <div class="cover-foot" data-a>
+        <span class="mono">Pulsa <kbd>→</kbd> o <kbd>espacio</kbd> para comenzar</span>
+        <span class="mono dim">Clic en el fondo: onda de datos</span>
+      </div>
+    </section>
+
+    <!-- ===== 2 · RUTA ===== -->
+    <section class="slide s-route" data-title="Ruta de clase" data-phase="intro" aria-roledescription="diapositiva" aria-label="Ruta de clase">
+      <header class="sh">
+        <div class="kick mono" data-a>02 // RUTA DE CLASE</div>
+        <h2 class="title" data-a="title">Hoy investigamos como científicos</h2>
+      </header>
+      <div class="two">
+        <div class="goal panel tilt" data-a>
+          <div class="tag mono">META DE CLASE</div>
+          <p>Realizar una <b>investigación documental colaborativa</b> sobre una ITS con <b>fuentes oficiales</b>, seleccionando información relevante y registrándola en una <b>ficha científica digital</b>.</p>
+        </div>
+        <div class="care panel tilt" data-a>
+          <div class="tag mono">CUIDADO Y RESGUARDO</div>
+          <ul>
+            <li>Sala de computación con internet.</li>
+            <li>Prioridad: Currículum Nacional, MINSAL/DIPRECE y organismos sanitarios reconocidos.</li>
+            <li>No buscamos síntomas propios ni de otras personas; imágenes <b>no explícitas</b>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="pipe" id="pipe" data-a>
+        <svg class="pipe-svg" viewBox="0 0 1700 20" preserveAspectRatio="none" aria-hidden="true"><path id="pipeLine" d="M0 10 H1700" pathLength="1"/></svg>
+        <div class="pipe-dot" id="pipeDot"></div>
+        <ol class="pipe-steps">
+          <li><span class="pn">1</span><b>Revisamos</b><span>la pregunta de investigación</span></li>
+          <li><span class="pn">2</span><b>Validamos</b><span>las fuentes</span></li>
+          <li><span class="pn">3</span><b>Distribuimos</b><span>los roles</span></li>
+          <li><span class="pn">4</span><b>Investigamos</b><span>y sintetizamos</span></li>
+          <li><span class="pn">5</span><b>Entregamos</b><span>una ficha con referencias</span></li>
+        </ol>
+      </div>
+      <div class="timeline" data-a aria-label="Estructura de 90 minutos">
+        <div class="seg" style="--w:10;--c:var(--gold)"><b>10′</b><span>Ruta + activación</span></div>
+        <div class="seg" style="--w:10;--c:var(--blue)"><b>10′</b><span>Preguntas</span></div>
+        <div class="seg" style="--w:15;--c:var(--lime)"><b>15′</b><span>Modelamiento</span></div>
+        <div class="seg" style="--w:35;--c:var(--pink)"><b>35′</b><span>Actividad central · ficha</span></div>
+        <div class="seg" style="--w:10;--c:var(--blue)"><b>10′</b><span>Puesta en común</span></div>
+        <div class="seg" style="--w:10;--c:var(--gold)"><b>10′</b><span>Ticket + aviso</span></div>
+      </div>
+    </section>
+
+    <!-- ===== 3 · ANATOMÍA DE UNA FUENTE ===== -->
+    <section class="slide s-anat" data-title="Dos fuentes antes de escribir" data-phase="activacion" aria-roledescription="diapositiva" aria-label="Dos fuentes antes de escribir">
+      <header class="sh">
+        <div class="kick mono" data-a>03 // ACTIVACIÓN · CHECKLIST</div>
+        <h2 class="title" data-a="title">Dos fuentes antes de escribir</h2>
+        <p class="lead" data-a>Antes de redactar, cada grupo muestra <b>tres datos</b> de cada fuente. Toca los puntos de la página.</p>
+      </header>
+      <div class="anat-grid">
+        <div class="browser" data-a>
+          <div class="b-bar"><i></i><i></i><i></i><span class="b-url mono">página-de-ejemplo.cl/salud/its</span></div>
+          <div class="b-page">
+            <div class="b-head"><span class="b-logo">◐ <b>INSTITUCIÓN DE SALUD</b><small>Sitio oficial</small></span><span class="b-nav mono">Inicio · Temas · Quiénes somos</span></div>
+            <h3 class="b-title">Infecciones de transmisión sexual (ITS)</h3>
+            <p class="b-line">Las ITS son infecciones que se transmiten principalmente por contacto sexual sin protección…</p>
+            <p class="b-line s2">Muchas pueden no producir síntomas. Consultar a tiempo y prevenir protege la salud de todas las personas…</p>
+            <div class="b-line s3"></div>
+            <div class="b-foot mono"><span>Actualizado el 12 de marzo de 2024</span><span>Quiénes somos: informar y educar a la comunidad</span></div>
+            <button class="hot h1" data-k="inst" aria-label="Punto 1: institución"><b>1</b></button>
+            <button class="hot h2" data-k="date" aria-label="Punto 2: fecha o vigencia"><b>2</b></button>
+            <button class="hot h3" data-k="purp" aria-label="Punto 3: propósito"><b>3</b></button>
+          </div>
+        </div>
+        <div class="anat-side">
+          <div class="anat-info panel tilt" id="anatInfo" data-a aria-live="polite"></div>
+          <div class="gate panel" data-a>
+            <div class="gate-head"><span class="tag mono">CHECKLIST DEL GRUPO</span>
+              <svg class="lock" viewBox="0 0 40 48" aria-hidden="true"><path class="shackle" d="M10 22 V14 a10 10 0 0 1 20 0 V22" /><rect x="4" y="22" width="32" height="22" rx="4"/></svg></div>
+            <div class="gate-rows" id="gateRows"></div>
+            <div class="gate-msg mono" id="gateMsg" aria-live="polite">Completa los 3 datos de F1 y F2.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4 · PREGUNTAS ===== -->
+    <section class="slide s-q" data-title="Preguntas iniciales" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Preguntas iniciales">
+      <header class="sh">
+        <div class="kick mono" data-a>04 // PREGUNTAS INICIALES</div>
+        <h2 class="title" data-a="title">Cinco preguntas antes de buscar</h2>
+      </header>
+      <div class="q-grid">
+        <ol class="q-list" id="qList"></ol>
+        <div class="term panel" data-a>
+          <div class="term-bar"><i></i><i></i><i></i><span class="mono" id="qTag">consulta_1.txt</span></div>
+          <div class="term-body">
+            <div class="term-q" id="qTitle"></div>
+            <div class="term-a"><span class="mono prompt">&gt;&nbsp;pista</span><p id="qIdea"></p><span class="caret"></span></div>
+          </div>
+          <div class="term-foot mono dim">Responde con criterios, no con experiencias personales.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5 · VOCABULARIO ===== -->
+    <section class="slide s-vocab" data-title="Vocabulario clave" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Vocabulario clave">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>05 // VOCABULARIO CLAVE</div>
+          <h2 class="title" data-a="title">Nueve palabras clave</h2>
+        </div>
+        <label class="vsearch" data-a><span class="s-ico">⌕</span><input id="vq" type="search" placeholder="Filtra el glosario…" aria-label="Filtrar el glosario" autocomplete="off"></label>
+      </header>
+      <div class="vocab-grid" id="vocabGrid"></div>
+    </section>
+
+    <!-- ===== 6 · BIBLIOTECA 3D DE FUENTES ===== -->
+    <section class="slide s-lib" data-title="Auditoría de fuentes" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Biblioteca 3D de fuentes">
+      <header class="sh">
+        <div class="kick mono" data-a>06 // MODELAMIENTO · VALIDAMOS FUENTES</div>
+        <h2 class="title" data-a="title">Biblioteca de fuentes: ¿cuál usarías?</h2>
+      </header>
+      <div class="lib-grid">
+        <div class="lib-stage panel" data-a>
+          <canvas id="libCanvas" aria-label="Carrusel 3D de fuentes de información: gira y toca una tarjeta" role="img"></canvas>
+          <div class="lib-hint mono">Arrastra para girar · toca una tarjeta para auditarla</div>
+        </div>
+        <div class="lib-panel" data-a>
+          <div class="lib-card panel tilt" id="libCard" aria-live="polite"></div>
+          <div class="lib-score mono" id="libScore" aria-live="polite">Auditadas 0 / 8 · aciertos 0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7 · BÚSQUEDA ACOTADA ===== -->
+    <section class="slide s-query" data-title="Búsqueda acotada" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Búsqueda acotada">
+      <header class="sh">
+        <div class="kick mono" data-a>07 // MODELAMIENTO · BÚSQUEDA ACOTADA</div>
+        <h2 class="title" data-a="title">Menos texto, mejores resultados</h2>
+      </header>
+      <div class="qbar panel" data-a>
+        <span class="s-ico">⌕</span>
+        <div class="qtokens" id="qTokens" aria-live="polite"><span class="ph">Toca palabras clave para armar la búsqueda…</span></div>
+        <div class="qcount"><b id="qCount">—</b><span class="mono">resultados (simulados)</span></div>
+      </div>
+      <div class="query-grid">
+        <div class="results panel" id="results" data-a aria-live="polite"></div>
+        <div class="qside">
+          <div class="chips panel" data-a>
+            <div class="tag mono">PALABRAS CLAVE</div>
+            <div class="chip-cloud" id="chipCloud"></div>
+            <button class="btn ghost" id="qReset">Reiniciar búsqueda</button>
+          </div>
+          <div class="precision panel" data-a>
+            <div class="tag mono">PRECISIÓN</div>
+            <div class="meter"><i id="precBar"></i></div>
+            <p id="precTxt"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8 · SÍNTESIS ===== -->
+    <section class="slide s-syn" data-title="De un párrafo a tres ideas" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="De un párrafo a tres ideas">
+      <header class="sh">
+        <div class="kick mono" data-a>08 // MODELAMIENTO · FICHA DE SÍNTESIS</div>
+        <h2 class="title" data-a="title">De un párrafo a tres ideas propias</h2>
+      </header>
+      <div class="q-banner panel" data-a><span class="tag mono">PREGUNTA</span> ¿Cómo se transmiten las ITS, qué síntomas generales pueden tener y cómo se previenen?</div>
+      <div class="syn-grid">
+        <div class="para panel" data-a>
+          <div class="tag mono">FUENTE F1 · PÁRRAFO (paráfrasis para la clase)</div>
+          <p class="para-text" id="paraText"></p>
+          <div class="para-note mono" id="paraNote" aria-live="polite">Toca las oraciones que responden la pregunta.</div>
+        </div>
+        <div class="slots" id="slots" data-a></div>
+      </div>
+      <div class="copy-bar panel" data-a>
+        <div class="seg-ctl" role="group" aria-label="Modo de escritura">
+          <button class="on" id="modeCopy" aria-pressed="true">Copiar y pegar</button>
+          <button id="modePara" aria-pressed="false">Parafrasear</button>
+        </div>
+        <div class="copy-text" id="copyText"></div>
+        <div class="gauges">
+          <div class="g"><span class="mono">SIMILITUD CON EL ORIGINAL</span><div class="meter"><i id="gSim"></i></div><b id="gSimN">0%</b></div>
+          <div class="g"><span class="mono">EXACTITUD DEL DATO</span><div class="meter ok"><i id="gAcc"></i></div><b id="gAccN">0%</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 9 · AGENTES 3D ===== -->
+    <section class="slide s-agent" data-title="Agente: virus o bacteria" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Agente: virus o bacteria">
+      <header class="sh">
+        <div class="kick mono" data-a>09 // MODELAMIENTO · MODELO ESQUEMÁTICO (NO A ESCALA)</div>
+        <h2 class="title" data-a="title">El agente: ¿virus o bacteria?</h2>
+      </header>
+      <div class="agent-grid">
+        <div class="agent-stage panel" data-a>
+          <div class="a-tabs" role="tablist" aria-label="Modelo">
+            <button class="on" data-m="virus" role="tab">Virus</button>
+            <button data-m="bacteria" role="tab">Bacteria</button>
+            <button data-m="both" role="tab">Comparar</button>
+          </div>
+          <canvas id="agentCanvas" aria-label="Modelo 3D esquemático de un virus y una bacteria" role="img"></canvas>
+          <div id="pins" class="pins"></div>
+          <div class="lib-hint mono">Arrastra para girar · toca los puntos</div>
+        </div>
+        <div class="agent-info">
+          <div class="a-card panel tilt" id="agentCard" data-a aria-live="polite"></div>
+          <div class="a-field panel" data-a>
+            <div class="tag mono">EN LA FICHA, CAMPO «AGENTE»</div>
+            <p>Escribe si es <b>virus</b> o <b>bacteria</b>, el nombre del agente y la <b>fuente</b> (F1/F2). No se necesita imagen clínica.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10 · ROLES ===== -->
+    <section class="slide s-roles" data-title="Roles del equipo" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Roles del equipo">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>10 // ACTIVIDAD CENTRAL · 35 MIN · EN GRUPOS</div>
+          <h2 class="title" data-a="title">Seis roles, una ficha</h2>
+        </div>
+        <div class="btn-row" data-a><button class="btn" id="dealBtn">⟳ Sortear roles</button><button class="btn ghost" id="dealReset">Ordenar</button></div>
+      </header>
+      <div class="roles-grid" id="rolesGrid"></div>
+      <div class="role-note mono" data-a>Grupos de menos de 6: una persona toma dos roles complementarios · Los roles rotan en la próxima actividad.</div>
+    </section>
+
+    <!-- ===== 11 · FICHA 3D ===== -->
+    <section class="slide s-ficha" data-title="Ficha científica digital" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Ficha científica digital">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>11 // ACTIVIDAD CENTRAL · FICHA CIENTÍFICA DIGITAL</div>
+          <h2 class="title" data-a="title">Arma tu ficha</h2>
+        </div>
+        <div class="btn-row" data-a><button class="btn" id="fDemo">★ Cargar ejemplo del docente</button><button class="btn ghost" id="fClear">Limpiar</button></div>
+      </header>
+      <div class="ficha-grid">
+        <div class="ficha-stage panel" data-a>
+          <canvas id="fichaCanvas" aria-label="Ficha 3D: cada campo completado se acopla a la tarjeta" role="img"></canvas>
+          <div class="ring" aria-live="polite"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="r-bg" cx="22" cy="22" r="18"/><circle class="r-fg" id="fRing" cx="22" cy="22" r="18"/></svg><b id="fCount">0/9</b></div>
+        </div>
+        <div class="fields" id="fields" data-a></div>
+      </div>
+    </section>
+
+    <!-- ===== 12 · CONTROL DE CALIDAD ===== -->
+    <section class="slide s-qc" data-title="Control de calidad" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Control de calidad">
+      <header class="sh">
+        <div class="kick mono" data-a>12 // ACTIVIDAD CENTRAL · REVISIÓN POR OTRO INTEGRANTE</div>
+        <h2 class="title" data-a="title">¿Responde la ficha al OA 3?</h2>
+      </header>
+      <div class="qc-grid">
+        <div class="radar panel" data-a>
+          <svg id="radar" viewBox="-260 -240 520 480" role="img" aria-label="Radar de 8 criterios de calidad"></svg>
+          <div class="verdict" id="verdict" aria-live="polite"></div>
+        </div>
+        <div class="qc-list" data-a>
+          <ul id="qcList"></ul>
+          <div class="avoid panel"><b>Evita como fuente principal:</b> foros · redes sociales · imágenes clínicas explícitas · contenido sensacionalista</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 13 · DUELO DE PARÁFRASIS ===== -->
+    <section class="slide s-duel" data-title="Duelo de paráfrasis" data-phase="comun" aria-roledescription="diapositiva" aria-label="Duelo de paráfrasis">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>13 // PUESTA EN COMÚN · DOS GRUPOS MUESTRAN SU PARÁFRASIS</div>
+          <h2 class="title" data-a="title">Duelo de paráfrasis</h2>
+        </div>
+        <div class="rounds mono" id="rounds" data-a></div>
+      </header>
+      <div class="duel-src panel" data-a><span class="tag mono">FUENTE ORIGINAL (F1)</span><p id="duelSrc"></p></div>
+      <div class="duel-opts" id="duelOpts" data-a></div>
+      <div class="duel-fb panel" id="duelFb" data-a aria-live="polite"></div>
+    </section>
+
+    <!-- ===== 14 · TICKET ===== -->
+    <section class="slide s-ticket" data-title="Ticket de salida" data-phase="ticket" aria-roledescription="diapositiva" aria-label="Ticket de salida y aviso">
+      <header class="sh">
+        <div class="kick mono" data-a>14 // TICKET DE SALIDA Y AVISO</div>
+        <h2 class="title" data-a="title">¿Cuál fue la fuente más útil?</h2>
+      </header>
+      <div class="ticket-grid">
+        <div class="ticket-main">
+          <div class="ticket panel tilt" data-a>
+            <p class="sentence">La fuente más útil de nuestro grupo fue <span class="blank" id="tSrc" role="textbox" aria-label="Fuente más útil" contenteditable="true" spellcheck="false" data-ph="elige o escribe"></span> porque <span class="blank" id="tWhy" role="textbox" aria-label="Razón" contenteditable="true" spellcheck="false" data-ph="elige o escribe"></span>.</p>
+          </div>
+          <div class="bank-row" data-a><div class="tag mono">FUENTE</div><div class="bank" id="bankSrc"></div></div>
+          <div class="bank-row" data-a><div class="tag mono">PORQUE…</div><div class="bank" id="bankWhy"></div></div>
+          <p class="ticket-fb panel" id="ticketFb" aria-live="polite" data-a>Completa la frase con una opción o con tus palabras.</p>
+        </div>
+        <div class="ticket-side">
+          <div class="selfcheck panel" data-a>
+            <div class="tag mono">LO QUE LOGRÉ HOY</div>
+            <ul id="selfList"></ul>
+          </div>
+          <div class="next panel tilt" data-a>
+            <div class="tag mono">PRÓXIMA CLASE · 20</div>
+            <h3>Datos de salud pública: leer sin exagerar</h3>
+            <p>Traemos <b>tablas y gráficos oficiales</b> y aprendemos a distinguir datos de conclusiones.</p>
+            <svg class="mini-chart" viewBox="0 0 220 70" aria-hidden="true"><g id="miniBars"></g><path class="trend" d="M8 52 L48 40 L88 44 L128 26 L168 30 L208 12" pathLength="1"/></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script>/*__JS__*/</script>
+</body>
+</html>

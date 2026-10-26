@@ -9,7 +9,7 @@ const { chromium } = require('playwright');
 const out = process.argv[2] || 'shots';
 const W = +process.argv[3] || 1600, H = +process.argv[4] || 900;
 fs.mkdirSync(out, { recursive: true });
-const file = 'file://' + path.resolve('index.html');
+const file = 'file://' + path.resolve(process.env.DECK || 'index.html');
 
 const browser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
 const page = await browser.newPage({ viewport: { width: W, height: H } });

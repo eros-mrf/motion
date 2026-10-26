@@ -1,38 +1,45 @@
-// Empaqueta src/ en UN solo archivo HTML autocontenido (JS + CSS + fuentes en base64).
-// Uso: node build.mjs   →   index.html
+// Empaqueta cada clase en UN solo archivo HTML autocontenido (JS + CSS + fuentes en base64).
+// Uso: node build.mjs [18|19|all]     →  index.html (clase 18) · clase-19.html (clase 19)
 import { build } from 'esbuild';
 import fs from 'node:fs';
 
-const font = (pkg, file) =>
-  fs.readFileSync(`node_modules/${pkg}/files/${file}`).toString('base64');
+const font = (pkg, file) => fs.readFileSync(`node_modules/${pkg}/files/${file}`).toString('base64');
+const face = (family, weight, pkg, file) =>
+  `@font-face{font-family:'${family}';font-style:normal;font-weight:${weight};font-display:swap;src:url(data:font/woff2;base64,${font(pkg, file)}) format('woff2');}\n`;
 
-const faces = `
-@font-face{font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-display:swap;
-  src:url(data:font/woff2;base64,${font('@fontsource-variable/bricolage-grotesque', 'bricolage-grotesque-latin-wght-normal.woff2')}) format('woff2');}
-@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;
-  src:url(data:font/woff2;base64,${font('@fontsource-variable/inter', 'inter-latin-wght-normal.woff2')}) format('woff2');}
-@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;
-  src:url(data:font/woff2;base64,${font('@fontsource/jetbrains-mono', 'jetbrains-mono-latin-500-normal.woff2')}) format('woff2');}
-@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;
-  src:url(data:font/woff2;base64,${font('@fontsource/jetbrains-mono', 'jetbrains-mono-latin-700-normal.woff2')}) format('woff2');}
-`;
+const CLASSES = {
+  18: {
+    dir: 'src', out: 'index.html',
+    fonts: () =>
+      face('Bricolage Grotesque', '200 800', '@fontsource-variable/bricolage-grotesque', 'bricolage-grotesque-latin-wght-normal.woff2') +
+      face('Inter', '100 900', '@fontsource-variable/inter', 'inter-latin-wght-normal.woff2') +
+      face('JetBrains Mono', '500', '@fontsource/jetbrains-mono', 'jetbrains-mono-latin-500-normal.woff2') +
+      face('JetBrains Mono', '700', '@fontsource/jetbrains-mono', 'jetbrains-mono-latin-700-normal.woff2'),
+  },
+  19: {
+    dir: 'clase-19/src', out: 'clase-19.html',
+    fonts: () =>
+      face('Syne', '400 800', '@fontsource-variable/syne', 'syne-latin-wght-normal.woff2') +
+      face('Manrope', '200 800', '@fontsource-variable/manrope', 'manrope-latin-wght-normal.woff2') +
+      face('IBM Plex Mono', '500', '@fontsource/ibm-plex-mono', 'ibm-plex-mono-latin-500-normal.woff2') +
+      face('IBM Plex Mono', '600', '@fontsource/ibm-plex-mono', 'ibm-plex-mono-latin-600-normal.woff2'),
+  },
+};
 
-const out = await build({
-  entryPoints: ['src/main.js'],
-  bundle: true,
-  minify: true,
-  format: 'iife',
-  target: 'es2020',
-  write: false,
-  legalComments: 'none',
-});
+async function make(n) {
+  const c = CLASSES[n];
+  const out = await build({
+    entryPoints: [`${c.dir}/main.js`], bundle: true, minify: true, format: 'iife',
+    target: 'es2020', write: false, legalComments: 'none',
+  });
+  const js = out.outputFiles[0].text.replace(/<\/script/gi, '<\\/script');
+  const css = c.fonts() + fs.readFileSync(`${c.dir}/styles.css`, 'utf8');
+  const html = fs.readFileSync(`${c.dir}/template.html`, 'utf8')
+    .replace('/*__CSS__*/', () => css)
+    .replace('/*__JS__*/', () => js);
+  fs.writeFileSync(c.out, html);
+  console.log(`${c.out}  ${(html.length / 1024).toFixed(0)} KB`);
+}
 
-const js = out.outputFiles[0].text.replace(/<\/script/gi, '<\\/script');
-const css = faces + fs.readFileSync('src/styles.css', 'utf8');
-const html = fs
-  .readFileSync('src/template.html', 'utf8')
-  .replace('/*__CSS__*/', () => css)
-  .replace('/*__JS__*/', () => js);
-
-fs.writeFileSync('index.html', html);
-console.log(`index.html  ${(html.length / 1024).toFixed(0)} KB`);
+const arg = process.argv[2] || 'all';
+for (const n of arg === 'all' ? Object.keys(CLASSES) : [arg]) await make(n);

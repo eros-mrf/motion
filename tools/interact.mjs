@@ -18,7 +18,7 @@ const ok = (c, msg) => { if (!c) { fails++; console.log('✗', msg); } else cons
 const go = async (n, ms = 2200) => { await page.evaluate((k) => window.__deck.deck.go(k), n); await page.waitForTimeout(ms); };
 const shot = (n) => page.screenshot({ path: `${out}/${n}.png` });
 
-await page.goto('file://' + path.resolve('index.html') + '#1');
+await page.goto('file://' + path.resolve(process.env.DECK || 'index.html') + '#1');
 await page.waitForTimeout(2500);
 
 // teclado: avanzar y retroceder
