@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase 20 · Datos de salud pública: leer sin exagerar</title>
+<meta name="description" content="Ciencias Naturales 7° básico · Unidad 4 · Clase 20: interpretar tablas y gráficos de salud pública sin exagerar. Presentación interactiva con motion graphics y Three.js.">
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="grain" aria-hidden="true"></div>
+<div id="rotate" role="note"><div><b>↻</b>Gira el dispositivo<br><small>Esta presentación está diseñada para pantalla horizontal.</small></div></div>
+
+<main id="stage" aria-label="Presentación Clase 20">
+
+  <!-- ============ HUD ============ -->
+  <div class="hud hud-top">
+    <div class="brand"><span class="brand-mark">20</span><span>EL DIARIO DE CIENCIAS ✦ UNIDAD 4 · DATOS DE SALUD PÚBLICA</span></div>
+    <div class="hud-right">
+      <button class="chip phase-chip" id="phaseChip" title="Iniciar / pausar reloj de clase (T)"><span class="phase-name">Inicio</span><span class="phase-min">10 min</span></button>
+      <span class="clock" id="clock" aria-label="Reloj de clase">00:00 / 90:00</span>
+    </div>
+  </div>
+  <div class="hud hud-bottom">
+    <div class="nav-left">
+      <button class="icon-btn" id="btnPrev" aria-label="Diapositiva anterior (←)">←</button>
+      <button class="icon-btn" id="btnNext" aria-label="Diapositiva siguiente (→)">→</button>
+    </div>
+    <div class="spark" id="spark" role="tablist" aria-label="Diapositivas"></div>
+    <div class="nav-right">
+      <span class="counter" id="counter">01 / 14</span>
+      <button class="icon-btn txt" id="btnMenu" aria-label="Índice (G)">Índice</button>
+      <button class="icon-btn txt" id="btnNotes" aria-label="Notas del docente (N)">Notas</button>
+      <button class="icon-btn txt" id="btnMotion" aria-pressed="false" aria-label="Reducir movimiento (M)">Movimiento</button>
+      <button class="icon-btn txt" id="btnFs" aria-label="Pantalla completa (F)">⛶</button>
+    </div>
+  </div>
+
+  <aside id="notes" class="notes card" hidden aria-label="Notas del docente">
+    <div class="notes-head"><b>NOTAS DEL DOCENTE</b><span id="notesPhase"></span><button class="icon-btn" id="notesClose" aria-label="Cerrar notas">×</button></div>
+    <div id="notesBody"></div>
+  </aside>
+  <nav id="menu" class="menu" hidden aria-label="Índice de diapositivas"><div class="menu-grid" id="menuGrid"></div></nav>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="shortcuts" class="toast" aria-live="polite"></div>
+  <div id="iris" aria-hidden="true"><i class="ir a"></i><i class="ir b"></i></div>
+
+  <div id="slides">
+
+    <!-- ===== 1 · PORTADA ===== -->
+    <section class="slide s-cover" data-title="Portada" data-phase="intro" aria-roledescription="diapositiva" aria-label="Portada">
+      <div class="cover-kicker mono" data-a>OA 3 &nbsp;|&nbsp; OAH h · j · k · l</div>
+      <h1 class="cover-title" aria-label="Datos de salud pública: leer sin exagerar">
+        <span class="cw" data-a="word">Datos</span>
+        <span class="cw" data-a="word">de</span>
+        <span class="cw" data-a="word">salud</span>
+        <span class="cw" data-a="word">pública</span>
+        <span class="cw sub" data-a="word"><em>leer sin</em> <span class="strike">exagerar</span></span>
+      </h1>
+      <div class="cover-chips" data-a>
+        <span class="stamp-chip c1">FUENTE</span><span class="stamp-chip c2">VARIABLES</span><span class="stamp-chip c3">DESCRIPCIÓN</span><span class="stamp-chip c4">INFERENCIA</span>
+      </div>
+      <p class="cover-sub" data-a>Un gráfico puede ser correcto y una conclusión sobre él, no.</p>
+      <div class="cover-foot" data-a>
+        <span class="mono">Pulsa <kbd>→</kbd> o <kbd>espacio</kbd> para comenzar</span>
+        <span class="mono dim">Clic en el fondo: una ola recorre las barras</span>
+      </div>
+      <div class="ticker" aria-hidden="true"><div class="ticker-in"><span>DESCRIBIR ANTES DE EXPLICAR ✦ LEER LA FUENTE ✦ CUIDAR LA POBLACIÓN ✦ SIN ALARMISMO ✦ </span><span>DESCRIBIR ANTES DE EXPLICAR ✦ LEER LA FUENTE ✦ CUIDAR LA POBLACIÓN ✦ SIN ALARMISMO ✦ </span></div></div>
+    </section>
+
+    <!-- ===== 2 · RUTA ===== -->
+    <section class="slide s-route" data-title="Ruta de clase" data-phase="intro" aria-roledescription="diapositiva" aria-label="Ruta de clase">
+      <header class="sh">
+        <div class="kick mono" data-a>02 · RUTA DE CLASE</div>
+        <h2 class="title" data-a="title">Hoy leemos datos como <mark>periodistas</mark> científicos</h2>
+      </header>
+      <div class="two">
+        <div class="goal card tilt" data-a>
+          <div class="tag mono">META DE CLASE</div>
+          <p>Interpretar <b>tablas y gráficos de salud pública</b> vinculados a ITS, distinguiendo <b>datos observables</b> de <b>inferencias</b> y de conclusiones que la evidencia no permite sostener.</p>
+        </div>
+        <div class="care card tilt" data-a>
+          <div class="tag mono">CUIDADO Y RESGUARDO</div>
+          <ul>
+            <li>Datos públicos <b>seleccionados por el docente</b>.</li>
+            <li>Sin información que identifique estudiantes ni comunidades pequeñas.</li>
+            <li>Los datos de una población <b>no diagnostican</b> a una persona.</li>
+          </ul>
+        </div>
+      </div>
+      <ol class="steps" id="steps" data-a>
+        <li><span class="sn">1</span><b>Leemos</b><span>título, fuente y población</span></li>
+        <li><span class="sn">2</span><b>Identificamos</b><span>las variables</span></li>
+        <li><span class="sn">3</span><b>Describimos</b><span>antes de explicar</span></li>
+        <li><span class="sn">4</span><b>Detectamos</b><span>conclusiones exageradas</span></li>
+        <li><span class="sn">5</span><b>Redactamos</b><span>un titular responsable</span></li>
+      </ol>
+      <div class="timeline" data-a aria-label="Estructura de 90 minutos">
+        <div class="seg" style="--w:10;--c:var(--mari)"><b>10′</b><span>Ruta + activación</span></div>
+        <div class="seg" style="--w:10;--c:var(--cobalt)"><b>10′</b><span>Preguntas</span></div>
+        <div class="seg" style="--w:15;--c:var(--jade)"><b>15′</b><span>Modelamiento</span></div>
+        <div class="seg" style="--w:35;--c:var(--verm)"><b>35′</b><span>Actividad central · laboratorio</span></div>
+        <div class="seg" style="--w:10;--c:var(--cobalt)"><b>10′</b><span>Puesta en común</span></div>
+        <div class="seg" style="--w:10;--c:var(--mari)"><b>10′</b><span>Ticket + aviso</span></div>
+      </div>
+    </section>
+
+    <!-- ===== 3 · TITULAR RÁPIDO ===== -->
+    <section class="slide s-guess" data-title="Titular rápido" data-phase="activacion" aria-roledescription="diapositiva" aria-label="Titular rápido">
+      <header class="sh">
+        <div class="kick mono" data-a>03 · ACTIVACIÓN · «TITULAR RÁPIDO»</div>
+        <h2 class="title" data-a="title">¿Qué crees que muestra este gráfico?</h2>
+        <p class="lead" data-a>Elige un titular <b>antes</b> de ver el contexto. Luego revelamos título, población y fuente.</p>
+      </header>
+      <div class="guess-grid">
+        <div class="chart-card card" id="gcard" data-a>
+          <div class="gc-head"><span class="gc-title" id="gcTitle">GRÁFICO SIN TÍTULO</span><span class="gc-stamp" id="gcStamp">¿?</span></div>
+          <svg id="gchart" viewBox="0 0 640 380" role="img" aria-label="Gráfico de barras con seis valores crecientes"></svg>
+          <div class="gc-meta" id="gcMeta"><div><span class="mono">POBLACIÓN</span><b id="gcPop">—</b></div><div><span class="mono">FUENTE</span><b id="gcSrc">—</b></div></div>
+        </div>
+        <div class="guess-side">
+          <div class="opts" id="guessOpts" data-a></div>
+          <div class="guess-fb card" id="guessFb" data-a aria-live="polite">Elige un titular para el gráfico.</div>
+          <div class="ctx card" id="ctxBox" data-a hidden>
+            <div class="tag mono">MISMA FORMA, OTRO CONTEXTO</div>
+            <div class="ctx-tabs" id="ctxTabs" role="tablist"></div>
+            <p id="ctxRead"></p>
+          </div>
+        </div>
+      </div>
+      <div class="guess-tools" data-a><button class="btn" id="revealBtn" disabled>Revelar contexto ▸</button><button class="btn ghost" id="guessReset">Reiniciar</button></div>
+    </section>
+
+    <!-- ===== 4 · PREGUNTAS ===== -->
+    <section class="slide s-q" data-title="Preguntas iniciales" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Preguntas iniciales">
+      <header class="sh">
+        <div class="kick mono" data-a>04 · PREGUNTAS INICIALES</div>
+        <h2 class="title" data-a="title">Cinco preguntas antes de interpretar</h2>
+      </header>
+      <div class="fan-grid">
+        <div class="fan" id="fan" data-a role="list"></div>
+        <div class="note-pad" id="notePad" data-a aria-live="polite">
+          <div class="pin"></div>
+          <div class="tag mono" id="npTag">PISTA 1</div>
+          <p id="npText"></p>
+          <div class="mono dim np-foot">Responde con criterios, no con casos personales.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5 · VOCABULARIO ===== -->
+    <section class="slide s-vocab" data-title="Vocabulario clave" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Vocabulario clave">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>05 · VOCABULARIO CLAVE · EMPAREJA</div>
+          <h2 class="title" data-a="title">Une cada palabra con su definición</h2>
+        </div>
+        <div class="match-score" data-a><b id="mScore">0</b><span class="mono">/ 10 pares</span><button class="btn ghost sm" id="mReset">Reiniciar</button></div>
+      </header>
+      <div class="match" data-a>
+        <svg class="match-lines" id="mLines" viewBox="0 0 1700 700" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="m-col" id="mTerms"></div>
+        <div class="m-col" id="mDefs"></div>
+      </div>
+    </section>
+
+    <!-- ===== 6 · GRÁFICO 3D · F-V-D-I ===== -->
+    <section class="slide s-fvdi" data-title="Rutina F-V-D-I" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Rutina F-V-D-I en un gráfico 3D">
+      <header class="sh">
+        <div class="kick mono" data-a>06 · MODELAMIENTO · RUTINA F–V–D–I (DATOS ILUSTRATIVOS)</div>
+        <h2 class="title" data-a="title">Fuente · Variables · <mark>Descripción</mark> · Inferencia</h2>
+      </header>
+      <div class="fvdi-grid">
+        <div class="chart3d card" data-a>
+          <canvas id="chartCanvas" aria-label="Gráfico de barras en 3D con seis años; gira y toca una barra" role="img"></canvas>
+          <div id="chartLabels" class="lbls"></div>
+          <div class="lib-hint mono">Arrastra para girar · toca una barra</div>
+        </div>
+        <div class="fvdi-side" data-a>
+          <div class="fv-steps" id="fvSteps" role="tablist" aria-label="Pasos F V D I"></div>
+          <div class="fv-card card tilt" id="fvCard" aria-live="polite"></div>
+          <div class="fv-nav"><button class="btn ghost sm" id="fvPrev">◂ Anterior</button><button class="btn sm" id="fvNext">Siguiente ▸</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7 · DESCRIBIR vs INFERIR ===== -->
+    <section class="slide s-desc" data-title="Describir antes de explicar" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Describir antes de explicar">
+      <header class="sh">
+        <div class="kick mono" data-a>07 · MODELAMIENTO · DESCRIBIR ANTES DE EXPLICAR</div>
+        <h2 class="title" data-a="title">¿Lo veo… o lo estoy <mark>suponiendo</mark>?</h2>
+      </header>
+      <div class="desc-grid">
+        <div class="mini-chart card" data-a>
+          <div class="tag mono">GRÁFICO A · CONSULTAS POR 1.000 JÓVENES (ilustrativo)</div>
+          <svg id="dChart" viewBox="0 0 560 300" role="img" aria-label="Barras 2018 a 2023: 42, 47, 31, 38, 51, 58"></svg>
+          <div class="words">
+            <div class="wrow"><span class="mono c-jade">DESCRIBEN</span><span id="descWords"></span></div>
+            <div class="wrow"><span class="mono c-verm">ANUNCIAN UNA INFERENCIA</span><span id="infWords"></span></div>
+          </div>
+        </div>
+        <div class="stm" id="stm" data-a></div>
+      </div>
+      <div class="desc-foot mono" id="descScore" data-a aria-live="polite">0 / 6 clasificadas</div>
+    </section>
+
+    <!-- ===== 8 · TITULARES ===== -->
+    <section class="slide s-head" data-title="Titular responsable" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Titular sensacionalista o responsable">
+      <header class="sh">
+        <div class="kick mono" data-a>08 · MODELAMIENTO · SENSACIONALISTA vs. RESPONSABLE</div>
+        <h2 class="title" data-a="title">Arma el titular y mira el <mark>exagerómetro</mark></h2>
+      </header>
+      <div class="data-strip card" data-a><span class="tag mono">EL DATO</span> Casos notificados de una infección en un distrito ficticio: <b>120 en 2022</b> y <b>138 en 2023</b>.</div>
+      <div class="head-grid">
+        <div class="paper card" data-a>
+          <div class="mast"><span class="mono">EL DIARIO DE CIENCIAS</span><span class="mono">EDICIÓN ESCOLAR</span></div>
+          <h3 class="front" id="frontText"></h3>
+          <div class="front-stamp" id="frontStamp">—</div>
+        </div>
+        <div class="builder" data-a>
+          <div id="slotsBox"></div>
+        </div>
+        <div class="meters card" data-a>
+          <div class="meter-row"><span class="mono">EXAGERACIÓN</span><div class="gm"><i id="mAlarm"></i></div></div>
+          <div class="meter-row"><span class="mono">CAUSA SIN EVIDENCIA</span><div class="gm"><i id="mCause"></i></div></div>
+          <div class="meter-row"><span class="mono">PRECISIÓN</span><div class="gm ok"><i id="mPrec"></i></div></div>
+          <p class="why" id="headWhy" aria-live="polite">Elige una pieza de cada fila.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 9 · COMPARACIÓN JUSTA 3D ===== -->
+    <section class="slide s-fair" data-title="Comparar con justicia" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Comparar con justicia: casos totales y frecuencia">
+      <header class="sh">
+        <div class="kick mono" data-a>09 · MODELAMIENTO · FRECUENCIA Y PORCENTAJE (DISTRITOS FICTICIOS)</div>
+        <h2 class="title" data-a="title">Más casos no siempre es <mark>más frecuente</mark></h2>
+      </header>
+      <div class="fair-grid">
+        <div class="fair-stage card" data-a>
+          <div class="mode-sw" role="group" aria-label="Modo de vista">
+            <button class="on" data-m="total" aria-pressed="true">Casos totales</button>
+            <button data-m="rate" aria-pressed="false">Por cada 1.000 personas</button>
+          </div>
+          <canvas id="fairCanvas" aria-label="Modelo 3D: dos distritos, casos totales y frecuencia por cada mil personas" role="img"></canvas>
+          <div id="fairLabels" class="lbls"></div>
+          <div class="lib-hint mono">Arrastra para girar · cambia la vista arriba</div>
+        </div>
+        <div class="fair-side" data-a>
+          <div class="dist-cards" id="distCards"></div>
+          <div class="fair-q card"><div class="tag mono">¿QUÉ AFIRMACIÓN SE SOSTIENE?</div><div id="fairOpts"></div><p id="fairFb" aria-live="polite">Cambia entre las dos vistas y elige.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10 · LABORATORIO ===== -->
+    <section class="slide s-lab" data-title="Laboratorio de lectura" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Laboratorio de lectura de datos">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>10 · ACTIVIDAD CENTRAL · 35 MIN · EN PAREJAS</div>
+          <h2 class="title" data-a="title">Laboratorio de lectura de datos</h2>
+        </div>
+        <div class="lab-tabs" id="labTabs" data-a role="tablist"></div>
+      </header>
+      <div class="lab-grid">
+        <div class="lab-chart card" data-a>
+          <div class="lc-title" id="labTitle"></div>
+          <svg id="labChart" viewBox="0 0 700 420" role="img" aria-label="Gráfico del laboratorio"></svg>
+          <div class="lab-hint mono" id="labHint">Elige un campo de la ficha: si es «máximo» o «mínimo», toca la barra.</div>
+        </div>
+        <div class="lab-ficha card" data-a>
+          <div class="ficha-head"><span class="tag mono">FICHA DE LECTURA</span>
+            <div class="ring" aria-live="polite"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="r-bg" cx="22" cy="22" r="18"/><circle class="r-fg" id="labRing" cx="22" cy="22" r="18"/></svg><b id="labCount">0/7</b></div></div>
+          <div class="ficha-rows" id="fichaRows"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 11 · TRES CONCLUSIONES ===== -->
+    <section class="slide s-concl" data-title="Tres conclusiones" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Clasificar conclusiones">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>11 · ACTIVIDAD CENTRAL · CLASIFICAR CONCLUSIONES</div>
+          <h2 class="title" data-a="title">¿Qué conclusión se sostiene?</h2>
+        </div>
+        <div class="match-score" data-a><b id="cScore">0</b><span class="mono">/ 6 correctas</span><button class="btn ghost sm" id="cReset">Reiniciar</button></div>
+      </header>
+      <div class="concl-grid">
+        <div class="tray card" id="tray" data-a><div class="tag mono">ARRASTRA A UNA ZONA (o toca la tarjeta y luego la zona)</div><div class="tray-cards" id="trayCards"></div></div>
+        <div class="bins" id="bins" data-a></div>
+      </div>
+    </section>
+
+    <!-- ===== 12 · TITULAR 15 PALABRAS ===== -->
+    <section class="slide s-write" data-title="Titular de 15 palabras" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Redacta un titular de máximo 15 palabras">
+      <header class="sh">
+        <div class="kick mono" data-a>12 · ACTIVIDAD CENTRAL · TITULAR DE MÁXIMO 15 PALABRAS</div>
+        <h2 class="title" data-a="title">Comunica el dato <mark>sin alarmismo</mark></h2>
+      </header>
+      <div class="write-grid">
+        <div class="write-left" data-a>
+          <div class="lab-tabs" id="wTabs" role="tablist"></div>
+          <div class="wdata card"><span class="tag mono">EL DATO</span><p id="wData"></p></div>
+          <div class="editor card">
+            <label class="tag mono" for="wText">TU TITULAR</label>
+            <textarea id="wText" rows="3" spellcheck="true" placeholder="Escribe aquí un titular preciso, con cifras y sin alarmismo…"></textarea>
+            <div class="editor-foot">
+              <div class="ring" aria-live="polite"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="r-bg" cx="22" cy="22" r="18"/><circle class="r-fg" id="wRing" cx="22" cy="22" r="18"/></svg><b id="wCount">0</b></div>
+              <span class="mono dim">palabras (máx. 15)</span><span class="spacer"></span>
+              <button class="btn ghost sm" id="wModel">Ver modelo</button><button class="btn ghost sm" id="wClear">Limpiar</button>
+            </div>
+          </div>
+          <div class="front-prev card" id="wPrev"><div class="mast"><span class="mono">EL DIARIO DE CIENCIAS</span><span class="mono">VISTA PREVIA</span></div><h3 id="wPrevText">Tu titular aparecerá aquí</h3></div>
+        </div>
+        <div class="write-right" data-a>
+          <div class="crit card" id="cP"><div class="crit-h"><i class="sem"></i><b>Precisión</b></div><p>—</p></div>
+          <div class="crit card" id="cA"><div class="crit-h"><i class="sem"></i><b>Sin alarmismo</b></div><p>—</p></div>
+          <div class="crit card" id="cC"><div class="crit-h"><i class="sem"></i><b>Sin causa inventada</b></div><p>—</p></div>
+          <div class="crit card" id="cL"><div class="crit-h"><i class="sem"></i><b>Largo</b></div><p>—</p></div>
+          <div class="model card" id="wModelBox" hidden><div class="tag mono">MODELO</div><p id="wModelTxt"></p></div>
+          <div class="swap card"><div class="tag mono">INTERCAMBIO DE FICHAS</div>
+            <label class="ck"><input type="checkbox"> El titular coincide con el dato</label>
+            <label class="ck"><input type="checkbox"> No agrega causas</label>
+            <label class="ck"><input type="checkbox"> Dice la población y el período</label></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 13 · CAZA DE PALABRAS 3D ===== -->
+    <section class="slide s-words" data-title="Caza de palabras" data-phase="comun" aria-roledescription="diapositiva" aria-label="Caza de palabras en titulares">
+      <header class="sh">
+        <div class="kick mono" data-a>13 · PUESTA EN COMÚN · COMPARAMOS TITULARES</div>
+        <h2 class="title" data-a="title">Caza de palabras que <mark>suman opinión</mark></h2>
+        <p class="lead" data-a>Toca las palabras que agregan <b>opinión</b> o una <b>causa no demostrada</b>.</p>
+      </header>
+      <div class="words-grid">
+        <div class="words-stage card" data-a>
+          <canvas id="wordsCanvas" aria-label="Palabras de un titular flotando en 3D" role="img"></canvas>
+          <div id="wordLabels" class="word-labels"></div>
+        </div>
+        <div class="words-side" data-a>
+          <div class="h-tabs" id="hTabs" role="tablist" aria-label="Titulares"></div>
+          <div class="h-card card" id="hCard" aria-live="polite"></div>
+          <div class="btn-row"><button class="btn" id="hCheck">Revisar</button><button class="btn ghost" id="hReset">Reiniciar</button></div>
+          <p class="h-link mono dim">Siguiente clase: convertimos la evidencia en recomendaciones de autocuidado.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 14 · TICKET ===== -->
+    <section class="slide s-ticket" data-title="Ticket de salida" data-phase="ticket" aria-roledescription="diapositiva" aria-label="Ticket de salida y aviso">
+      <header class="sh">
+        <div class="kick mono" data-a>14 · TICKET DE SALIDA Y AVISO</div>
+        <h2 class="title" data-a="title">Antes de explicar una tendencia…</h2>
+      </header>
+      <div class="ticket-grid">
+        <div class="ticket-main">
+          <div class="ticket card tilt" data-a>
+            <p class="sentence">Antes de explicar por qué ocurre una tendencia, necesito <span class="blank" id="tA" aria-label="Necesito">elige una opción</span>. Un gráfico sí me permite describir <span class="blank" id="tB" aria-label="Describir">elige una opción</span>.</p>
+          </div>
+          <div class="bank-row" data-a><div class="tag mono">NECESITO…</div><div class="bank" id="bankA"></div></div>
+          <div class="bank-row" data-a><div class="tag mono">DESCRIBIR…</div><div class="bank" id="bankB"></div></div>
+          <p class="ticket-fb card" id="ticketFb" aria-live="polite" data-a>Puedes elegir más de una opción en cada frase.</p>
+        </div>
+        <div class="ticket-side">
+          <div class="selfcheck card" data-a><div class="tag mono">LO QUE LOGRÉ HOY</div><ul id="selfList"></ul></div>
+          <div class="next card tilt" data-a>
+            <div class="tag mono">PRÓXIMA CLASE · 21</div>
+            <h3>De la evidencia a una recomendación de autocuidado</h3>
+            <p>Usaremos evidencia para construir recomendaciones <b>claras, prudentes y respetuosas</b>.</p>
+            <div class="next-arrow" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script>/*__JS__*/</script>
+</body>
+</html>

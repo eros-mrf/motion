@@ -4,6 +4,7 @@
 |---|---|---|
 | 18 · Rumor, prejuicio o evidencia | [`index.html`](./index.html) | Laboratorio nocturno: ember / violeta / cian, Bricolage Grotesque |
 | 19 · Computación: investigación documental de una ITS | [`clase-19.html`](./clase-19.html) | Retícula de datos: lima / rosa / azul / oro, Syne + IBM Plex Mono |
+| 20 · Datos de salud pública: leer sin exagerar | [`clase-20.html`](./clase-20.html) | Periodismo de datos sobre papel: bermellón / cobalto / caléndula / jade, Fraunces + DM Sans |
 
 Cada archivo es autocontenido (JS, CSS y fuentes incrustados): se abre con doble clic, sin internet.
 
@@ -76,3 +77,31 @@ Los resultados de búsqueda, páginas y mensajes son **simulados**; las evidenci
 | 14 | Ticket + aviso | Frase del ticket, autoevaluación y aviso de la clase 20 |
 
 Atajos idénticos a la Clase 18. Pruebas: `DECK=clase-19.html npm run verify` y `node tools/interact19.mjs`.
+
+---
+
+# Clase 20 · Datos de salud pública: leer sin exagerar
+
+OA 3 · OAH h, j, k, l. Meta: interpretar tablas y gráficos de salud pública vinculados a ITS, distinguiendo datos observables de inferencias y de conclusiones que la evidencia no permite sostener.
+**Todos los datos son ILUSTRATIVOS (ficticios)**; el docente proyecta tablas y gráficos oficiales vigentes y evita datos que identifiquen estudiantes o comunidades pequeñas. Los datos poblacionales no diagnostican a una persona.
+
+Estilo propio: periodismo de datos sobre papel crema, bordes de tinta con sombra dura, **transición de iris de tinta**, títulos que se **estampan** con resaltador, barra de navegación en forma de gráfico y fondo 3D «skyline de datos».
+
+| # | Momento | Contenido interactivo |
+|---|---|---|
+| 1 | Portada | Skyline 3D de barras que ondula; clic = ola; «exagerar» tachado |
+| 2 | Ruta | Meta, cuidados, 5 etapas y barra de 90 min |
+| 3 | Activación | «Titular rápido»: gráfico sin contexto, revelado y «misma forma, otro contexto» |
+| 4 | Preguntas | Abanico de 5 tarjetas con notas adhesivas |
+| 5 | Vocabulario | Emparejar 10 términos con su definición (líneas que se dibujan) |
+| 6 | Modelamiento | **Three.js:** gráfico de barras 3D con la rutina F-V-D-I paso a paso |
+| 7 | Modelamiento | Describir vs. inferir: 6 afirmaciones sobre el gráfico |
+| 8 | Modelamiento | Constructor de titulares con exagerómetro y sello «responsable / sensacionalista» |
+| 9 | Modelamiento | **Three.js:** casos totales vs. por cada 1.000 personas (columnas que se vuelven pictograma) |
+| 10 | Actividad central | Laboratorio: ficha de lectura de 7 campos sobre dos gráficos |
+| 11 | Actividad central | Clasificar 6 conclusiones arrastrando (o tocando) a 3 zonas |
+| 12 | Actividad central | Titular ≤ 15 palabras con semáforo y portada en vivo |
+| 13 | Puesta en común | **Three.js:** caza de palabras que suman opinión, flotando en 3D |
+| 14 | Ticket + aviso | Ticket de salida, autoevaluación y aviso de la clase 21 |
+
+Pruebas: `DECK=clase-20.html npm run verify` y `npm run interact:20`.
