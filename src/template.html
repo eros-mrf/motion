@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase 18 · Rumor, prejuicio o evidencia</title>
+<meta name="description" content="Ciencias Naturales 7° básico · Unidad 4 · Clase 18: Rumor, prejuicio o evidencia — comunicar sin estigma. Presentación interactiva con motion graphics y Three.js.">
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="rotate" role="note"><div><b>↻</b>Gira el dispositivo<br><small style="font-family:var(--f-body);font-size:18px;color:var(--muted)">Esta presentación está diseñada para pantalla horizontal.</small></div></div>
+<div id="vignette" aria-hidden="true"></div>
+
+<main id="stage" aria-label="Presentación Clase 18">
+
+  <!-- ============ HUD ============ -->
+  <div class="hud hud-top">
+    <div class="brand"><span class="brand-dot"></span><span>CLASE 18 · UNIDAD 4 · CIENCIAS NATURALES 7°</span></div>
+    <div class="hud-right">
+      <button class="chip phase-chip" id="phaseChip" title="Iniciar / pausar reloj de clase (T)"><span class="phase-name">Inicio</span><span class="phase-min">10 min</span></button>
+      <span class="clock" id="clock" aria-label="Reloj de clase">00:00 / 90:00</span>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+  <div class="hud hud-bottom">
+    <div class="nav-left">
+      <button class="icon-btn" id="btnPrev" aria-label="Diapositiva anterior (←)">←</button>
+      <button class="icon-btn" id="btnNext" aria-label="Diapositiva siguiente (→)">→</button>
+    </div>
+    <div class="dots" id="dots" role="tablist" aria-label="Diapositivas"></div>
+    <div class="nav-right">
+      <span class="counter" id="counter">01 / 14</span>
+      <button class="icon-btn txt" id="btnMenu" aria-label="Índice (G)">Índice</button>
+      <button class="icon-btn txt" id="btnNotes" aria-label="Notas del docente (N)">Notas</button>
+      <button class="icon-btn txt" id="btnMotion" aria-pressed="false" aria-label="Reducir movimiento (M)">Movimiento</button>
+      <button class="icon-btn txt" id="btnFs" aria-label="Pantalla completa (F)">⛶</button>
+    </div>
+  </div>
+
+  <aside id="notes" class="notes glass" hidden aria-label="Notas del docente">
+    <div class="notes-head"><b>Notas del docente</b><span id="notesPhase"></span><button class="icon-btn" id="notesClose" aria-label="Cerrar notas">×</button></div>
+    <div id="notesBody"></div>
+  </aside>
+
+  <nav id="menu" class="menu" hidden aria-label="Índice de diapositivas"><div class="menu-grid" id="menuGrid"></div></nav>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="shortcuts" class="toast" aria-live="polite"></div>
+
+  <div id="slides">
+
+    <!-- ===== 1 · PORTADA ===== -->
+    <section class="slide s-cover" data-title="Portada" data-phase="intro" aria-roledescription="diapositiva" aria-label="Portada">
+      <div class="cover-kicker mono" data-a>OA 3 · OA 1 &nbsp;|&nbsp; OAH e · j · k · m</div>
+      <h1 class="cover-title" aria-label="Rumor, prejuicio o evidencia">
+        <span class="w w-rumor" data-a="word"><span class="glitch" data-text="Rumor">Rumor</span><i>,</i></span>
+        <span class="w w-prej" data-a="word"><span class="fog">prejuicio</span></span>
+        <span class="w w-evid" data-a="word"><span class="sharp">o evidencia</span><i>?</i></span>
+      </h1>
+      <p class="cover-sub" data-a>Comunicar sin estigma</p>
+      <div class="cover-legend" data-a>
+        <span class="lg lg-rumor"><i></i>lo que se repite</span>
+        <span class="lg lg-prej"><i></i>lo que se supone</span>
+        <span class="lg lg-evid"><i></i>lo que se puede comprobar</span>
+      </div>
+      <div class="cover-foot" data-a>
+        <span class="mono">Pulsa <kbd>→</kbd> o <kbd>espacio</kbd> para comenzar</span>
+        <span class="mono dim">Toca el fondo: la red responde</span>
+      </div>
+    </section>
+
+    <!-- ===== 2 · RUTA ===== -->
+    <section class="slide s-route" data-title="Ruta de clase" data-phase="intro" aria-roledescription="diapositiva" aria-label="Ruta de clase">
+      <header class="sh">
+        <div class="kick mono" data-a>02 · RUTA DE CLASE</div>
+        <h2 class="title" data-a="title">Hoy nos convertimos en verificadores científicos</h2>
+      </header>
+      <div class="route-grid">
+        <div class="route-left">
+          <div class="goal glass" data-a>
+            <div class="tag mono">META DE CLASE</div>
+            <p>Evaluar críticamente mensajes sobre ITS, <b>distinguiendo evidencia de rumores o prejuicios</b> y reformulando la información con lenguaje científico, respetuoso y no estigmatizante.</p>
+          </div>
+          <div class="care glass" data-a>
+            <div class="tag mono">ACUERDOS DE CUIDADO</div>
+            <ul>
+              <li>Trabajamos con <b>mensajes ficticios</b>, no con vivencias personales.</li>
+              <li>Opinamos sobre <b>criterios</b>, no sobre personas.</li>
+              <li>Las dudas personales van a la <b>caja de preguntas anónimas</b>.</li>
+            </ul>
+          </div>
+        </div>
+        <ol class="route" id="routeList">
+          <li data-a="route"><span class="n">1</span><div><b>Observamos</b> mensajes ficticios</div></li>
+          <li data-a="route"><span class="n">2</span><div><b>Identificamos</b> señales de rumor o estigma</div></li>
+          <li data-a="route"><span class="n">3</span><div><b>Verificamos</b> con fuentes</div></li>
+          <li data-a="route"><span class="n">4</span><div><b>Reescribimos</b> usando evidencia</div></li>
+          <li data-a="route"><span class="n">5</span><div><b>Construimos</b> criterios de comunicación responsable</div></li>
+          <svg class="route-line" viewBox="0 0 20 600" preserveAspectRatio="none" aria-hidden="true"><line x1="10" y1="10" x2="10" y2="590"/></svg>
+        </ol>
+      </div>
+      <div class="timeline" data-a aria-label="Estructura de 90 minutos">
+        <div class="seg" style="--w:10;--c:var(--amber)"><b>10′</b><span>Ruta + activación</span></div>
+        <div class="seg" style="--w:10;--c:var(--violet)"><b>10′</b><span>Preguntas</span></div>
+        <div class="seg" style="--w:15;--c:var(--cyan)"><b>15′</b><span>Modelamiento</span></div>
+        <div class="seg" style="--w:35;--c:var(--ember)"><b>35′</b><span>Actividad central</span></div>
+        <div class="seg" style="--w:10;--c:var(--violet)"><b>10′</b><span>Puesta en común</span></div>
+        <div class="seg" style="--w:10;--c:var(--amber)"><b>10′</b><span>Ticket + aviso</span></div>
+      </div>
+    </section>
+
+    <!-- ===== 3 · CUATRO MENSAJES ===== -->
+    <section class="slide s-msgs" data-title="Cuatro mensajes" data-phase="activacion" aria-roledescription="diapositiva" aria-label="Cuatro mensajes ficticios">
+      <header class="sh">
+        <div class="kick mono" data-a>03 · ACTIVACIÓN</div>
+        <h2 class="title" data-a="title">Cuatro mensajes, una decisión</h2>
+        <p class="lead" data-a>Marca en silencio: <b class="c-evid">evidencia</b>, <b class="c-rumor">rumor</b> o <b class="c-amber">necesito verificar</b>. Explica <u>solo el criterio</u>, no tu opinión personal.</p>
+      </header>
+      <div class="msg-grid" id="msgGrid"></div>
+      <div class="msg-tools" data-a>
+        <button class="btn ghost" id="msgReveal">Revelar todas las claves</button>
+        <button class="btn ghost" id="msgReset">Reiniciar</button>
+        <span class="mono dim" id="msgScore" aria-live="polite">0 / 4 marcados</span>
+      </div>
+    </section>
+
+    <!-- ===== 4 · PREGUNTAS ===== -->
+    <section class="slide s-questions" data-title="Preguntas iniciales" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Preguntas iniciales">
+      <header class="sh">
+        <div class="kick mono" data-a>04 · PREGUNTAS INICIALES</div>
+        <h2 class="title" data-a="title">Cinco preguntas para pensar con criterio</h2>
+      </header>
+      <div class="q-grid">
+        <ol class="q-list" id="qList"></ol>
+        <div class="q-panel glass" id="qPanel" aria-live="polite" data-a>
+          <div class="tag mono" id="qTag">PREGUNTA 1</div>
+          <h3 id="qTitle"></h3>
+          <div class="q-idea"><span class="mono">IDEA PARA LA CONVERSACIÓN</span><p id="qIdea"></p></div>
+          <div class="q-foot mono dim">Responde con criterios científicos, sin relatos personales.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5 · VOCABULARIO ===== -->
+    <section class="slide s-vocab" data-title="Vocabulario clave" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Vocabulario clave">
+      <header class="sh">
+        <div class="kick mono" data-a>05 · VOCABULARIO CLAVE</div>
+        <h2 class="title" data-a="title">Ocho palabras que usaremos como herramientas</h2>
+        <p class="lead" data-a>Toca una tarjeta para dar vuelta la definición.</p>
+      </header>
+      <div class="vocab-grid" id="vocabGrid"></div>
+    </section>
+
+    <!-- ===== 6 · SIMULACIÓN RUMOR (THREE) ===== -->
+    <section class="slide s-sim" data-title="Cómo viaja un rumor" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Simulación: cómo viaja un rumor">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>06 · MODELAMIENTO · MODELO SIMPLIFICADO</div>
+          <h2 class="title" data-a="title">Cómo viaja un rumor… y cómo se frena</h2>
+        </div>
+      </header>
+      <div class="sim-grid">
+        <div class="sim-stage glass" data-a>
+          <canvas id="simCanvas" aria-label="Red 3D de personas: el rumor se propaga y la verificación lo frena" role="img"></canvas>
+          <div class="sim-legend mono"><span class="lg lg-evid"><i></i>verificó / informó</span><span class="lg lg-rumor"><i></i>recibió el rumor</span><span class="lg lg-neutral"><i></i>aún no recibe</span></div>
+          <div class="sim-hint mono">Arrastra para girar · Haz clic en un punto para iniciar allí</div>
+        </div>
+        <div class="sim-panel">
+          <div class="stat-row" data-a>
+            <div class="stat"><span class="mono">ALCANCE DEL RUMOR</span><b id="stRumor" class="c-rumor">0%</b></div>
+            <div class="stat"><span class="mono">VERIFICARON</span><b id="stEvid" class="c-evid">0%</b></div>
+            <div class="stat"><span class="mono">RONDA</span><b id="stRound">0</b></div>
+          </div>
+          <div class="ctl glass" data-a>
+            <label for="verify" class="mono">PERSONAS QUE VERIFICAN ANTES DE COMPARTIR</label>
+            <div class="slider-row"><input id="verify" type="range" min="0" max="100" value="45" step="5"><output id="verifyOut">45%</output></div>
+            <div class="seg-ctl" role="group" aria-label="Qué se lanza al hacer clic">
+              <button class="on" id="modeRumor" aria-pressed="true"><i class="d-rumor"></i>Lanzar rumor</button>
+              <button id="modeEvid" aria-pressed="false"><i class="d-evid"></i>Lanzar evidencia</button>
+            </div>
+            <div class="btn-row"><button class="btn" id="simLaunch">Nuevo rumor</button><button class="btn ghost" id="simReset">Reiniciar red</button></div>
+          </div>
+          <p class="sim-read glass" id="simRead" aria-live="polite" data-a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7 · ESTIGMA → SILENCIO ===== -->
+    <section class="slide s-stigma" data-title="El costo del estigma" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="El costo del estigma">
+      <header class="sh">
+        <div class="kick mono" data-a>07 · MODELAMIENTO · ¿POR QUÉ IMPORTA EL LENGUAJE?</div>
+        <h2 class="title" data-a="title">Estigma o evidencia: dos caminos</h2>
+      </header>
+      <div class="path-switch" data-a role="group" aria-label="Elegir camino">
+        <button class="on" id="pathA" aria-pressed="true"><i class="d-rumor"></i>Camino del estigma</button>
+        <button id="pathB" aria-pressed="false"><i class="d-evid"></i>Camino de la evidencia</button>
+      </div>
+      <div class="path" id="path" data-a>
+        <svg class="path-svg" viewBox="0 0 1700 120" aria-hidden="true">
+          <path id="pathLine" d="M161 58 H1539" />
+          <path id="pathGlow" d="M161 58 H1539" pathLength="1" />
+        </svg>
+        <div class="path-dot" id="pathDot"></div>
+        <ol class="path-steps" id="pathSteps"></ol>
+      </div>
+      <div class="path-msg glass" data-a>
+        <p id="pathMsg"></p>
+        <span class="mono dim">Basado en recomendaciones de OMS y ONUSIDA para reducir el estigma en salud. Se contrasta con fuentes oficiales en clase.</span>
+      </div>
+    </section>
+
+    <!-- ===== 8 · DETECTOR ===== -->
+    <section class="slide s-detect" data-title="Detector de señales" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Detector de señales de rumor">
+      <header class="sh">
+        <div class="kick mono" data-a>08 · MODELAMIENTO · SEÑALES DE ALERTA</div>
+        <h2 class="title" data-a="title">Detector de señales: toca lo que te hace dudar</h2>
+      </header>
+      <div class="detect-grid">
+        <div class="phone glass" data-a>
+          <div class="phone-bar mono"><span>Mensaje reenviado muchas veces</span><span>ficticio</span></div>
+          <p class="chain" id="chain"></p>
+          <div class="detect-tools">
+            <button class="btn ghost" id="detectAll">Mostrar todas</button>
+            <button class="btn ghost" id="detectReset">Reiniciar</button>
+          </div>
+        </div>
+        <div class="signals glass" data-a>
+          <div class="signals-head"><span class="tag mono">SEÑALES ENCONTRADAS</span><b id="sigCount">0 / 7</b></div>
+          <ul id="sigList"></ul>
+          <p class="sig-note">Una señal aislada no prueba que algo sea falso; <b>varias juntas</b> indican que hay que verificar.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 9 · A-E-R ===== -->
+    <section class="slide s-aer" data-title="Secuencia A·E·R" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Secuencia Afirmación, Evidencia, Reformulación">
+      <header class="sh">
+        <div class="kick mono" data-a>09 · MODELAMIENTO · SECUENCIA A–E–R</div>
+        <h2 class="title" data-a="title">Afirmación → Evidencia → Reformulación</h2>
+      </header>
+      <div class="aer-steps" data-a role="tablist" aria-label="Pasos A, E, R">
+        <button class="on" data-step="0" role="tab"><b>A</b>Afirmación</button>
+        <button data-step="1" role="tab"><b>E</b>Evidencia</button>
+        <button data-step="2" role="tab"><b>R</b>Reformulación</button>
+        <button class="btn play" id="aerPlay">▶ Reproducir</button>
+      </div>
+      <div class="aer-stage">
+        <article class="aer-card a glass" id="aerA">
+          <div class="tag mono">A · AFIRMACIÓN (ficticia)</div>
+          <p class="aer-quote" id="aerQuote">“Las ITS <mark data-k="solo">solo</mark> les pasan a <mark data-k="irres">personas irresponsables</mark>.”</p>
+          <p class="aer-hint">¿Qué parte debe verificarse? <b>Lo absoluto</b> («solo») y <b>la etiqueta</b> a un tipo de persona.</p>
+        </article>
+        <article class="aer-card e glass" id="aerE">
+          <div class="tag mono">E · EVIDENCIA (paráfrasis de fuente sanitaria)</div>
+          <p>Las ITS se transmiten por <b>mecanismos concretos</b>: contacto sexual sin protección y, en algunos casos, sangre o de madre a hijo/a. <b>Cualquier persona expuesta</b> puede adquirir una; no depende del «tipo de persona».</p>
+          <div class="stamp mono">FUENTE CONTRASTADA<br><small>MINSAL · OMS</small></div>
+        </article>
+        <article class="aer-card r glass" id="aerR">
+          <div class="tag mono">R · REFORMULACIÓN (≤ 40 palabras)</div>
+          <p class="aer-final" id="aerFinal">Las ITS se transmiten por mecanismos específicos y cualquier persona expuesta puede adquirirlas. Informarse, prevenir y consultar a tiempo cuida la salud de todas y todos.</p>
+          <div class="checks"><span class="ck">✓ Exactitud</span><span class="ck">✓ Respeto</span><span class="ck">✓ Claridad</span><span class="wc mono" id="aerWc"></span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 10 · LABORATORIO FACT-CHECK ===== -->
+    <section class="slide s-lab" data-title="Laboratorio de verificación" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Laboratorio de verificación">
+      <header class="sh">
+        <div class="kick mono" data-a>10 · ACTIVIDAD CENTRAL · 35 MIN · EN GRUPOS</div>
+        <h2 class="title" data-a="title">Laboratorio de verificación</h2>
+      </header>
+      <div class="lab-bar" data-a>
+        <div class="lab-tabs" id="labTabs" role="tablist"></div>
+        <div class="lab-foot mono">Roles: <span>lector</span><span>sintetizador</span><span>registrador</span><span>verificador</span></div>
+      </div>
+      <div class="lab-grid">
+        <div class="lab-msg glass" data-a>
+          <div class="tag mono">MENSAJE FICTICIO</div>
+          <p class="lab-text" id="labText"></p>
+          <div class="gauge" aria-live="polite">
+            <svg viewBox="0 0 200 110" aria-hidden="true"><path class="g-bg" d="M20 100 A80 80 0 0 1 180 100"/><path class="g-fg" id="gaugeArc" d="M20 100 A80 80 0 0 1 180 100"/><line id="gaugeNeedle" x1="100" y1="100" x2="100" y2="34"/><circle cx="100" cy="100" r="7"/></svg>
+            <div class="g-lbl"><span class="mono">CONFIABILIDAD DEL MENSAJE</span><b id="gaugeTxt">—</b></div>
+          </div>
+        </div>
+        <div class="lab-form" id="labForm" data-a></div>
+        <div class="lab-src glass" data-a>
+          <div class="tag mono">FUENTES OFICIALES (selección breve)</div>
+          <ul id="labSrc"></ul>
+          <p class="mono dim">Paráfrasis para la clase. El docente proyecta el enlace oficial. Evita foros y redes sociales como fuente principal.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 11 · REESCRIBE ===== -->
+    <section class="slide s-write" data-title="Publicación educativa" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Reescribe en 40 palabras">
+      <header class="sh">
+        <div class="kick mono" data-a>11 · ACTIVIDAD CENTRAL · REESCRITURA</div>
+        <h2 class="title" data-a="title">Publicación educativa en 40 palabras o menos</h2>
+      </header>
+      <div class="write-grid">
+        <div class="write-left" data-a>
+          <div class="lab-tabs" id="wTabs" role="tablist"></div>
+          <div class="orig glass"><div class="tag mono">MENSAJE ORIGINAL</div><p id="wOrig"></p></div>
+          <div class="editor glass">
+            <label class="tag mono" for="wText">TU PUBLICACIÓN</label>
+            <textarea id="wText" rows="6" spellcheck="true" placeholder="Escribe aquí: afirmación corregida + evidencia + lenguaje respetuoso…"></textarea>
+            <div class="editor-foot">
+              <div class="ring" aria-live="polite"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="r-bg" cx="22" cy="22" r="18"/><circle class="r-fg" id="wRing" cx="22" cy="22" r="18"/></svg><b id="wCount">0</b></div>
+              <span class="mono dim">palabras (máx. 40)</span>
+              <span class="spacer"></span>
+              <button class="btn ghost" id="wModel">Ver modelo</button>
+              <button class="btn ghost" id="wCopy">Copiar</button>
+              <button class="btn ghost" id="wClear">Limpiar</button>
+            </div>
+          </div>
+        </div>
+        <div class="write-right" data-a>
+          <div class="crit glass" id="critE"><div class="crit-h"><i class="sem"></i><b>Exactitud</b></div><p>—</p></div>
+          <div class="crit glass" id="critR"><div class="crit-h"><i class="sem"></i><b>Respeto</b></div><p>—</p></div>
+          <div class="crit glass" id="critC"><div class="crit-h"><i class="sem"></i><b>Claridad</b></div><p>—</p></div>
+          <div class="model glass" id="wModelBox" hidden><div class="tag mono">MODELO DE RESPUESTA</div><p id="wModelTxt"></p></div>
+          <p class="mono dim crit-note">Semáforo orientativo: no reemplaza la revisión del verificador del grupo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 12 · PALABRAS ===== -->
+    <section class="slide s-words" data-title="Palabras que cuidan" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Palabras que cuidan">
+      <header class="sh">
+        <div class="kick mono" data-a>12 · ACTIVIDAD CENTRAL · INTERCAMBIO</div>
+        <h2 class="title" data-a="title">Cambiamos una palabra, cambiamos el mensaje</h2>
+      </header>
+      <div class="words-grid">
+        <div class="swap-list" id="swapList"></div>
+        <aside class="swap-side glass" data-a>
+          <div class="tag mono">INTERCAMBIO ENTRE GRUPOS</div>
+          <ol>
+            <li>Intercambien un mensaje reescrito.</li>
+            <li>Subrayen <b>una palabra o frase</b> que podría estigmatizar.</li>
+            <li>Propongan cómo mejorarla.</li>
+            <li>Devuelvan la propuesta <b>con un argumento</b>.</li>
+          </ol>
+          <button class="btn" id="swapAll">✨ Corregir todas</button>
+          <button class="btn ghost" id="swapReset">Reiniciar</button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===== 13 · PROTOCOLO (THREE) ===== -->
+    <section class="slide s-shield" data-title="Protocolo de aula" data-phase="comun" aria-roledescription="diapositiva" aria-label="Protocolo de aula">
+      <header class="sh">
+        <div class="kick mono" data-a>13 · PUESTA EN COMÚN Y CIERRE</div>
+        <h2 class="title" data-a="title">Protocolo de aula antes de compartir</h2>
+      </header>
+      <div class="shield-grid">
+        <div class="shield-stage" data-a>
+          <canvas id="shieldCanvas" aria-label="Escudo 3D con tres anillos: verificar, contextualizar y cuidar el lenguaje" role="img"></canvas>
+          <div class="shield-hint mono">Toca un anillo · arrastra para girar</div>
+        </div>
+        <div class="proto" id="proto"></div>
+      </div>
+      <div class="share-bar glass" data-a><b>Cada grupo comparte:</b> su mensaje reescrito y <u>el criterio</u> que más usó (exactitud, respeto o claridad).</div>
+    </section>
+
+    <!-- ===== 14 · TICKET ===== -->
+    <section class="slide s-ticket" data-title="Ticket de salida" data-phase="ticket" aria-roledescription="diapositiva" aria-label="Ticket de salida y aviso">
+      <header class="sh">
+        <div class="kick mono" data-a>14 · TICKET DE SALIDA Y AVISO</div>
+        <h2 class="title" data-a="title">Una comunicación responsable sobre salud debe ser…</h2>
+      </header>
+      <div class="ticket-grid">
+        <div class="ticket-main">
+          <div class="blanks" id="blanks" data-a aria-live="polite">
+            <button class="blank" data-i="0" aria-label="Espacio 1"></button><span>,</span>
+            <button class="blank" data-i="1" aria-label="Espacio 2"></button><span>y</span>
+            <button class="blank" data-i="2" aria-label="Espacio 3"></button><span>.</span>
+          </div>
+          <div class="bank" id="bank" data-a></div>
+          <p class="ticket-fb glass" id="ticketFb" aria-live="polite">Elige tres palabras del banco. Toca un espacio para quitarla.</p>
+        </div>
+        <div class="ticket-side">
+          <div class="selfcheck glass" data-a>
+            <div class="tag mono">LO QUE LOGRÉ HOY</div>
+            <ul id="selfList"></ul>
+          </div>
+          <div class="next glass" data-a>
+            <div class="tag mono">PRÓXIMA CLASE · 19</div>
+            <h3>Computación: investigación documental de una ITS</h3>
+            <p>Reunimos <b>dos fuentes oficiales</b> antes de escribir y armamos una ficha científica con referencias.</p>
+            <div class="next-bar"><i></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script>/*__JS__*/</script>
+</body>
+</html>

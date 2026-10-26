@@ -1,0 +1,22 @@
+{
+  "name": "clase-18-rumor-prejuicio-evidencia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Clase 18 · Unidad 4 Ciencias Naturales 7° básico — presentación interactiva con motion graphics y Three.js",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "verify": "node tools/verify.mjs",
+    "interact": "node tools/interact.mjs"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "esbuild": "^0.28.2"
+  }
+}
