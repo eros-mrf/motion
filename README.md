@@ -5,6 +5,7 @@
 | 18 · Rumor, prejuicio o evidencia | [`index.html`](./index.html) | Laboratorio nocturno: ember / violeta / cian, Bricolage Grotesque |
 | 19 · Computación: investigación documental de una ITS | [`clase-19.html`](./clase-19.html) | Retícula de datos: lima / rosa / azul / oro, Syne + IBM Plex Mono |
 | 20 · Datos de salud pública: leer sin exagerar | [`clase-20.html`](./clase-20.html) | Periodismo de datos sobre papel: bermellón / cobalto / caléndula / jade, Fraunces + DM Sans |
+| 21 · De la evidencia a una recomendación de autocuidado | [`clase-21.html`](./clase-21.html) | Amanecer y cristal: aurora pastel (shader), esferas de vidrio, Instrument Serif + Plus Jakarta Sans |
 
 Cada archivo es autocontenido (JS, CSS y fuentes incrustados): se abre con doble clic, sin internet.
 
@@ -105,3 +106,31 @@ Estilo propio: periodismo de datos sobre papel crema, bordes de tinta con sombra
 | 14 | Ticket + aviso | Ticket de salida, autoevaluación y aviso de la clase 21 |
 
 Pruebas: `DECK=clase-20.html npm run verify` y `npm run interact:20`.
+
+---
+
+# Clase 21 · De la evidencia a una recomendación de autocuidado
+
+OA 3 (integrando OA 1) · OAH e, j, l, m. Meta: construir recomendaciones generales de autocuidado justificadas con evidencia (estructura **E-R-L**: Evidencia → Recomendación → Límite), diferenciando información científica de consejo personal y usando lenguaje respetuoso.
+Todos los mensajes y casos son **ficticios**; los datos «ilustrativos» no son estadísticas reales; el docente proyecta la fuente oficial vigente. Una recomendación general no reemplaza a un profesional.
+
+Estilo propio: **amanecer y cristal** — aurora pastel con shader GLSL y esferas de vidrio flotantes, tarjetas de cristal esmerilado con foco que sigue el cursor, **cortina de cristal** como transición, palabras que «enfocan» al entrar y ruta de orbes como navegación.
+
+| # | Momento | Contenido interactivo |
+|---|---|---|
+| 1 | Portada | Aurora 3D; chips E · R · L |
+| 2 | Ruta | Meta, acuerdos de cuidado, 5 etapas y barra de 90 min |
+| 3 | Activación | Dos mensajes ficticios (absoluto vs. prudente), análisis de palabras y medidor de certeza |
+| 4 | Preguntas | Cinco burbujas de cristal que abren cada idea |
+| 5 | Vocabulario | Mazo de repaso: voltear, «Lo sé» / «Repasar», pila de aprendidas |
+| 6 | Modelamiento | **Three.js:** tres láminas de cristal E-R-L que se apilan y compactan |
+| 7 | Modelamiento | Balanza: la fuerza del lenguaje no puede superar la de la evidencia |
+| 8 | Modelamiento | Deslizar tarjetas: ¿informa o decide por otra persona? (arrastrar, botones o A/D) |
+| 9 | Modelamiento | **Three.js:** núcleo del mensaje donde se acoplan evidencias (solidez) y ruido (grietas) |
+| 10 | Actividad central | Taller: 3 casos ficticios, fuente oficial breve, ficha de datos y bandeja de evidencia |
+| 11 | Actividad central | Redactor E-R-L (≤ 45 palabras) con 4 criterios y **tarjeta de autocuidado 3D** en vivo |
+| 12 | Actividad central | Galería: comentar un mensaje con un solo criterio (notas adhesivas) |
+| 13 | Puesta en común | Dos mensajes fuertes y uno por mejorar (reescritura por piezas) |
+| 14 | Ticket + aviso | Ticket de salida, autoevaluación y aviso de la clase 22 (Prueba N°2) |
+
+Pruebas: `DECK=clase-21.html npm run verify` y `npm run interact:21`.

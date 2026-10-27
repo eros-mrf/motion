@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase 21 · De la evidencia a una recomendación de autocuidado</title>
+<meta name="description" content="Ciencias Naturales 7° básico · Unidad 4 · Clase 21: construir recomendaciones de autocuidado justificadas con evidencia (E-R-L). Presentación interactiva con motion graphics y Three.js.">
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="rotate" role="note"><div><b>↻</b>Gira el dispositivo<br><small>Esta presentación está diseñada para pantalla horizontal.</small></div></div>
+
+<main id="stage" aria-label="Presentación Clase 21">
+
+  <!-- ============ HUD ============ -->
+  <div class="hud hud-top">
+    <div class="brand"><span class="brand-orb"></span><span>CLASE 21 · AUTOCUIDADO CON EVIDENCIA · UNIDAD 4</span></div>
+    <div class="hud-right">
+      <button class="chip phase-chip" id="phaseChip" title="Iniciar / pausar reloj de clase (T)"><span class="phase-name">Inicio</span><span class="phase-min">10 min</span></button>
+      <span class="clock" id="clock" aria-label="Reloj de clase">00:00 / 90:00</span>
+    </div>
+  </div>
+  <div class="hud hud-bottom">
+    <div class="nav-left">
+      <button class="icon-btn" id="btnPrev" aria-label="Diapositiva anterior (←)">←</button>
+      <button class="icon-btn" id="btnNext" aria-label="Diapositiva siguiente (→)">→</button>
+    </div>
+    <div class="journey" id="journey" role="tablist" aria-label="Diapositivas"><i class="trk"></i><i class="fill" id="jFill"></i></div>
+    <div class="nav-right">
+      <span class="counter" id="counter">01 / 14</span>
+      <button class="icon-btn txt" id="btnMenu" aria-label="Índice (G)">Índice</button>
+      <button class="icon-btn txt" id="btnNotes" aria-label="Notas del docente (N)">Notas</button>
+      <button class="icon-btn txt" id="btnMotion" aria-pressed="false" aria-label="Reducir movimiento (M)">Movimiento</button>
+      <button class="icon-btn txt" id="btnFs" aria-label="Pantalla completa (F)">⛶</button>
+    </div>
+  </div>
+
+  <aside id="notes" class="notes glass" hidden aria-label="Notas del docente">
+    <div class="notes-head"><b>NOTAS DEL DOCENTE</b><span id="notesPhase"></span><button class="icon-btn" id="notesClose" aria-label="Cerrar notas">×</button></div>
+    <div id="notesBody"></div>
+  </aside>
+  <nav id="menu" class="menu" hidden aria-label="Índice de diapositivas"><div class="menu-grid" id="menuGrid"></div></nav>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="shortcuts" class="toast" aria-live="polite"></div>
+  <div id="pane" aria-hidden="true"></div>
+
+  <div id="slides">
+
+    <!-- ===== 1 · PORTADA ===== -->
+    <section class="slide s-cover" data-title="Portada" data-phase="intro" aria-roledescription="diapositiva" aria-label="Portada">
+      <div class="cover-kicker mono" data-a>OA 3 · OA 1 &nbsp;|&nbsp; OAH e · j · l · m</div>
+      <h1 class="cover-title" aria-label="De la evidencia a una recomendación de autocuidado">
+        <span class="cl" data-a="line">De la <em class="shine">evidencia</em></span>
+        <span class="cl" data-a="line">a una <em class="shine alt">recomendación</em></span>
+        <span class="cl sm" data-a="line">de autocuidado</span>
+      </h1>
+      <div class="erl-chips" data-a>
+        <span class="erl e"><b>E</b>Evidencia</span><i>→</i><span class="erl r"><b>R</b>Recomendación</span><i>→</i><span class="erl l"><b>L</b>Límite o alcance</span>
+      </div>
+      <p class="cover-sub" data-a>Informar no es decidir por otra persona.</p>
+      <div class="cover-foot" data-a>
+        <span class="mono">Pulsa <kbd>→</kbd> o <kbd>espacio</kbd> para comenzar</span>
+        <span class="mono dim">Toca el fondo: una onda de luz recorre la aurora</span>
+      </div>
+    </section>
+
+    <!-- ===== 2 · RUTA ===== -->
+    <section class="slide s-route" data-title="Ruta de clase" data-phase="intro" aria-roledescription="diapositiva" aria-label="Ruta de clase">
+      <header class="sh">
+        <div class="kick mono" data-a>02 · RUTA DE CLASE</div>
+        <h2 class="title" data-a="title">Hoy escribimos mensajes que <em class="shine">cuidan</em></h2>
+      </header>
+      <div class="two">
+        <div class="goal glass tilt" data-a>
+          <div class="tag mono">META DE CLASE</div>
+          <p>Construir <b>recomendaciones generales de autocuidado</b> justificadas con evidencia, diferenciando información científica de <b>consejo personal</b> y usando <b>lenguaje respetuoso</b>.</p>
+        </div>
+        <div class="care glass tilt" data-a>
+          <div class="tag mono">ACUERDOS DE CUIDADO</div>
+          <ul>
+            <li>Trabajamos con <b>casos ficticios</b>, nunca con vivencias.</li>
+            <li>Una recomendación general <b>no reemplaza</b> a un profesional.</li>
+            <li>Las dudas personales se derivan <b>en privado</b>.</li>
+          </ul>
+        </div>
+      </div>
+      <ol class="steps" data-a>
+        <li><span class="sn">1</span><b>Analizamos</b><span>qué hace válida una recomendación</span></li>
+        <li><span class="sn">2</span><b>Relacionamos</b><span>evidencia y mensaje</span></li>
+        <li><span class="sn">3</span><b>Resolvemos</b><span>casos de desinformación</span></li>
+        <li><span class="sn">4</span><b>Redactamos</b><span>recomendaciones prudentes</span></li>
+        <li><span class="sn">5</span><b>Revisamos</b><span>claridad y límites</span></li>
+      </ol>
+      <div class="timeline" data-a aria-label="Estructura de 90 minutos">
+        <div class="seg" style="--w:10;--c:var(--sun)"><b>10′</b><span>Ruta + activación</span></div>
+        <div class="seg" style="--w:10;--c:var(--violet)"><b>10′</b><span>Preguntas</span></div>
+        <div class="seg" style="--w:15;--c:var(--mint)"><b>15′</b><span>Modelamiento</span></div>
+        <div class="seg" style="--w:35;--c:var(--coral)"><b>35′</b><span>Actividad central · taller</span></div>
+        <div class="seg" style="--w:10;--c:var(--violet)"><b>10′</b><span>Puesta en común</span></div>
+        <div class="seg" style="--w:10;--c:var(--sun)"><b>10′</b><span>Ticket + aviso</span></div>
+      </div>
+    </section>
+
+    <!-- ===== 3 · DOS MENSAJES ===== -->
+    <section class="slide s-two" data-title="Dos mensajes" data-phase="activacion" aria-roledescription="diapositiva" aria-label="Dos mensajes ficticios">
+      <header class="sh">
+        <div class="kick mono" data-a>03 · ACTIVACIÓN</div>
+        <h2 class="title" data-a="title">Mismo tema, dos formas de <em class="shine">comunicar</em></h2>
+        <p class="lead" data-a>Elige cuál refleja mejor el modo de comunicar ciencia y explica <b>solo el criterio</b>.</p>
+      </header>
+      <div class="two-grid">
+        <button class="msgcard glass tilt" data-m="abs" data-a aria-label="Mensaje A">
+          <span class="who mono">MENSAJE A · <span id="mFromA"></span></span>
+          <span class="bubble" id="mTextA"></span>
+          <span class="pickbtn">Este comunica mejor la ciencia</span>
+          <span class="verdict" id="vA"></span>
+        </button>
+        <button class="msgcard glass tilt" data-m="pru" data-a aria-label="Mensaje B">
+          <span class="who mono">MENSAJE B · <span id="mFromB"></span></span>
+          <span class="bubble" id="mTextB"></span>
+          <span class="pickbtn">Este comunica mejor la ciencia</span>
+          <span class="verdict" id="vB"></span>
+        </button>
+      </div>
+      <div class="two-foot" data-a>
+        <button class="btn" id="msgAnalyze" disabled>Analizar las palabras ▸</button>
+        <div class="gauge-line"><span class="mono">CERTEZA QUE PROMETE</span><div class="grow"><b>A</b><div class="gl"><i id="gA"></i></div></div><div class="grow"><b>B</b><div class="gl"><i id="gB"></i></div></div></div>
+        <p class="two-fb glass" id="twoFb" aria-live="polite">Elige un mensaje.</p>
+      </div>
+    </section>
+
+    <!-- ===== 4 · PREGUNTAS ===== -->
+    <section class="slide s-q" data-title="Preguntas iniciales" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Preguntas iniciales">
+      <header class="sh">
+        <div class="kick mono" data-a>04 · PREGUNTAS INICIALES</div>
+        <h2 class="title" data-a="title">Cinco burbujas para <em class="shine">conversar</em></h2>
+      </header>
+      <div class="orbs" id="orbs" data-a role="tablist" aria-label="Preguntas"></div>
+      <div class="qpanel glass" id="qPanel" data-a aria-live="polite">
+        <div class="tag mono" id="qTag">PREGUNTA 1 DE 5</div>
+        <h3 id="qTitle"></h3>
+        <div class="qidea"><span class="mono">IDEA PARA LA CONVERSACIÓN</span><p id="qIdea"></p></div>
+      </div>
+    </section>
+
+    <!-- ===== 5 · VOCABULARIO ===== -->
+    <section class="slide s-vocab" data-title="Mazo de vocabulario" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Vocabulario clave">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>05 · VOCABULARIO CLAVE · MAZO DE REPASO</div>
+          <h2 class="title" data-a="title">Ocho palabras, una <em class="shine">baraja</em></h2>
+        </div>
+        <div class="deck-stat" data-a><b id="dKnown">0</b><span class="mono">/ 8 aprendidas</span><button class="btn ghost sm" id="dReset">Reiniciar</button></div>
+      </header>
+      <div class="deck-grid">
+        <div class="deck-stage" id="deckStage" data-a></div>
+        <div class="deck-side" data-a>
+          <div class="deck-btns"><button class="btn ghost" id="dReview">↺ Repasar</button><button class="btn" id="dKnow">Lo sé ✓</button></div>
+          <div class="known glass"><div class="tag mono">PILA DE APRENDIDAS</div><div class="known-list" id="knownList"><span class="dim">Aún no hay palabras aprendidas.</span></div></div>
+          <p class="mono dim deck-hint">Toca la tarjeta para voltearla y decide si la sabes o la repasas</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6 · E-R-L 3D ===== -->
+    <section class="slide s-erl" data-title="Estructura E-R-L" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Estructura E-R-L en 3D">
+      <header class="sh">
+        <div class="kick mono" data-a>06 · MODELAMIENTO · ESTRUCTURA E–R–L</div>
+        <h2 class="title" data-a="title">Evidencia · Recomendación · <em class="shine">Límite</em></h2>
+      </header>
+      <div class="erl-grid">
+        <div class="erl-stage glass" data-a>
+          <canvas id="erlCanvas" aria-label="Tres láminas de cristal apiladas: evidencia, recomendación y límite" role="img"></canvas>
+          <div id="erlLabels" class="lbls"></div>
+          <div class="hint mono">Arrastra para girar · toca una lámina</div>
+        </div>
+        <div class="erl-side" data-a>
+          <div class="erl-steps" id="erlSteps" role="tablist" aria-label="Pasos E R L"></div>
+          <div class="erl-card glass tilt" id="erlCard" aria-live="polite"></div>
+          <div class="erl-final glass" id="erlFinal"><div class="tag mono">MENSAJE FINAL</div><p id="erlFinalTxt">Avanza por las tres piezas para armar el mensaje.</p></div>
+          <div class="erl-nav"><button class="btn ghost sm" id="erlPrev">◂ Anterior</button><button class="btn sm" id="erlNext">Siguiente ▸</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7 · BALANZA ===== -->
+    <section class="slide s-bal" data-title="Lenguaje y evidencia" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="El lenguaje no puede pasar a la evidencia">
+      <header class="sh">
+        <div class="kick mono" data-a>07 · MODELAMIENTO · LENGUAJE Y EVIDENCIA</div>
+        <h2 class="title" data-a="title">El mensaje no puede pesar más que la <em class="shine">evidencia</em></h2>
+      </header>
+      <div class="bal-grid">
+        <div class="bal-pick" data-a>
+          <div class="tag mono">1 · ¿QUÉ TAN FUERTE ES LA EVIDENCIA?</div>
+          <div class="picks" id="evPicks"></div>
+          <div class="tag mono" style="margin-top:22px">2 · ¿CÓMO LO DICE EL MENSAJE?</div>
+          <div class="picks wd" id="wdPicks"></div>
+        </div>
+        <div class="bal-vis glass" data-a>
+          <svg id="balSvg" viewBox="0 0 640 400" role="img" aria-label="Balanza entre evidencia y mensaje"></svg>
+          <div class="bal-verdict" id="balVerdict" aria-live="polite">Elige la evidencia y la forma de decirlo.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8 · SWIPE ===== -->
+    <section class="slide s-swipe" data-title="Informar o decidir" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Informar o decidir por otra persona">
+      <header class="sh">
+        <div class="kick mono" data-a>08 · MODELAMIENTO · INFORMAR vs. DECIDIR POR OTRO</div>
+        <h2 class="title" data-a="title">Desliza: ¿<em class="shine">informa</em> o decide por otra persona?</h2>
+      </header>
+      <div class="swipe-grid">
+        <div class="zone zl" data-a><b>←</b><span>Decide por otra persona</span></div>
+        <div class="swipe-stage" id="swipeStage" data-a></div>
+        <div class="zone zr" data-a><b>→</b><span>Informa</span></div>
+      </div>
+      <div class="swipe-foot" data-a>
+        <button class="btn ghost" id="swL">← Decide por otro</button>
+        <div class="swipe-score mono" id="swScore" aria-live="polite">0 / 6 · 0 aciertos</div>
+        <button class="btn" id="swR">Informa →</button>
+        <button class="btn ghost sm" id="swReset">Reiniciar</button>
+      </div>
+      <div class="swipe-fb glass" id="swFb" data-a aria-live="polite">Arrastra la tarjeta hacia un lado, usa los botones o las teclas A (decide) y D (informa).</div>
+    </section>
+
+    <!-- ===== 9 · RED DE EVIDENCIA 3D ===== -->
+    <section class="slide s-net" data-title="Evidencia y mensaje" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Conecta la evidencia con el mensaje en 3D">
+      <header class="sh">
+        <div class="kick mono" data-a>09 · MODELAMIENTO · RELACIONAMOS EVIDENCIA Y MENSAJE</div>
+        <h2 class="title" data-a="title">Acopla solo lo que <em class="shine">respalda</em></h2>
+      </header>
+      <div class="net-msg glass" data-a><span class="tag mono">MENSAJE</span><span id="netMsg"></span></div>
+      <div class="net-grid">
+        <div class="net-stage glass" data-a>
+          <canvas id="netCanvas" aria-label="Núcleo del mensaje con ocho piezas de evidencia alrededor; toca para acoplar" role="img"></canvas>
+          <div id="netLabels" class="lbls"></div>
+          <div class="hint mono">Toca una esfera para acoplarla · arrastra para girar</div>
+        </div>
+        <div class="net-side" data-a>
+          <div class="net-meters glass">
+            <div class="nm"><span class="mono">SOLIDEZ DEL MENSAJE</span><div class="gm"><i id="nSolid"></i></div><b id="nSolidN">0 %</b></div>
+            <div class="nm"><span class="mono">RUIDO</span><div class="gm warn"><i id="nNoise"></i></div><b id="nNoiseN">0 %</b></div>
+          </div>
+          <div class="net-list" id="netList"></div>
+          <p class="net-fb glass" id="netFb" aria-live="polite">Cada pieza dice de dónde viene la información.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10 · TALLER: EVIDENCIA ===== -->
+    <section class="slide s-case" data-title="Taller: extrae la evidencia" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Taller de recomendaciones: extrae la evidencia">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>10 · ACTIVIDAD CENTRAL · 35 MIN · EN GRUPOS</div>
+          <h2 class="title" data-a="title">Elige un caso y extrae la <em class="shine">evidencia</em></h2>
+        </div>
+        <div class="tabs" id="caseTabs" data-a role="tablist"></div>
+      </header>
+      <div class="case-grid">
+        <div class="case-left">
+          <div class="viral glass tilt" data-a><div class="tag mono">MENSAJE VIRAL (FICTICIO)</div><p id="viralTxt"></p></div>
+          <div class="datacard glass" id="dataCard" data-a></div>
+        </div>
+        <div class="case-src glass" data-a>
+          <div class="tag mono">FUENTE OFICIAL BREVE · <span id="srcName"></span></div>
+          <p class="src-help">Toca las frases que <b>respaldan una recomendación</b>. No todas aportan.</p>
+          <div id="srcSents"></div>
+        </div>
+        <div class="case-tray glass" data-a>
+          <div class="tag mono">MI EVIDENCIA</div>
+          <div class="tray-meter"><i id="trayBar"></i></div>
+          <div id="trayList" class="tray-list"><span class="dim">Aún no seleccionas evidencia.</span></div>
+          <p class="key" id="caseKey" hidden></p>
+          <button class="btn" id="toWrite" disabled>Redactar mi recomendación ▸</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 11 · REDACTA E-R-L ===== -->
+    <section class="slide s-write" data-title="Redacta en E-R-L" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Redacta tu recomendación en E-R-L">
+      <header class="sh">
+        <div class="kick mono" data-a>11 · ACTIVIDAD CENTRAL · RECOMENDACIÓN DE MÁXIMO TRES LÍNEAS</div>
+        <h2 class="title" data-a="title">Redacta: Evidencia, Recomendación, <em class="shine">Límite</em></h2>
+      </header>
+      <div class="write-grid">
+        <div class="wr-left" data-a>
+          <div class="ev-chips glass"><span class="tag mono">TU EVIDENCIA · TOCA PARA INSERTAR</span><div id="evChips"></div></div>
+          <div class="fld glass" data-f="E"><label class="tag mono" for="fE"><b class="dot e"></b> E · EVIDENCIA</label><textarea id="fE" rows="2" placeholder="¿Qué dato o mecanismo confiable respalda el mensaje?"></textarea><div class="starters" data-s="E"></div></div>
+          <div class="fld glass" data-f="R"><label class="tag mono" for="fR"><b class="dot r"></b> R · RECOMENDACIÓN</label><textarea id="fR" rows="2" placeholder="¿Qué acción de autocuidado sugieres, en lenguaje prudente?"></textarea><div class="starters" data-s="R"></div></div>
+          <div class="fld glass" data-f="L"><label class="tag mono" for="fL"><b class="dot l"></b> L · LÍMITE O ALCANCE</label><textarea id="fL" rows="2" placeholder="¿Qué no garantiza o cuándo hay que consultar?"></textarea><div class="starters" data-s="L"></div></div>
+          <div class="wr-foot"><div class="ring" aria-live="polite"><svg viewBox="0 0 44 44" aria-hidden="true"><circle class="r-bg" cx="22" cy="22" r="18"/><circle class="r-fg" id="wRing" cx="22" cy="22" r="18"/></svg><b id="wCount">0</b></div><span class="mono dim">palabras (máx. 45 ≈ tres líneas)</span><span class="spacer"></span><button class="btn ghost sm" id="wModel">Ver modelo</button><button class="btn ghost sm" id="wClear">Limpiar</button></div>
+        </div>
+        <div class="wr-right" data-a>
+          <div class="card3d glass"><canvas id="cardCanvas" aria-label="Tarjeta de autocuidado en 3D con tu mensaje" role="img"></canvas></div>
+          <div class="crits" id="crits"></div>
+          <div class="model glass" id="wModelBox" hidden><div class="tag mono">MODELO</div><p id="wModelTxt"></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 12 · GALERÍA ===== -->
+    <section class="slide s-gal" data-title="Galería de mensajes" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Galería y retroalimentación con un criterio">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>12 · ACTIVIDAD CENTRAL · GALERÍA</div>
+          <h2 class="title" data-a="title">Comenta usando <em class="shine">un solo criterio</em></h2>
+        </div>
+        <div class="gal-score" data-a><b id="gScore">0</b><span class="mono">/ 4 comentarios</span><button class="btn ghost sm" id="gReset">Reiniciar</button></div>
+      </header>
+      <div class="gal-grid">
+        <div class="gal-cards" id="galCards" data-a></div>
+        <div class="gal-panel glass" data-a>
+          <div class="tag mono" id="gTag">ELIGE UN MENSAJE DE LA GALERÍA</div>
+          <div class="g-crits" id="gCrits"></div>
+          <div class="g-stems" id="gStems"></div>
+          <textarea id="gText" rows="2" placeholder="Completa la frase con un comentario breve, sin identificar a nadie…"></textarea>
+          <button class="btn" id="gPost" disabled>Pegar comentario</button>
+          <p class="g-note" id="gNote" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 13 · PUESTA EN COMÚN ===== -->
+    <section class="slide s-share" data-title="Dos fuertes y uno por mejorar" data-phase="comun" aria-roledescription="diapositiva" aria-label="Dos ejemplos fuertes y uno por mejorar">
+      <header class="sh">
+        <div class="kick mono" data-a>13 · PUESTA EN COMÚN · SIN IDENTIFICAR AUTORES</div>
+        <h2 class="title" data-a="title">Dos mensajes fuertes y uno por <em class="shine">mejorar</em></h2>
+      </header>
+      <div class="share-tabs" id="shTabs" data-a role="tablist"></div>
+      <div class="share-grid">
+        <div class="share-main glass tilt" data-a id="shMain"></div>
+        <div class="share-side" data-a>
+          <div class="sh-crit glass" id="shCrit"></div>
+          <div class="sh-note glass"><div class="tag mono">RECUERDA</div><p>Estas habilidades se evaluarán en la <b>Prueba N°2</b> y las usarás en el <b>proyecto final</b>.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 14 · TICKET ===== -->
+    <section class="slide s-ticket" data-title="Ticket de salida" data-phase="ticket" aria-roledescription="diapositiva" aria-label="Ticket de salida y aviso">
+      <header class="sh">
+        <div class="kick mono" data-a>14 · TICKET DE SALIDA Y AVISO</div>
+        <h2 class="title" data-a="title">Evidencia y <em class="shine">límites</em></h2>
+      </header>
+      <div class="ticket-grid">
+        <div class="ticket-main">
+          <div class="ticket glass tilt" data-a>
+            <p class="sentence">Una recomendación científica necesita evidencia porque <span class="blank empty" id="tA">elige una opción</span>, y debe reconocer sus límites porque <span class="blank empty" id="tB">elige una opción</span>.</p>
+          </div>
+          <div class="bank-row" data-a><div class="tag mono">NECESITA EVIDENCIA PORQUE…</div><div class="bank" id="bankA"></div></div>
+          <div class="bank-row" data-a><div class="tag mono">DEBE RECONOCER LÍMITES PORQUE…</div><div class="bank" id="bankB"></div></div>
+          <p class="ticket-fb glass" id="ticketFb" aria-live="polite" data-a>Puedes elegir más de una opción en cada frase.</p>
+        </div>
+        <div class="ticket-side">
+          <div class="selfcheck glass" data-a><div class="tag mono">LO QUE LOGRÉ HOY</div><ul id="selfList"></ul></div>
+          <div class="next glass tilt" data-a>
+            <div class="tag mono">PRÓXIMA CLASE · 22</div>
+            <h3>Repaso estructurado OA 3</h3>
+            <p>Estaciones de repaso y un mini ensayo para la <b>Prueba de Conocimientos N°2</b>.</p>
+            <div class="stations" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script>/*__JS__*/</script>
+</body>
+</html>
