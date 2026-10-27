@@ -14,9 +14,16 @@ Te adjunto la **prueba de Ciencias Naturales de 8° básico** y su **pauta de re
 - **Usa la pauta para la respuesta correcta.** Verifica la exactitud científica de cada explicación; si una pregunta de la prueba tiene una respuesta dudosa, ambigua o con error, dímelo en el resumen final en lugar de ocultarlo.
 - No inventes contenido fuera de lo que evalúa la prueba. Todo dato o caso nuevo debe ser claramente un ejemplo para el repaso.
 
+### Tipos de ítem que puede traer la prueba (adáptate a cada uno)
+- **Selección única:** parafrasea el enunciado y las 4 alternativas, desordénalas y mantén la letra correcta distinta de la original (reparte A, B, C y D de forma equilibrada).
+- **Verdadero o falso con justificación:** reescribe cada afirmación con otro contexto o datos, cuidando que la respuesta (V o F) sea la misma que en la pauta y **reparte V y F** (no todas V). La explicación debe incluir la **justificación modelo** («es verdadera/falsa porque…») y, si es falsa, cómo se corrige la afirmación.
+- **Desarrollo / pregunta abierta con rúbrica:** divide la situación en partes (por ejemplo: calcular, evaluar una afirmación, relacionar modelos, clasificar). Para cada parte muestra el razonamiento paso a paso, la **respuesta modelo** y una **lista de verificación** basada en la rúbrica («para tener el puntaje completo, tu respuesta debe decir…»). Cambia los datos de la situación (otros números, otros elementos) pero conserva la estructura y los conceptos evaluados.
+- Si la prueba trae **niveles cognitivos** (conocer, comprender, aplicar, analizar, evaluar, sintetizar) y **puntajes**, úsalos para etiquetar cada pregunta y para armar el resumen final por habilidad.
+- La **pauta puede venir al final del mismo documento**: léela completa (claves, rúbricas y respuesta esperada). Los datos de identificación (colegio, profesor/a, nombre, fecha, nota) y los logos no deben aparecer en la presentación.
+
 ## 2. Cómo se analiza cada pregunta (flujo por diapositiva)
-Cada pregunta tiene un recorrido por pasos (con `→` o clic avanza al paso siguiente; al terminar, pasa a la próxima pregunta):
-1. **La pregunta:** enunciado parafraseado y 4 alternativas barajadas. Las y los estudiantes eligen (o el docente revela); queda registrada la elección.
+Cada pregunta (de cualquier tipo) tiene un recorrido por pasos (con `→` o clic avanza al paso siguiente; al terminar, pasa a la próxima pregunta):
+1. **La pregunta:** enunciado parafraseado y 4 alternativas barajadas (o V/F, o el planteamiento del desarrollo). Las y los estudiantes eligen (o el docente revela); queda registrada la elección.
 2. **¿Qué nos pide?** Subrayado a lápiz de las palabras clave y de los datos importantes.
 3. **Animación explicativa:** un esquema o dibujo que se va **trazando como a lápiz** y muestra el concepto (ver sección 3). Debe poder entenderse sin leer mucho texto.
 4. **Respuesta correcta y por qué.** La alternativa correcta se marca (círculo a lápiz), con el razonamiento en pasos cortos.
