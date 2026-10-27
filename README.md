@@ -162,3 +162,31 @@ Estilo propio: **tablero de andén** — vino oscuro con ámbar de señalética 
 | 14 | Cierre | Tarjeta de estudio, ticket «diferenciar ___ de ___», autoevaluación y aviso de la Prueba N°2 |
 
 Pruebas: `DECK=clase-22.html npm run verify` y `npm run interact:22`.
+
+---
+
+# Clase 25 · Proyecto final: ¿qué necesita saber nuestra comunidad?
+
+OA 1–3 · OAH b, e, g, l, m. Meta: planificar una comunicación científica de autocuidado para una audiencia escolar (pregunta central, contenidos, evidencia, fuentes, roles y mensaje). Es la primera clase del proyecto «Autocuidado informado»; la 26 es en computación (PPT) y la 28 la feria.
+Todo el material es **ficticio**; los resguardos del plan se aplican en la propia actividad (sin relatos íntimos, sin fotos clínicas explícitas, sin redes sociales como evidencia principal, temas solo dentro de los OA 1–3). Los semáforos de la pregunta central y la clasificación de fuentes son **orientativos**; la revisión final la hace el docente, que proyecta los sitios oficiales vigentes.
+
+Estilo propio: **plano de proyecto** — azul cobalto con cuadrícula técnica (shader), hojas de papel blanco, marcador amarillo que subraya las palabras clave, mira con coordenadas que sigue al cursor, transición de mosaico 16 × 9 y regla de diapositivas con pin.
+
+| # | Momento | Contenido interactivo |
+|---|---|---|
+| 1 | Portada | Siete diapositivas que se dibujan con cotas |
+| 2 | Ruta | Meta, resguardos (✕ / ✓), 5 etapas y 90 min |
+| 3 | Activación | Dos productos ficticios con lupa, votación y elección de 3 criterios (con 2 trampas) |
+| 4 | Preguntas | Cinco notas adhesivas con idea de apoyo y respuesta escrita |
+| 5 | Vocabulario | Arrastrar 8 términos a sus definiciones |
+| 6 | Modelamiento 1 | **Three.js:** una diapositiva en cinco capas que se arma |
+| 7 | Modelamiento 2 | Estructura del PPT y rúbrica: clasificar 6 frases; compara con tus criterios |
+| 8 | Actividad 1 | Tema (10 opciones, OA 1–3), audiencia y chequeo de resguardo |
+| 9 | Actividad 2 | Ficha con semáforo de la pregunta central y ejemplo por tema |
+| 10 | Actividad 3 | Clasificar 9 fuentes y elegir 2 institucionales |
+| 11 | Actividad 4 | **Three.js:** mesa de 7 láminas con una oración objetivo por diapositiva |
+| 12 | Actividad 5 | Roles (arrastrar) para 3–6 integrantes |
+| 13 | Puesta en común | Guion de pitch automático con cronómetro de 30 s; **Three.js:** radar 3D de 5 criterios y pase a computación |
+| 14 | Ticket + aviso | Ticket «enseñará ___ / respaldaremos con ___», plan maestro descargable y aviso de la clase 26 |
+
+Pruebas: `DECK=clase-25.html npm run verify` y `npm run interact:25`.

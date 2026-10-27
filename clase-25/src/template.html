@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase 25 · Proyecto final: ¿qué necesita saber nuestra comunidad?</title>
+<meta name="description" content="Ciencias Naturales 7° básico · Unidad 4 · Clase 25: planificación del proyecto final «Autocuidado informado» (pregunta central, evidencia, fuentes, roles y pitch). Presentación interactiva con motion graphics y Three.js.">
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="cross" aria-hidden="true"><i class="cx"></i><i class="cy"></i><span id="crossTxt"></span></div>
+<div id="rotate" role="note"><div><b>↻</b>Gira el dispositivo<br><small>Esta presentación está diseñada para pantalla horizontal.</small></div></div>
+
+<main id="stage" aria-label="Presentación Clase 25">
+
+  <!-- ============ HUD ============ -->
+  <div class="hud hud-top">
+    <div class="brand"><span class="brand-mark"></span><span>CLASE 25 · PROYECTO «AUTOCUIDADO INFORMADO» · UNIDAD 4</span></div>
+    <div class="hud-right">
+      <button class="chip phase-chip" id="phaseChip" title="Iniciar / pausar reloj de clase (T)"><span class="phase-name">Inicio</span><span class="phase-min">10 min</span></button>
+      <span class="clock" id="clock" aria-label="Reloj de clase">00:00 / 90:00</span>
+    </div>
+  </div>
+  <div class="hud hud-bottom">
+    <div class="nav-left">
+      <button class="icon-btn" id="btnPrev" aria-label="Diapositiva anterior (←)">←</button>
+      <button class="icon-btn" id="btnNext" aria-label="Diapositiva siguiente (→)">→</button>
+    </div>
+    <div class="journey" id="journey" role="tablist" aria-label="Diapositivas"><i class="trk"></i><i class="pin" id="pin"></i></div>
+    <div class="nav-right">
+      <span class="counter" id="counter">01 / 14</span>
+      <button class="icon-btn txt" id="btnMenu" aria-label="Índice (G)">Índice</button>
+      <button class="icon-btn txt" id="btnNotes" aria-label="Notas del docente (N)">Notas</button>
+      <button class="icon-btn txt" id="btnMotion" aria-pressed="false" aria-label="Reducir movimiento (M)">Movimiento</button>
+      <button class="icon-btn txt" id="btnFs" aria-label="Pantalla completa (F)">⛶</button>
+    </div>
+  </div>
+
+  <aside id="notes" class="notes" hidden aria-label="Notas del docente">
+    <div class="notes-head"><b>NOTAS DEL DOCENTE</b><span id="notesPhase"></span><button class="icon-btn" id="notesClose" aria-label="Cerrar notas">×</button></div>
+    <div id="notesBody"></div>
+  </aside>
+  <nav id="menu" class="menu" hidden aria-label="Índice de diapositivas"><div class="menu-grid" id="menuGrid"></div></nav>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="shortcuts" class="toast" aria-live="polite"></div>
+  <div id="pane" aria-hidden="true"></div>
+
+  <div id="slides">
+
+    <!-- ===== 1 · PORTADA ===== -->
+    <section class="slide s-cover" data-title="Portada" data-phase="intro" aria-roledescription="diapositiva" aria-label="Portada">
+      <div class="cover-kicker mono" data-a>OA 1 · 2 · 3 &nbsp;|&nbsp; OAH b · e · g · l · m &nbsp;|&nbsp; CLASE 25 DE 29</div>
+      <h1 class="cover-title title" data-a="title" aria-label="Proyecto final: ¿qué necesita saber nuestra comunidad?">Proyecto final:<br>¿Qué necesita saber<br>nuestra <em>comunidad</em>?</h1>
+      <svg class="cover-draw" data-a viewBox="0 0 1700 190" aria-hidden="true">
+        <g id="coverDraw" fill="none" stroke-linecap="round" stroke-linejoin="round"></g>
+      </svg>
+      <p class="cover-sub" data-a>Hoy planificamos una comunicación científica de autocuidado para una audiencia escolar.</p>
+      <div class="cover-foot" data-a>
+        <span class="mono">Pulsa <kbd>→</kbd> o <kbd>espacio</kbd> para comenzar</span>
+        <span class="mono dim">Mueve el cursor: la mira del plano marca coordenadas · toca el fondo para lanzar una onda</span>
+      </div>
+    </section>
+
+    <!-- ===== 2 · RUTA ===== -->
+    <section class="slide s-route" data-title="Ruta de clase" data-phase="intro" aria-roledescription="diapositiva" aria-label="Ruta de clase">
+      <header class="sh">
+        <div class="kick mono" data-a>02 · RUTA DE CLASE</div>
+        <h2 class="title" data-a="title">Hoy armamos el <em>plan maestro</em> del proyecto</h2>
+      </header>
+      <div class="two">
+        <div class="goal paper" data-a>
+          <div class="tag mono">META DE CLASE</div>
+          <p>Planificar una <b>comunicación científica de autocuidado</b> para una audiencia escolar: <b>pregunta central, contenidos, evidencia, fuentes, roles y mensaje</b> de prevención o responsabilidad.</p>
+        </div>
+        <div class="care paper" data-a>
+          <div class="tag mono">CUIDADO Y RESGUARDO</div>
+          <ul>
+            <li class="no">Sin <b>relatos íntimos</b> ni fotografías clínicas explícitas.</li>
+            <li class="no">Las <b>redes sociales</b> no son la evidencia principal.</li>
+            <li class="yes">Temas solo dentro de los <b>OA 1–3</b> y del nivel de 7°.</li>
+            <li class="yes">Las dudas personales se derivan en <b>privado</b> a un adulto.</li>
+          </ul>
+        </div>
+      </div>
+      <ol class="stops" data-a>
+        <li style="--sc:var(--hi)"><i>1</i><b>Conocemos</b><span>el desafío y los criterios</span></li>
+        <li style="--sc:var(--mint)"><i>2</i><b>Elegimos</b><span>tema y audiencia</span></li>
+        <li style="--sc:var(--pink)"><i>3</i><b>Definimos</b><span>la pregunta central</span></li>
+        <li style="--sc:var(--sky)"><i>4</i><b>Planificamos</b><span>evidencia y estructura</span></li>
+        <li style="--sc:var(--lilac)"><i>5</i><b>Asignamos</b><span>roles y presentamos un pitch</span></li>
+      </ol>
+      <div class="timeline" data-a aria-label="Estructura de 90 minutos">
+        <div class="seg" style="--w:10;--c:var(--hi)"><b>10′</b><span>Ruta + activación</span></div>
+        <div class="seg" style="--w:10;--c:var(--pink)"><b>10′</b><span>Preguntas</span></div>
+        <div class="seg" style="--w:15;--c:var(--mint)"><b>15′</b><span>Modelamiento</span></div>
+        <div class="seg" style="--w:35;--c:var(--sky)"><b>35′</b><span>Actividad central · plan maestro</span></div>
+        <div class="seg" style="--w:10;--c:var(--pink)"><b>10′</b><span>Pitch</span></div>
+        <div class="seg" style="--w:10;--c:var(--hi)"><b>10′</b><span>Ticket + aviso</span></div>
+      </div>
+    </section>
+
+    <!-- ===== 3 · DOS PRODUCTOS ===== -->
+    <section class="slide s-prod" data-title="Dos productos ficticios" data-phase="activacion" aria-roledescription="diapositiva" aria-label="Dos productos ficticios">
+      <header class="sh">
+        <div class="kick mono" data-a>03 · ACTIVACIÓN · COMPARA DOS PRODUCTOS</div>
+        <h2 class="title" data-a="title">¿Cuál <em>enseña mejor</em>? Descubre por qué</h2>
+      </header>
+      <div class="prod-grid">
+        <div class="prod-pair" data-a>
+          <div class="poster-wrap">
+            <span class="plabel mono">PRODUCTO A · EJEMPLO FICTICIO</span>
+            <div class="poster pa" id="posterA">
+              <i class="star s1">★</i><i class="star s2">★</i><i class="star s3">✦</i><i class="blob b1"></i><i class="blob b2"></i>
+              <h4>¡¡SÚPER SALUD!!</h4>
+              <p>Cuídate siempre y listo ★ ¡Es lo mejor!</p>
+              <span class="spot" data-k="evid" style="left:8%;top:34%;width:84%;height:22%">1</span>
+              <span class="spot" data-k="fuente" style="left:8%;top:84%;width:46%;height:10%">2</span>
+              <span class="spot" data-k="msg" style="left:8%;top:60%;width:84%;height:20%">3</span>
+              <span class="spot" data-k="deco" style="left:2%;top:2%;width:96%;height:94%;border-style:dotted">4</span>
+            </div>
+          </div>
+          <div class="poster-wrap">
+            <span class="plabel mono">PRODUCTO B · EJEMPLO FICTICIO</span>
+            <div class="poster pb" id="posterB">
+              <h4>¿Cómo se transmiten las ITS?</h4>
+              <svg viewBox="0 0 260 90" class="mini" aria-hidden="true">
+                <line x1="20" y1="76" x2="250" y2="76" stroke="#0d1b4c" stroke-width="2"/>
+                <rect x="40" y="26" width="46" height="50" fill="#1b46d8"/><rect x="110" y="38" width="46" height="38" fill="#2fb497"/><rect x="180" y="58" width="46" height="18" fill="#ff7a6b"/>
+                <text x="63" y="20" font-size="11" text-anchor="middle" fill="#0d1b4c">Vía 1</text><text x="133" y="32" font-size="11" text-anchor="middle" fill="#0d1b4c">Vía 2</text><text x="203" y="52" font-size="11" text-anchor="middle" fill="#0d1b4c">Vía 3</text>
+              </svg>
+              <small>Esquema ilustrativo · título y unidad</small>
+              <p>Ante dudas, consulta en tu centro de salud.</p>
+              <em>Fuente: institución de salud (ejemplo)</em>
+              <span class="spot" data-k="evid" style="left:6%;top:24%;width:88%;height:34%">1</span>
+              <span class="spot" data-k="fuente" style="left:6%;top:86%;width:88%;height:10%">2</span>
+              <span class="spot" data-k="msg" style="left:6%;top:66%;width:88%;height:16%">3</span>
+              <span class="spot" data-k="deco" style="left:2%;top:2%;width:96%;height:94%;border-style:dotted">4</span>
+            </div>
+          </div>
+        </div>
+        <div class="prod-side" data-a>
+          <div class="lens paper">
+            <span class="tag mono">1 · USA LA LUPA</span>
+            <div class="lens-btns" id="lensBtns">
+              <button data-k="evid">Evidencia</button><button data-k="fuente">Fuente</button><button data-k="msg">Mensaje</button><button data-k="deco">Decoración</button>
+            </div>
+            <div class="lens-cap" id="lensCap" aria-live="polite"><b>Toca una lupa</b> y mira qué muestra cada producto.</div>
+          </div>
+          <div class="vote paper">
+            <span class="tag mono">2 · ¿CUÁL ENSEÑA MEJOR?</span>
+            <div class="vote-btns"><button id="voteA">Producto A</button><button id="voteB">Producto B</button></div>
+            <div class="vote-fb" id="voteFb" aria-live="polite">Decide con lo que viste en la lupa.</div>
+          </div>
+          <div class="crit paper" id="critBox">
+            <span class="tag mono">3 · ELIGE TRES CRITERIOS <b id="critN">0 de 3</b></span>
+            <div class="crit-chips" id="critChips"></div>
+            <div class="crit-fb" id="critFb" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4 · PREGUNTAS INICIALES ===== -->
+    <section class="slide s-q" data-title="Preguntas iniciales" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Preguntas iniciales">
+      <header class="sh">
+        <div class="kick mono" data-a>04 · PREGUNTAS INICIALES</div>
+        <h2 class="title" data-a="title">Cinco preguntas para <em>decidir</em> antes de diseñar</h2>
+      </header>
+      <div class="notes-row" id="notesRow" data-a role="list"></div>
+      <div class="q-detail" data-a>
+        <div class="q-idea paper" id="qIdea"><span class="tag mono" id="qTag">ELIGE UNA NOTA</span><h3 id="qTitle">Toca una nota adhesiva</h3><p id="qText">Responde primero en parejas y luego revisa la idea de apoyo.</p></div>
+        <div class="q-answer paper"><span class="tag mono">MI RESPUESTA (1–2 FRASES)</span><textarea id="qAns" rows="4" placeholder="Escribe tu respuesta aquí…" disabled></textarea><div class="q-prog"><div class="gm"><i id="qGauge"></i></div><span class="mono" id="qCount">0 de 5 respondidas</span></div></div>
+      </div>
+    </section>
+
+    <!-- ===== 5 · VOCABULARIO ===== -->
+    <section class="slide s-vocab" data-title="Vocabulario clave" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Vocabulario clave">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>05 · VOCABULARIO CLAVE</div>
+          <h2 class="title" data-a="title">Arrastra cada <em>término</em> a su definición</h2>
+        </div>
+        <div class="v-stat" data-a><div><b id="vOk">0</b><span class="mono">/ 8 ubicados</span></div><div><b id="vErr" class="err">0</b><span class="mono">intentos fallidos</span></div><button class="btn ghost sm" id="vReset">Reiniciar</button></div>
+      </header>
+      <div class="v-bank" id="vBank" data-a role="group" aria-label="Términos"></div>
+      <div class="v-grid" id="vGrid" data-a role="group" aria-label="Definiciones"></div>
+      <p class="v-fb" id="vFb" data-a>Arrastra un término (o tócalo) y suéltalo sobre su definición.</p>
+    </section>
+
+    <!-- ===== 6 · MODELAMIENTO 1 ===== -->
+    <section class="slide s-layers" data-title="Una diapositiva en cinco capas" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Una diapositiva en cinco capas">
+      <header class="sh">
+        <div class="kick mono" data-a>06 · MODELAMIENTO 1 DE 2 · UNA SOLA DIAPOSITIVA</div>
+        <h2 class="title" data-a="title">Propósito → idea → evidencia → fuente → <em>mensaje</em></h2>
+      </header>
+      <div class="lay-grid">
+        <div class="lay-3d paper-dark" data-a>
+          <canvas id="layCanvas" aria-label="Modelo 3D de una diapositiva en cinco capas"></canvas>
+          <div class="lbls" id="layLabels"></div>
+          <span class="hint">Arrastra para girar · toca una capa</span>
+        </div>
+        <div class="lay-side" data-a>
+          <ol class="lay-steps" id="layList"></ol>
+          <div class="lay-card paper" id="layCard"><span class="tag mono" id="layTag">EJEMPLO FICTICIO · ITS: TRANSMISIÓN</span><h3 id="layName">Arma la diapositiva</h3><p id="layText">Pulsa «Agregar capa» para construir una diapositiva con la secuencia del plan.</p></div>
+          <div class="btn-row"><button class="btn" id="layNext">Agregar capa 1: Propósito</button><button class="btn ghost" id="layReset">Reiniciar</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7 · MODELAMIENTO 2 ===== -->
+    <section class="slide s-rub" data-title="Estructura del PPT y rúbrica" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Estructura del PPT y rúbrica">
+      <header class="sh">
+        <div class="kick mono" data-a>07 · MODELAMIENTO 2 DE 2 · ESTRUCTURA Y RÚBRICA</div>
+        <h2 class="title" data-a="title">Seis criterios para un <em>buen proyecto</em></h2>
+      </header>
+      <div class="rub-grid">
+        <div class="rub-main" data-a>
+          <div class="stmt paper"><span class="tag mono" id="stNum">FRASE 1 DE 6</span><p id="stText"></p></div>
+          <p class="rub-help">¿Qué criterio de la rúbrica demuestra esta frase?</p>
+          <div class="rub-cards" id="rubCards"></div>
+          <div class="alt-why" id="rubFb" aria-live="polite">Toca el criterio que corresponde.</div>
+        </div>
+        <div class="rub-side" data-a>
+          <div class="struct paper"><span class="tag mono">ESTRUCTURA GENERAL · 7 DIAPOSITIVAS</span><ol id="structList"></ol></div>
+          <div class="mine paper"><span class="tag mono">TUS CRITERIOS DE LA ACTIVACIÓN</span><div id="mineBox"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8 · TEMA Y AUDIENCIA ===== -->
+    <section class="slide s-topic" data-title="Tema y audiencia" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Tema y audiencia">
+      <header class="sh">
+        <div class="kick mono" data-a>08 · ACTIVIDAD CENTRAL 1 DE 5 · TEMA Y AUDIENCIA</div>
+        <h2 class="title" data-a="title">Elige un <em>tema</em> y a quién le hablarás</h2>
+      </header>
+      <div class="topic-grid" id="topicGrid" data-a role="radiogroup" aria-label="Temas"></div>
+      <div class="aud-row" data-a>
+        <span class="tag mono">AUDIENCIA ESCOLAR</span>
+        <div class="aud-chips" id="audChips" role="radiogroup" aria-label="Audiencia"></div>
+      </div>
+      <div class="guard paper" data-a>
+        <span class="tag mono">RESGUARDO · CONFIRMA LOS TRES</span>
+        <label class="ck"><input type="checkbox" class="gck"><span>Mi tema no pide relatos personales ni experiencias íntimas.</span></label>
+        <label class="ck"><input type="checkbox" class="gck"><span>No usaremos fotografías clínicas explícitas.</span></label>
+        <label class="ck"><input type="checkbox" class="gck"><span>Las redes sociales no serán nuestra evidencia principal.</span></label>
+        <div class="guard-fb" id="guardFb" aria-live="polite">Elige tema, audiencia y confirma el resguardo.</div>
+      </div>
+    </section>
+
+    <!-- ===== 9 · FICHA ===== -->
+    <section class="slide s-ficha" data-title="Ficha de planificación" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Ficha de planificación">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>09 · ACTIVIDAD CENTRAL 2 DE 5 · FICHA</div>
+          <h2 class="title" data-a="title">Define la <em>pregunta central</em></h2>
+        </div>
+        <div class="ficha-top" data-a><span class="chip-topic" id="fTopic">Sin tema elegido</span><button class="btn ghost sm" id="fExample">Ver ejemplo del tema</button></div>
+      </header>
+      <div class="ficha-grid" data-a>
+        <div class="f-left">
+          <label class="fblock paper"><span class="tag mono">PREGUNTA CENTRAL</span><textarea id="fQ" rows="2" placeholder="¿…?"></textarea></label>
+          <div class="sema paper" id="sema" aria-live="polite"></div>
+          <div class="fblock paper"><span class="tag mono">TRES IDEAS CIENTÍFICAS</span><input id="fI0" placeholder="Idea 1" aria-label="Idea 1"><input id="fI1" placeholder="Idea 2" aria-label="Idea 2"><input id="fI2" placeholder="Idea 3" aria-label="Idea 3"></div>
+        </div>
+        <div class="f-right">
+          <label class="fblock paper"><span class="tag mono">MITO O DUDA FRECUENTE</span><input id="fMyth" placeholder="«…»"></label>
+          <label class="fblock paper"><span class="tag mono">EVIDENCIA O GRÁFICO</span><input id="fEv" placeholder="¿Qué gráfico, esquema o tabla usarán?"></label>
+          <label class="fblock paper"><span class="tag mono">MENSAJE DE AUTOCUIDADO</span><textarea id="fMsg" rows="2" placeholder="Recomendación general, respetuosa y con límite."></textarea></label>
+          <div class="f-prog paper"><span class="tag mono">FICHA COMPLETA</span><div class="gm"><i id="fGauge"></i></div><b id="fPct">0 %</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10 · FUENTES ===== -->
+    <section class="slide s-src" data-title="Fuentes previstas" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Fuentes previstas">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>10 · ACTIVIDAD CENTRAL 3 DE 5 · FUENTES</div>
+          <h2 class="title" data-a="title">¿Qué fuente <em>sirve</em> como evidencia?</h2>
+        </div>
+        <div class="src-stat" data-a><div><b id="srcOk">0</b><span class="mono">/ 9 clasificadas</span></div><div><b id="srcInst">0</b><span class="mono">/ 2 institucionales previstas</span></div></div>
+      </header>
+      <div class="src-grid" id="srcGrid" data-a></div>
+      <div class="src-bar paper" data-a><span class="tag mono">MIS DOS FUENTES PREVISTAS</span><div id="srcChosen" class="src-chosen"></div><span class="src-hint" id="srcHint">Clasifica bien una fuente institucional y márcala con ★ para incluirla.</span></div>
+    </section>
+
+    <!-- ===== 11 · SIETE DIAPOSITIVAS ===== -->
+    <section class="slide s-seven" data-title="Siete diapositivas" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Siete diapositivas">
+      <header class="sh">
+        <div class="kick mono" data-a>11 · ACTIVIDAD CENTRAL 4 DE 5 · GUION DE SIETE DIAPOSITIVAS</div>
+        <h2 class="title" data-a="title">Una <em>oración objetivo</em> por diapositiva</h2>
+      </header>
+      <div class="seven-3d paper-dark" data-a><canvas id="tbCanvas" aria-label="Mesa 3D con siete diapositivas"></canvas><div class="lbls" id="tbLabels"></div><span class="hint">Toca una lámina · se enciende cuando su oración cumple el criterio</span></div>
+      <div class="seven-rows" id="sevenRows" data-a></div>
+    </section>
+
+    <!-- ===== 12 · ROLES ===== -->
+    <section class="slide s-roles" data-title="Roles del grupo" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Roles del grupo">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>12 · ACTIVIDAD CENTRAL 5 DE 5 · ROLES</div>
+          <h2 class="title" data-a="title">Todos participan: <em>asigna los roles</em></h2>
+        </div>
+        <div class="team-n" data-a><span class="mono">INTEGRANTES</span><button class="icon-btn" id="teamMinus" aria-label="Menos integrantes">−</button><b id="teamN">4</b><button class="icon-btn" id="teamPlus" aria-label="Más integrantes">+</button></div>
+      </header>
+      <div class="role-bank" id="roleBank" data-a role="group" aria-label="Roles"></div>
+      <div class="team-grid" id="teamGrid" data-a></div>
+      <p class="role-fb" id="roleFb" data-a aria-live="polite">Arrastra cada rol a una persona (o toca el rol y luego a la persona).</p>
+    </section>
+
+    <!-- ===== 13 · PITCH ===== -->
+    <section class="slide s-pitch" data-title="Pitch de 30 segundos" data-phase="comun" aria-roledescription="diapositiva" aria-label="Pitch de treinta segundos">
+      <header class="sh">
+        <div class="kick mono" data-a>13 · PUESTA EN COMÚN · PITCH DE 30 SEGUNDOS</div>
+        <h2 class="title" data-a="title">Cuéntalo en <em>30 segundos</em>, con evidencia</h2>
+      </header>
+      <div class="pitch-grid">
+        <div class="pitch-left" data-a>
+          <div class="script paper"><span class="tag mono">GUION AUTOMÁTICO DE LA FICHA</span><p id="pitchText" aria-live="polite"></p></div>
+          <div class="pitch-ctl paper"><div class="ring" id="pRing"><svg viewBox="0 0 64 64"><circle class="r-bg" cx="32" cy="32" r="28"/><circle class="r-fg" id="pRingFg" cx="32" cy="32" r="28"/></svg><b id="pClock">00:30</b></div><div class="btn-row"><button class="btn" id="pStart">Practicar el pitch</button><button class="btn ghost" id="pPrec">Pregunta de precisión</button><button class="btn ghost" id="pDemo">Cargar proyecto de ejemplo</button></div></div>
+          <div class="prec paper" id="precBox" aria-live="polite"><span class="tag mono">PREGUNTA DE PRECISIÓN DEL DOCENTE</span><p id="precText">Pulsa el botón: se elige según el criterio más débil.</p></div>
+        </div>
+        <div class="pitch-right" data-a>
+          <div class="radar-wrap paper-dark"><canvas id="rdCanvas" aria-label="Radar 3D de cinco criterios formativos"></canvas><div class="lbls" id="rdLabels"></div><span class="hint">Cinco criterios formativos calculados desde tu ficha</span></div>
+          <div class="gate" id="gate" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 14 · TICKET ===== -->
+    <section class="slide s-end" data-title="Ticket de salida y aviso" data-phase="ticket" aria-roledescription="diapositiva" aria-label="Ticket de salida y aviso">
+      <header class="sh">
+        <div class="kick mono" data-a>14 · TICKET DE SALIDA Y AVISO</div>
+        <h2 class="title" data-a="title">Nuestro proyecto <em>enseñará…</em></h2>
+      </header>
+      <div class="end-grid">
+        <div class="end-main" data-a>
+          <div class="ticket paper">
+            <span class="tag mono">TICKET DE SALIDA</span>
+            <p class="sentence">Nuestro proyecto enseñará <input id="tA" list="dlA" aria-label="Qué enseñará" placeholder="una idea científica…"> y lo respaldaremos con <input id="tB" list="dlB" aria-label="Con qué lo respaldarán" placeholder="una evidencia y una fuente…"></p>
+            <datalist id="dlA"></datalist><datalist id="dlB"></datalist>
+            <p class="ticket-fb" id="ticketFb" aria-live="polite">Completa la frase con elementos de tu ficha.</p>
+          </div>
+          <div class="check paper"><span class="tag mono">AUTOEVALUACIÓN FORMATIVA</span>
+            <label class="ck"><input type="checkbox"><span>Mi pregunta central es clara.</span></label>
+            <label class="ck"><input type="checkbox"><span>Mi proyecto está alineado con los OA.</span></label>
+            <label class="ck"><input type="checkbox"><span>Tenemos fuentes previstas y evidencia visual.</span></label>
+            <label class="ck"><input type="checkbox"><span>Todos tenemos un rol.</span></label>
+          </div>
+        </div>
+        <div class="end-side" data-a>
+          <div class="plan paper"><span class="tag mono">PLAN MAESTRO</span><div id="planSum"></div><div class="btn-row"><button class="btn sm" id="planDl">Descargar plan (.txt)</button><button class="btn ghost sm" id="planCopy">Copiar</button></div></div>
+          <div class="next paper"><span class="tag mono">PRÓXIMA CLASE · 26</span><b>Computación: construimos el PPT científico</b><span>Deben traer su planificación. Antes de crear, mostrarán dos fuentes institucionales.</span></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+<script>/*__JS__*/</script>
+</body>
+</html>

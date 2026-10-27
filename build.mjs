@@ -1,5 +1,5 @@
 // Empaqueta cada clase en UN solo archivo HTML autocontenido (JS + CSS + fuentes en base64).
-// Uso: node build.mjs [18|19|20|21|22|all]  →  index.html (clase 18) · clase-19.html · clase-20.html · clase-21.html
+// Uso: node build.mjs [18|19|20|21|22|25|all]  →  index.html (clase 18) · clase-19.html · clase-20.html · clase-21.html
 import { build } from 'esbuild';
 import fs from 'node:fs';
 
@@ -49,6 +49,14 @@ const CLASSES = {
       face('DM Sans', '100 1000', '@fontsource-variable/dm-sans', 'dm-sans-latin-wght-normal.woff2') +
       face('IBM Plex Mono', '500', '@fontsource/ibm-plex-mono', 'ibm-plex-mono-latin-500-normal.woff2') +
       face('IBM Plex Mono', '600', '@fontsource/ibm-plex-mono', 'ibm-plex-mono-latin-600-normal.woff2'),
+  },
+  25: {
+    dir: 'clase-25/src', out: 'clase-25.html',
+    fonts: () =>
+      face('Manrope', '200 800', '@fontsource-variable/manrope', 'manrope-latin-wght-normal.woff2') +
+      face('Inter', '100 900', '@fontsource-variable/inter', 'inter-latin-wght-normal.woff2') +
+      face('JetBrains Mono', '500', '@fontsource/jetbrains-mono', 'jetbrains-mono-latin-500-normal.woff2') +
+      face('JetBrains Mono', '700', '@fontsource/jetbrains-mono', 'jetbrains-mono-latin-700-normal.woff2'),
   },
 };
 
