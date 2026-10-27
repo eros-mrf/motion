@@ -1,5 +1,5 @@
 // Empaqueta cada clase en UN solo archivo HTML autocontenido (JS + CSS + fuentes en base64).
-// Uso: node build.mjs [18|19|20|21|all]  →  index.html (clase 18) · clase-19.html · clase-20.html · clase-21.html
+// Uso: node build.mjs [18|19|20|21|22|all]  →  index.html (clase 18) · clase-19.html · clase-20.html · clase-21.html
 import { build } from 'esbuild';
 import fs from 'node:fs';
 
@@ -41,6 +41,14 @@ const CLASSES = {
       face('Plus Jakarta Sans', '200 800', '@fontsource-variable/plus-jakarta-sans', 'plus-jakarta-sans-latin-wght-normal.woff2') +
       face('Space Mono', '400', '@fontsource/space-mono', 'space-mono-latin-400-normal.woff2') +
       face('Space Mono', '700', '@fontsource/space-mono', 'space-mono-latin-700-normal.woff2'),
+  },
+  22: {
+    dir: 'clase-22/src', out: 'clase-22.html',
+    fonts: () =>
+      face('Bricolage Grotesque', '200 800', '@fontsource-variable/bricolage-grotesque', 'bricolage-grotesque-latin-wght-normal.woff2') +
+      face('DM Sans', '100 1000', '@fontsource-variable/dm-sans', 'dm-sans-latin-wght-normal.woff2') +
+      face('IBM Plex Mono', '500', '@fontsource/ibm-plex-mono', 'ibm-plex-mono-latin-500-normal.woff2') +
+      face('IBM Plex Mono', '600', '@fontsource/ibm-plex-mono', 'ibm-plex-mono-latin-600-normal.woff2'),
   },
 };
 

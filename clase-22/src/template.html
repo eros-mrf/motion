@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase 22 · Repaso estructurado OA 3</title>
+<meta name="description" content="Ciencias Naturales 7° básico · Unidad 4 · Clase 22: repaso estructurado del OA 3 (transmisión, prevención y evidencia) con estaciones, mini ensayo y corrección razonada. Presentación interactiva con motion graphics y Three.js.">
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="rotate" role="note"><div><b>↻</b>Gira el dispositivo<br><small>Esta presentación está diseñada para pantalla horizontal.</small></div></div>
+
+<main id="stage" aria-label="Presentación Clase 22">
+
+  <!-- ============ HUD ============ -->
+  <div class="hud hud-top">
+    <div class="brand"><span class="brand-sq"></span><span>CLASE 22 · REPASO ESTRUCTURADO OA 3 · UNIDAD 4</span></div>
+    <div class="hud-right">
+      <button class="chip phase-chip" id="phaseChip" title="Iniciar / pausar reloj de clase (T)"><span class="phase-name">Inicio</span><span class="phase-min">5 min</span></button>
+      <span class="clock" id="clock" aria-label="Reloj de clase">00:00 / 90:00</span>
+    </div>
+  </div>
+  <div class="hud hud-bottom">
+    <div class="nav-left">
+      <button class="icon-btn" id="btnPrev" aria-label="Diapositiva anterior (←)">←</button>
+      <button class="icon-btn" id="btnNext" aria-label="Diapositiva siguiente (→)">→</button>
+    </div>
+    <div class="journey" id="journey" role="tablist" aria-label="Diapositivas"><i class="trk"></i><i class="fill" id="jFill"></i><i class="train" id="train"></i></div>
+    <div class="nav-right">
+      <span class="counter" id="counter">01 / 14</span>
+      <button class="icon-btn txt" id="btnMenu" aria-label="Índice (G)">Índice</button>
+      <button class="icon-btn txt" id="btnNotes" aria-label="Notas del docente (N)">Notas</button>
+      <button class="icon-btn txt" id="btnMotion" aria-pressed="false" aria-label="Reducir movimiento (M)">Movimiento</button>
+      <button class="icon-btn txt" id="btnFs" aria-label="Pantalla completa (F)">⛶</button>
+    </div>
+  </div>
+
+  <aside id="notes" class="notes panel" hidden aria-label="Notas del docente">
+    <div class="notes-head"><b>NOTAS DEL DOCENTE</b><span id="notesPhase"></span><button class="icon-btn" id="notesClose" aria-label="Cerrar notas">×</button></div>
+    <div id="notesBody"></div>
+  </aside>
+  <nav id="menu" class="menu" hidden aria-label="Índice de diapositivas"><div class="menu-grid" id="menuGrid"></div></nav>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="shortcuts" class="toast" aria-live="polite"></div>
+  <div id="pane" aria-hidden="true"><i id="paneHand"></i></div>
+
+  <div id="slides">
+
+    <!-- ===== 1 · PORTADA ===== -->
+    <section class="slide s-cover" data-title="Portada" data-phase="intro" aria-roledescription="diapositiva" aria-label="Portada">
+      <div class="cover-kicker mono" data-a>OA 3 &nbsp;|&nbsp; OAH e · h · j · k · m &nbsp;|&nbsp; CLASE 22 DE 23</div>
+      <h1 class="cover-title title" data-a="title" aria-label="Repaso estructurado: transmisión, prevención y evidencia">Repaso estructurado<br><em>transmisión</em>, <em>prevención</em><br><span class="sm">y evidencia</span></h1>
+      <div class="board" data-a aria-label="Cuatro ramas, cuatro estaciones">
+        <div class="brow" style="--sc:var(--amber)"><b>01</b><span>Transmisión y mitos</span><i>ANDÉN 1</i></div>
+        <div class="brow" style="--sc:var(--teal)"><b>02</b><span>Comparar ITS y síntomas</span><i>ANDÉN 2</i></div>
+        <div class="brow" style="--sc:var(--lilac)"><b>03</b><span>Prevención y búsqueda de ayuda</span><i>ANDÉN 3</i></div>
+        <div class="brow" style="--sc:var(--sky)"><b>04</b><span>Leer una fuente o gráfico</span><i>ANDÉN 4</i></div>
+      </div>
+      <p class="cover-sub" data-a>Recuperamos, organizamos y aplicamos antes de la Prueba N°2.</p>
+      <div class="cover-foot" data-a>
+        <span class="mono">Pulsa <kbd>→</kbd> o <kbd>espacio</kbd> para comenzar</span>
+        <span class="mono dim">Toca el fondo: una onda recorre el mapa de curvas</span>
+      </div>
+    </section>
+
+    <!-- ===== 2 · RUTA ===== -->
+    <section class="slide s-route" data-title="Ruta de clase" data-phase="intro" aria-roledescription="diapositiva" aria-label="Ruta de clase">
+      <header class="sh">
+        <div class="kick mono" data-a>02 · RUTA DE CLASE</div>
+        <h2 class="title" data-a="title">Hoy <em>practicamos</em> lo que ya sabemos</h2>
+      </header>
+      <div class="two">
+        <div class="goal panel" data-a>
+          <div class="tag mono">META DE CLASE</div>
+          <p>Recuperar, organizar y aplicar lo aprendido sobre <b>transmisión, prevención, síntomas, consecuencias, fuentes y datos</b> antes de la segunda prueba.</p>
+        </div>
+        <div class="care panel" data-a>
+          <div class="tag mono">ACUERDOS DE CUIDADO</div>
+          <ul>
+            <li>Todo el material es de <b>práctica y ficticio</b>; no son preguntas de la prueba.</li>
+            <li>No contamos <b>vivencias personales</b>; las dudas privadas se derivan a un adulto.</li>
+            <li>Equivocarse hoy sirve: <b>mostrar qué estudiar</b>.</li>
+          </ul>
+        </div>
+      </div>
+      <ol class="stops" data-a>
+        <li style="--sc:var(--amber)"><i></i><b>Recuperamos</b><span>sin apuntes, con un mapa</span></li>
+        <li style="--sc:var(--teal)"><i></i><b>Rotamos</b><span>por cuatro estaciones</span></li>
+        <li style="--sc:var(--rose)"><i></i><b>Resolvemos</b><span>un mini ensayo individual</span></li>
+        <li style="--sc:var(--sky)"><i></i><b>Corregimos</b><span>explicando el porqué</span></li>
+        <li style="--sc:var(--lilac)"><i></i><b>Definimos</b><span>qué estudiar</span></li>
+      </ol>
+      <div class="timeline" data-a aria-label="Estructura de 90 minutos">
+        <div class="seg" style="--w:5;--c:var(--amber)"><b>5′</b><span>Ruta</span></div>
+        <div class="seg" style="--w:10;--c:var(--amber)"><b>10′</b><span>Recuperación</span></div>
+        <div class="seg" style="--w:5;--c:var(--lilac)"><b>5′</b><span>Preguntas</span></div>
+        <div class="seg" style="--w:15;--c:var(--teal)"><b>15′</b><span>Modelamiento</span></div>
+        <div class="seg" style="--w:25;--c:var(--sky)"><b>25′</b><span>Cuatro estaciones</span></div>
+        <div class="seg" style="--w:15;--c:var(--rose)"><b>15′</b><span>Mini ensayo</span></div>
+        <div class="seg" style="--w:10;--c:var(--teal)"><b>10′</b><span>Corrección</span></div>
+        <div class="seg" style="--w:5;--c:var(--amber)"><b>5′</b><span>Cierre</span></div>
+      </div>
+    </section>
+
+    <!-- ===== 3 · MAPA RÁPIDO ===== -->
+    <section class="slide s-map" data-title="Mapa rápido sin apuntes" data-phase="recupera" aria-roledescription="diapositiva" aria-label="Recuperación sin apuntes">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>03 · RECUPERACIÓN ACUMULATIVA</div>
+          <h2 class="title" data-a="title">Mapa rápido: <em>cuatro ramas</em></h2>
+        </div>
+        <div class="map-timer" data-a>
+          <div class="ring" id="mapRing"><svg viewBox="0 0 64 64"><circle class="r-bg" cx="32" cy="32" r="28"/><circle class="r-fg" id="mapRingFg" cx="32" cy="32" r="28"/></svg><b id="mapClock">04:00</b></div>
+          <button class="btn" id="mapStart">Comenzar 4 min</button>
+          <button class="btn ghost" id="mapCompare">Comparar con la lista</button>
+        </div>
+      </header>
+      <div class="map-grid">
+        <div class="map-left">
+          <div class="map-write" id="mapWrite" data-a>
+            <p class="map-help">Sin mirar el cuaderno, anota en cada rama lo que recuerdes.</p>
+            <label class="ta" style="--bc:var(--amber)"><span>TRANSMISIÓN</span><textarea id="ta0" rows="2" placeholder="¿Por qué vías se transmiten las ITS?"></textarea></label>
+            <label class="ta" style="--bc:var(--lilac)"><span>PREVENCIÓN</span><textarea id="ta1" rows="2" placeholder="¿Qué medidas reducen el riesgo?"></textarea></label>
+            <label class="ta" style="--bc:var(--teal)"><span>SÍNTOMAS Y CONSECUENCIAS</span><textarea id="ta2" rows="2" placeholder="¿Qué puede pasar y qué conviene hacer?"></textarea></label>
+            <label class="ta" style="--bc:var(--sky)"><span>FUENTES Y EVIDENCIA</span><textarea id="ta3" rows="2" placeholder="¿Cómo sé que algo es confiable?"></textarea></label>
+          </div>
+          <div class="map-cmp" id="mapCmp" hidden>
+            <p class="map-help">Toca <b>lo que tenías</b>. Lo que dejes sin marcar se agrega con color ámbar.</p>
+            <div id="chipGroups"></div>
+            <div class="map-score panel"><div><span class="tag mono">RECUPERADO SIN APUNTES</span><b id="mapPct">0 de 16</b></div><div class="gm"><i id="mapGauge"></i></div><p id="mapFb">Marca los conceptos que escribiste.</p><button class="btn sm" id="mapAdd">Agregar lo que me faltó</button></div>
+          </div>
+        </div>
+        <div class="map-3d panel" data-a>
+          <canvas id="mapCanvas" aria-label="Mapa conceptual en 3D"></canvas>
+          <div class="lbls" id="mapLabels"></div>
+          <span class="hint">Arrastra para girar · pasa el cursor por una esfera para ver el concepto</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4 · PREGUNTAS INICIALES ===== -->
+    <section class="slide s-q" data-title="Preguntas iniciales" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Preguntas iniciales">
+      <header class="sh">
+        <div class="kick mono" data-a>04 · PREGUNTAS INICIALES</div>
+        <h2 class="title" data-a="title">Cinco preguntas antes de <em>practicar</em></h2>
+      </header>
+      <div class="q-grid">
+        <div class="qboard" id="qBoard" data-a role="list"></div>
+        <div class="qpanel panel" id="qPanel" data-a>
+          <span class="tag mono" id="qTag">ELIGE UNA PREGUNTA</span>
+          <h3 id="qTitle">Toca una fila del tablero</h3>
+          <div class="qidea"><span class="tag mono">IDEA DE APOYO</span><p id="qIdea">Responde primero en parejas y luego abre la idea de apoyo.</p></div>
+          <div class="q-prog"><div class="gm"><i id="qGauge"></i></div><span id="qCount" class="mono">0 de 5 abiertas</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5 · VOCABULARIO ===== -->
+    <section class="slide s-vocab" data-title="Vocabulario clave" data-phase="recupera" aria-roledescription="diapositiva" aria-label="Vocabulario clave">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>05 · VOCABULARIO CLAVE</div>
+          <h2 class="title" data-a="title">Une <em>término</em> y definición</h2>
+        </div>
+        <div class="v-stat" data-a>
+          <div><b id="vOk">0</b><span class="mono">/ 9 unidos</span></div>
+          <div><b id="vErr" class="err">0</b><span class="mono">intentos fallidos</span></div>
+          <button class="btn ghost sm" id="vReset">Reiniciar</button>
+        </div>
+      </header>
+      <div class="v-grid" data-a>
+        <div class="v-col" id="vTerms" role="group" aria-label="Términos"></div>
+        <div class="v-mid" id="vMid" aria-hidden="true"></div>
+        <div class="v-col" id="vDefs" role="group" aria-label="Definiciones"></div>
+      </div>
+      <p class="v-fb" id="vFb" data-a>Elige un término y luego su definición.</p>
+    </section>
+
+    <!-- ===== 6 · MODELAMIENTO 1 ===== -->
+    <section class="slide s-sel" data-title="Selección con distractores" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Formato selección múltiple">
+      <header class="sh">
+        <div class="kick mono" data-a>06 · MODELAMIENTO 1 DE 3 · SELECCIÓN CON DISTRACTORES</div>
+        <h2 class="title" data-a="title">Una alternativa puede <em>sonar bien</em> y estar mal</h2>
+      </header>
+      <div class="sel-grid">
+        <div class="sel-main panel" data-a>
+          <p class="stem" id="selStem"></p>
+          <div class="alts" id="selAlts"></div>
+          <div class="alt-why" id="selWhy" aria-live="polite">Pulsa una alternativa para ver por qué funciona o falla.</div>
+        </div>
+        <div class="sel-side" data-a>
+          <ol class="stepper" id="selSteps"></ol>
+          <div class="concept panel" id="selConcept"><span class="tag mono">LA EVIDENCIA O CONCEPTO QUE LO DEMUESTRA ES…</span><p id="selConceptT">Completa los cuatro pasos para revelarlo.</p></div>
+          <div class="btn-row"><button class="btn" id="selNext">Siguiente paso</button><button class="btn ghost" id="selReset">Reiniciar</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7 · MODELAMIENTO 2 ===== -->
+    <section class="slide s-chart" data-title="Interpretar un gráfico" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Interpretar una fuente o gráfico">
+      <header class="sh">
+        <div class="kick mono" data-a>07 · MODELAMIENTO 2 DE 3 · FUENTE O GRÁFICO</div>
+        <h2 class="title" data-a="title">Concluye <em>solo</em> lo que el gráfico permite</h2>
+      </header>
+      <div class="sel-grid">
+        <div class="chart-card panel" data-a>
+          <div class="chart-title" id="chTitle"></div>
+          <svg id="chSvg" viewBox="0 0 860 430" role="img" aria-label="Gráfico de barras ilustrativo"></svg>
+          <div class="chart-src" id="chSrc"></div>
+        </div>
+        <div class="sel-side" data-a>
+          <ol class="stepper" id="chSteps"></ol>
+          <div class="opts" id="chOpts"></div>
+          <div class="btn-row"><button class="btn" id="chNext">Siguiente paso</button><button class="btn ghost" id="chReset">Reiniciar</button></div>
+          <div class="alt-why" id="chWhy" aria-live="polite">Completa los pasos y elige la conclusión adecuada.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8 · MODELAMIENTO 3 ===== -->
+    <section class="slide s-dev" data-title="Desarrollo corto con evidencia" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Desarrollo corto con evidencia">
+      <header class="sh">
+        <div class="kick mono" data-a>08 · MODELAMIENTO 3 DE 3 · DESARROLLO CORTO</div>
+        <h2 class="title" data-a="title">Responde con <em>afirmación</em>, <em>evidencia</em> y <em>límite</em></h2>
+        <p class="lead" id="devPrompt" data-a></p>
+      </header>
+      <div class="dev-grid">
+        <div class="dev-slots" id="devSlots" data-a></div>
+        <div class="dev-out" data-a>
+          <div class="answer panel"><span class="tag mono">TU RESPUESTA</span><p id="devAnswer">Elige una pieza en cada fila.</p></div>
+          <div class="rubric panel" id="devRubric"></div>
+          <p class="dev-fb" id="devFb"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 9 · ESTACIONES ===== -->
+    <section class="slide s-st" data-title="Cuatro estaciones" data-phase="estaciones" aria-roledescription="diapositiva" aria-label="Cuatro estaciones">
+      <header class="sh">
+        <div class="kick mono" data-a>09 · ACTIVIDAD CENTRAL · CUATRO ESTACIONES</div>
+        <h2 class="title" data-a="title">Rotamos por <em>cuatro andenes</em></h2>
+      </header>
+      <div class="st-grid">
+        <div class="st-3d panel" data-a>
+          <canvas id="stCanvas" aria-label="Carrusel 3D de estaciones"></canvas>
+          <div class="lbls" id="stLabels"></div>
+          <span class="hint">Toca un andén · arrastra para girar</span>
+        </div>
+        <div class="st-side" data-a>
+          <div class="st-card panel" id="stCard"></div>
+          <div class="st-timer panel">
+            <div class="ring" id="stRing"><svg viewBox="0 0 64 64"><circle class="r-bg" cx="32" cy="32" r="28"/><circle class="r-fg" id="stRingFg" cx="32" cy="32" r="28"/></svg><b id="stClock">06:00</b></div>
+            <div class="st-btns"><button class="btn" id="stStart">Iniciar estación</button><button class="btn ghost" id="stRotate">Rotar grupos →</button></div>
+          </div>
+          <div class="st-groups panel" id="stGroups" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10 · ESTACIONES 1 Y 2 ===== -->
+    <section class="slide s-e12" data-title="Estaciones 1 y 2" data-phase="estaciones" aria-roledescription="diapositiva" aria-label="Estaciones 1 y 2">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>10 · ESTACIONES 1 Y 2</div>
+          <h2 class="title" data-a="title">Mitos y características: <em>justifica</em></h2>
+        </div>
+        <div class="tabs" role="tablist" data-a>
+          <button role="tab" data-t="0" class="on" style="--tc:var(--amber)">1 · Transmisión y mitos</button>
+          <button role="tab" data-t="1" style="--tc:var(--teal)">2 · Comparar ITS</button>
+          <span class="score mono" id="e12Score">0 / 11</span>
+        </div>
+      </header>
+      <div class="e-panel" id="e1" data-a><div class="e1-grid" id="e1Grid"></div></div>
+      <div class="e-panel" id="e2" hidden>
+        <div class="e2-head"><span></span><b>Bacterias</b><b>Virus</b><b>Ambas</b></div>
+        <div class="e2-rows" id="e2Rows"></div>
+      </div>
+      <p class="e-fb" id="e12Fb" aria-live="polite">Responde con calma: la razón importa más que la velocidad.</p>
+    </section>
+
+    <!-- ===== 11 · ESTACIONES 3 Y 4 ===== -->
+    <section class="slide s-e34" data-title="Estaciones 3 y 4" data-phase="estaciones" aria-roledescription="diapositiva" aria-label="Estaciones 3 y 4">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>11 · ESTACIONES 3 Y 4</div>
+          <h2 class="title" data-a="title">Prevención y evidencia: <em>decide</em></h2>
+        </div>
+        <div class="tabs" role="tablist" data-a>
+          <button role="tab" data-t="0" class="on" style="--tc:var(--lilac)">3 · Prevención y ayuda</button>
+          <button role="tab" data-t="1" style="--tc:var(--sky)">4 · Fuente o gráfico</button>
+          <span class="score mono" id="e34Score">0 / 7</span>
+        </div>
+      </header>
+      <div class="e-panel" id="e3" data-a>
+        <p class="case panel" id="e3Case"></p>
+        <div class="e3-rows" id="e3Rows"></div>
+      </div>
+      <div class="e-panel" id="e4" hidden>
+        <div class="sel-grid">
+          <div class="chart-card panel">
+            <div class="chart-title" id="e4Title"></div>
+            <svg id="e4Svg" viewBox="0 0 860 400" role="img" aria-label="Gráfico de líneas ilustrativo"></svg>
+            <div class="chart-src" id="e4Src"></div>
+          </div>
+          <div class="sel-side"><p class="tag mono">¿QUÉ CONCLUSIÓN PERMITEN LOS DATOS?</p><div class="opts" id="e4Opts"></div><div class="alt-why" id="e4Why" aria-live="polite">Elige una conclusión.</div></div>
+        </div>
+      </div>
+      <p class="e-fb" id="e34Fb" aria-live="polite">Piensa: ¿qué dice el dato y qué <i>no</i> dice?</p>
+    </section>
+
+    <!-- ===== 12 · MINI ENSAYO ===== -->
+    <section class="slide s-essay" data-title="Mini ensayo individual" data-phase="ensayo" aria-roledescription="diapositiva" aria-label="Mini ensayo individual">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>12 · MINI ENSAYO INDIVIDUAL · PREGUNTAS NUEVAS</div>
+          <h2 class="title" data-a="title">Responde y <em>justifica</em></h2>
+        </div>
+        <div class="essay-bar" data-a>
+          <div class="ring" id="esRing"><svg viewBox="0 0 64 64"><circle class="r-bg" cx="32" cy="32" r="28"/><circle class="r-fg" id="esRingFg" cx="32" cy="32" r="28"/></svg><b id="esClock">15:00</b></div>
+          <button class="btn" id="esStart">Comenzar</button>
+        </div>
+      </header>
+      <div class="es-dots" id="esDots" data-a role="tablist" aria-label="Preguntas"></div>
+      <div class="es-card panel" data-a>
+        <div class="es-meta"><span class="topic-chip" id="esTopic"></span><span class="mono" id="esNum"></span></div>
+        <p class="stem" id="esStem"></p>
+        <div class="alts" id="esAlts"></div>
+        <div class="es-just" id="esJust" hidden><span class="tag mono">LA EVIDENCIA O CONCEPTO QUE LO DEMUESTRA ES…</span><div class="just-opts" id="esJOpts"></div></div>
+      </div>
+      <div class="es-nav" data-a>
+        <button class="btn ghost" id="esPrev">← Anterior</button>
+        <span class="es-hint" id="esHint">Pulsa «Comenzar» para iniciar el reloj. Puedes contestar sin reloj.</span>
+        <button class="btn ghost" id="esNext">Siguiente →</button>
+        <button class="btn" id="esDone">Entregar ensayo</button>
+      </div>
+      <div class="es-result panel" id="esResult" hidden>
+        <div class="ring big"><svg viewBox="0 0 64 64"><circle class="r-bg" cx="32" cy="32" r="28"/><circle class="r-fg" id="esScoreFg" cx="32" cy="32" r="28"/></svg><b id="esScore">0</b></div>
+        <div><h3 id="esRTitle">Ensayo entregado</h3><p id="esRText"></p><div class="btn-row"><button class="btn" id="esGoCorr">Ir a la corrección razonada →</button><button class="btn ghost" id="esRetry">Volver a intentar</button></div></div>
+      </div>
+    </section>
+
+    <!-- ===== 13 · CORRECCIÓN ===== -->
+    <section class="slide s-corr" data-title="Corrección razonada" data-phase="correccion" aria-roledescription="diapositiva" aria-label="Corrección razonada">
+      <header class="sh sh-row">
+        <div>
+          <div class="kick mono" data-a>13 · CORRECCIÓN RAZONADA</div>
+          <h2 class="title" data-a="title">¿Dónde se concentran los <em>errores</em>?</h2>
+        </div>
+        <div class="tabs" role="tablist" data-a>
+          <button role="tab" data-m="mine" class="on" style="--tc:var(--amber)">Mi ensayo</button>
+          <button role="tab" data-m="class" style="--tc:var(--sky)">Curso (docente)</button>
+          <button class="btn ghost sm" id="corrDemo">Usar datos de ejemplo</button>
+        </div>
+      </header>
+      <div class="corr-grid">
+        <div class="corr-left" data-a>
+          <div class="corr-rows" id="corrRows"></div>
+          <div class="corr-exp panel" id="corrExp" aria-live="polite"><span class="tag mono">CORRECCIÓN RAZONADA</span><p>Toca un contenido: la respuesta siempre se acompaña de «la evidencia o concepto que lo demuestra es…».</p></div>
+        </div>
+        <div class="corr-right" data-a>
+          <div class="towers panel"><canvas id="twCanvas" aria-label="Torres 3D de errores por contenido"></canvas><div class="lbls" id="twLabels"></div><span class="hint" id="twHint">Altura = errores · anillo = los 3 contenidos de mayor error</span></div>
+          <div class="refuerzo panel" id="refuerzo"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 14 · CIERRE ===== -->
+    <section class="slide s-end" data-title="Tarjeta de estudio y ticket" data-phase="cierre" aria-roledescription="diapositiva" aria-label="Tarjeta de estudio y ticket de salida">
+      <header class="sh">
+        <div class="kick mono" data-a>14 · CIERRE · TARJETA DE ESTUDIO Y TICKET DE SALIDA</div>
+        <h2 class="title" data-a="title">Tu plan de estudio, en <em>una tarjeta</em></h2>
+      </header>
+      <div class="end-grid">
+        <div class="study panel" data-a>
+          <div class="study-top"><span class="tag mono">TARJETA DE ESTUDIO</span><span class="mono dim">Prueba N°2 · OA 3</span></div>
+          <h3>1 · Dos contenidos prioritarios <small id="prioN">0 de 2</small></h3>
+          <div class="chips" id="prioChips"></div>
+          <h3>2 · Mi estrategia</h3>
+          <div class="strats" id="strats" role="radiogroup" aria-label="Estrategia"></div>
+          <div class="study-sum" id="studySum">Elige tus dos prioridades y una estrategia.</div>
+        </div>
+        <div class="end-side" data-a>
+          <div class="ticket panel">
+            <span class="tag mono">TICKET DE SALIDA</span>
+            <p class="sentence">Para la prueba debo asegurarme de diferenciar <select id="dA" aria-label="Primer concepto"></select> de <select id="dB" aria-label="Segundo concepto"></select>.</p>
+            <p class="ticket-fb" id="ticketFb" aria-live="polite">Elige dos conceptos que se confundan con facilidad.</p>
+          </div>
+          <div class="check panel"><span class="tag mono">AUTOEVALUACIÓN FORMATIVA</span>
+            <label class="ck"><input type="checkbox"><span>Recupero información sin apoyo.</span></label>
+            <label class="ck"><input type="checkbox"><span>Aplico conceptos a casos.</span></label>
+            <label class="ck"><input type="checkbox"><span>Interpreto evidencia.</span></label>
+            <label class="ck"><input type="checkbox"><span>Justifico y planifico mi estudio.</span></label>
+          </div>
+          <div class="next panel"><span class="tag mono">PRÓXIMA CLASE</span><b>Clase 23 · Prueba de Conocimientos N°2</b><span>OA 3 — ITS, prevención y autocuidado</span></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+<script>/*__JS__*/</script>
+</body>
+</html>

@@ -134,3 +134,31 @@ Estilo propio: **amanecer y cristal** — aurora pastel con shader GLSL y esfera
 | 14 | Ticket + aviso | Ticket de salida, autoevaluación y aviso de la clase 22 (Prueba N°2) |
 
 Pruebas: `DECK=clase-21.html npm run verify` y `npm run interact:21`.
+
+---
+
+# Clase 22 · Repaso estructurado OA 3: transmisión, prevención y evidencia
+
+OA 3 · OAH e, h, j, k, m. Meta: recuperar, organizar y aplicar lo aprendido sobre ITS (transmisión, prevención, síntomas generales, consecuencias, fuentes y análisis de datos) antes de la Prueba de Conocimientos N°2 (clase 23).
+Todo el material es **de práctica y ficticio**: no contiene preguntas de la prueba. Los datos «ilustrativos» no son estadísticas reales; el docente proyecta la fuente oficial vigente. Las ideas son paráfrasis de orientación general y no reemplazan a un profesional de salud.
+
+Estilo propio: **tablero de andén** — vino oscuro con ámbar de señalética (alto contraste), mapa de curvas de nivel con shader, letras de título que «voltean» como un tablero, barrido de radar entre diapositivas, ruta inferior como línea de tren.
+
+| # | Momento | Contenido interactivo |
+|---|---|---|
+| 1 | Portada | Título con letras volteando; tablero de los 4 andenes |
+| 2 | Ruta | Meta, acuerdos y 8 tramos de 90 min |
+| 3 | Recuperación | Mapa rápido de 4 min (4 ramas) + comparación con la lista; **Three.js:** mapa conceptual 3D que se ilumina |
+| 4 | Preguntas | Tablero con las 5 preguntas del plan y su idea de apoyo |
+| 5 | Vocabulario | Emparejar 9 términos y definiciones con líneas que se dibujan |
+| 6 | Modelamiento 1 | Selección con distractores: 4 pasos, absolutos tachados y etiquetas |
+| 7 | Modelamiento 2 | Gráfico de barras animado y 3 pasos para concluir sin exagerar |
+| 8 | Modelamiento 3 | Desarrollo corto: afirmación + evidencia + límite, con rúbrica |
+| 9 | Estaciones | **Three.js:** carrusel de 4 andenes con grupos A–D que rotan; reloj de estación |
+| 10 | Estaciones 1 y 2 | Hecho o mito (6) y bacterias / virus / ambas (5), con razón |
+| 11 | Estaciones 3 y 4 | Caso ficticio hacer / evitar y gráfico de líneas con conclusión |
+| 12 | Mini ensayo | 8 preguntas nuevas (alternativas barajadas) + «la evidencia o concepto que lo demuestra es…», reloj de 15 min |
+| 13 | Corrección | Explicación por contenido; **Three.js:** torres de errores (mi ensayo / curso) y refuerzo de los 3 mayores |
+| 14 | Cierre | Tarjeta de estudio, ticket «diferenciar ___ de ___», autoevaluación y aviso de la Prueba N°2 |
+
+Pruebas: `DECK=clase-22.html npm run verify` y `npm run interact:22`.
