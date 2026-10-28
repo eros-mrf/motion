@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase 26 · Computación: PPT «Autocuidado informado»</title>
+<meta name="description" content="Ciencias Naturales 7° básico · Unidad 4 · Clase 26: construcción del PPT científico «Autocuidado informado» en la sala de computación (fuentes oficiales, evidencia, gráfico, mito y evidencia, lenguaje respetuoso). Presentación interactiva autocontenida; casos e ilustraciones ficticios.">
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="rotate" role="note"><div><b>↻</b>Gira el dispositivo<br><small>Esta presentación está diseñada para pantalla horizontal.</small></div></div>
+
+<main id="stage" aria-label="Presentación Clase 26">
+
+  <!-- ============ HUD ============ -->
+  <div class="hud hud-top">
+    <div class="brand"><span class="brand-mark"></span><span>CLASE 26 · COMPUTACIÓN · PPT «AUTOCUIDADO INFORMADO» · UNIDAD 4</span></div>
+    <div class="hud-right">
+      <button class="chip phase-chip" id="phaseChip" title="Iniciar / pausar reloj de clase (T)"><span class="phase-name">Inicio</span><span class="phase-min">5 min</span></button>
+      <span class="clock" id="clock" aria-label="Reloj de clase">00:00 / 90:00</span>
+    </div>
+  </div>
+  <div class="hud hud-bottom">
+    <div class="nav-left">
+      <button class="icon-btn" id="btnPrev" aria-label="Diapositiva anterior (←)">←</button>
+      <button class="icon-btn" id="btnNext" aria-label="Diapositiva siguiente (→)">→</button>
+    </div>
+    <div class="journey" id="journey" role="tablist" aria-label="Diapositivas"><i class="trk"></i><i class="pin" id="pin"></i></div>
+    <div class="nav-right">
+      <span class="counter" id="counter">01 / 14</span>
+      <button class="icon-btn txt" id="btnMenu" aria-label="Índice (G)">Índice</button>
+      <button class="icon-btn txt" id="btnNotes" aria-label="Notas del docente (N)">Notas</button>
+      <button class="icon-btn txt" id="btnMotion" aria-pressed="false" aria-label="Reducir movimiento (M)">Movimiento</button>
+      <button class="icon-btn txt" id="btnFs" aria-label="Pantalla completa (F)">⛶</button>
+    </div>
+  </div>
+
+  <aside id="notes" class="notes" hidden aria-label="Notas del docente">
+    <div class="notes-head"><b>NOTAS DEL DOCENTE</b><span id="notesPhase"></span><button class="icon-btn" id="notesClose" aria-label="Cerrar notas">×</button></div>
+    <div id="notesBody"></div>
+  </aside>
+  <nav id="menu" class="menu" hidden aria-label="Índice de diapositivas"><div class="menu-grid" id="menuGrid"></div></nav>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="shortcuts" class="toast" aria-live="polite"></div>
+  <div id="pane" aria-hidden="true"></div>
+
+  <div id="slides">
+
+    <!-- ===== 1 · PORTADA ===== -->
+    <section class="slide s-cover" data-title="Portada" data-phase="intro" aria-roledescription="diapositiva" aria-label="Portada">
+      <div class="cover-kicker mono" data-a>OA 1 · 2 · 3 &nbsp;|&nbsp; OAH e · f · g · h · l &nbsp;|&nbsp; CLASE 26 DE 29</div>
+      <h1 class="cover-title title" data-a="title" aria-label="Computación: PPT «Autocuidado informado»">Computación:<br>PPT <em>«Autocuidado informado»</em></h1>
+      <p class="cover-sub" data-a>Hoy construimos un PPT científico que comunica información <b>correcta, respetuosa y respaldada por fuentes oficiales</b>.</p>
+      <div class="win cover-win" data-a>
+        <div class="wbar"><i></i><i></i><i></i><span class="wt">autocuidado-informado.pptx — Presentación (ilustrativo)</span></div>
+        <div class="wbody">
+          <div class="film" id="cvThumbs" role="list" aria-label="Las siete diapositivas del PPT"></div>
+          <p class="cv-info" id="cvInfo" aria-live="polite">Pasa el cursor o toca una miniatura: son las 7 diapositivas que construiremos.</p>
+        </div>
+      </div>
+      <div class="cover-foot" data-a>
+        <span class="mono">Pulsa <kbd>→</kbd> o <kbd>espacio</kbd> para comenzar</span>
+        <span class="mono dim">Toca el fondo: una onda atraviesa los puntos de la pantalla</span>
+      </div>
+    </section>
+
+    <!-- ===== 2 · RUTA ===== -->
+    <section class="slide s-route" data-title="Ruta de clase" data-phase="intro" aria-roledescription="diapositiva" aria-label="Ruta de clase">
+      <header class="sh">
+        <div class="kick mono" data-a>02 · RUTA DE CLASE</div>
+        <h2 class="title" data-a="title">Cinco pasos para llegar a un <em>PPT científico</em></h2>
+      </header>
+      <div class="route-grid">
+        <div class="route-left">
+          <div class="win goal" data-a>
+            <div class="wbar"><i></i><i></i><i></i><span class="wt">meta-de-clase.txt</span></div>
+            <div class="wbody"><p>Elaborar un <b>PPT científico de autocuidado</b> que comunique información <b>correcta, respetuosa y respaldada por fuentes oficiales</b>.</p></div>
+          </div>
+          <div class="win care" data-a>
+            <div class="wbar"><i></i><i></i><i></i><span class="wt">cuidados.txt</span></div>
+            <div class="wbody"><ul>
+              <li class="yes">Fuentes sugeridas: <b>Currículum Nacional, MINSAL/DIPRECE</b> y otros organismos sanitarios reconocidos</li>
+              <li class="yes">Antes de crear: <b>dos fuentes institucionales</b> mostradas al docente</li>
+              <li class="no">Sin imágenes clínicas explícitas ni material sensacionalista</li>
+              <li class="no">Sin relatos íntimos ni redes sociales como evidencia principal</li>
+            </ul></div>
+          </div>
+        </div>
+        <ol class="steps" data-a aria-label="Ruta de clase">
+          <li><i>1</i><div><b>Revisamos la pauta</b><span>Criterios: fuentes oficiales, conceptos correctos, evidencia, lenguaje respetuoso.</span></div></li>
+          <li><i>2</i><div><b>Investigamos fuentes oficiales</b><span>Dos fuentes institucionales y por qué son confiables.</span></div></li>
+          <li><i>3</i><div><b>Seleccionamos evidencia</b><span>Dato, tabla, gráfico o modelo que apoye la idea.</span></div></li>
+          <li><i>4</i><div><b>Construimos el PPT</b><span>Siete diapositivas, poco texto, referencias simples.</span></div></li>
+          <li><i>5</i><div><b>Ensayamos comunicación respetuosa</b><span>Cada integrante expone una parte breve.</span></div></li>
+        </ol>
+      </div>
+      <div class="timeline" id="routeTime" data-a aria-label="Los 90 minutos de la clase"></div>
+    </section>
+
+    <!-- ===== 3 · ACTIVACIÓN ===== -->
+    <section class="slide s-act" data-title="¿Información o rumor?" data-phase="activacion" aria-roledescription="diapositiva" aria-label="¿Información o rumor?">
+      <header class="sh">
+        <div class="kick mono" data-a>03 · ACTIVACIÓN · CHECKLIST DIGITAL</div>
+        <h2 class="title" data-a="title">¿Información o <em>rumor</em>? Dos fuentes antes de crear</h2>
+      </header>
+      <div class="act-grid">
+        <div class="win browser" data-a>
+          <div class="wbar"><i></i><i></i><i></i><span class="wt">navegador · pestañas ilustrativas</span></div>
+          <div class="tabs" id="tabs" role="tablist" aria-label="Pestañas del navegador"></div>
+          <div class="addr mono"><span>🔒</span><span id="pgUrl">—</span></div>
+          <div class="page" id="page">
+            <h3 id="pgHead"></h3>
+            <dl class="meta" id="pgMeta"></dl>
+            <ul class="signs" id="pgSigns"></ul>
+            <div class="pg-acts">
+              <button class="btn" id="tabOk">✓ Es fuente institucional: la elijo</button>
+              <button class="btn ghost" id="tabNo">✕ La descarto</button>
+            </div>
+            <p class="pg-note" id="pgNote" aria-live="polite">Revisa quién publica, cuándo, para qué y si muestra datos verificables.</p>
+          </div>
+        </div>
+        <div class="win check" data-a>
+          <div class="wbar"><i></i><i></i><i></i><span class="wt">checklist-informacion-o-rumor</span></div>
+          <div class="wbody">
+            <ul class="ckl">
+              <li id="ck1"><i class="bx"></i><div><b>Elegí dos fuentes institucionales</b><span id="ck1n">0 de 2</span></div></li>
+              <li id="ck2"><i class="bx"></i><div><b>Expliqué por qué son confiables</b><span id="ck2n">Marca al menos 3 razones válidas</span></div></li>
+              <li id="ck3"><i class="bx"></i><div><b>Mi pregunta central se responde con los OA 1–3</b>
+                <label class="oa"><input type="checkbox" id="ckOA"> Sí, la revisamos con la pauta</label></div></li>
+            </ul>
+            <div class="why" id="whyList" role="group" aria-label="Razones de confiabilidad"></div>
+            <button class="btn" id="ckGo" disabled>Empezar a crear</button>
+            <p class="ck-msg" id="ckMsg" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4 · PREGUNTAS INICIALES ===== -->
+    <section class="slide s-q" data-title="Preguntas iniciales" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Preguntas iniciales">
+      <header class="sh">
+        <div class="kick mono" data-a>04 · PREGUNTAS INICIALES</div>
+        <h2 class="title" data-a="title">Cinco preguntas antes de abrir el <em>programa</em></h2>
+      </header>
+      <div class="q-grid">
+        <ol class="q-list" id="qList" data-a></ol>
+        <div class="win q-card" data-a>
+          <div class="wbar"><i></i><i></i><i></i><span class="wt" id="qBar">pregunta.txt</span></div>
+          <div class="wbody">
+            <div class="tag mono" id="qTag">IDEA PARA CONVERSAR</div>
+            <p class="q-idea" id="qIdea">Elige una pregunta de la lista.</p>
+            <div class="tag mono">¿EN QUÉ DIAPOSITIVAS DEL PPT SE RESPONDE?</div>
+            <div class="strip" id="qStrip" role="list"></div>
+            <label class="tag mono" for="qAns">RESPUESTA BREVE DEL GRUPO (SE GUARDA EN ESTE EQUIPO)</label>
+            <textarea id="qAns" rows="3" placeholder="Escribe aquí en una o dos oraciones…"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5 · VOCABULARIO ===== -->
+    <section class="slide s-vocab" data-title="Vocabulario clave" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Vocabulario clave">
+      <header class="sh sh-row">
+        <div><div class="kick mono" data-a>05 · VOCABULARIO CLAVE</div>
+        <h2 class="title" data-a="title">Siete términos, siete <em>definiciones</em></h2></div>
+        <div class="progress mono" data-a><span id="vProg">0 / 7</span><i class="gm"><i id="vBar"></i></i></div>
+      </header>
+      <div class="v-grid">
+        <ul class="v-defs" id="vDefs" data-a></ul>
+        <div class="win v-bank" data-a>
+          <div class="wbar"><i></i><i></i><i></i><span class="wt">banco-de-terminos</span></div>
+          <div class="wbody">
+            <p class="v-help">1. Toca una definición. 2. Toca el término que le corresponde.</p>
+            <div class="chips" id="vBank"></div>
+            <p class="v-msg" id="vMsg" aria-live="polite">Empieza con cualquier definición.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 6 · MODELAMIENTO 1 · ANATOMÍA ===== -->
+    <section class="slide s-anat" data-title="Anatomía de una diapositiva" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Anatomía de una diapositiva">
+      <header class="sh">
+        <div class="kick mono" data-a>06 · MODELAMIENTO 1 DE 4 · UNA DIAPOSITIVA BREVE</div>
+        <h2 class="title" data-a="title">Título, idea, apoyo visual, evidencia y <em>fuente</em></h2>
+      </header>
+      <div class="an-grid">
+        <div class="an-left" data-a>
+          <div class="an-stage">
+            <div class="an-slide" id="anSlide" aria-label="Diapositiva de ejemplo ilustrativa"></div>
+          </div>
+          <div class="an-bar">
+            <label class="sw"><input type="checkbox" id="anSw"><span class="knob"></span><b id="anSwTxt">Versión clara</b></label>
+            <div class="an-meters" id="anMeter"></div>
+          </div>
+        </div>
+        <div class="an-right" data-a>
+          <ol class="an-list" id="anList"></ol>
+          <div class="win an-card"><div class="wbar"><i></i><i></i><i></i><span class="wt" id="anBar">parte-de-la-diapositiva</span></div>
+            <div class="wbody"><p id="anText">Toca un número de la diapositiva o de la lista.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7 · MODELAMIENTO 2 · SÍNTESIS ===== -->
+    <section class="slide s-syn" data-title="Del párrafo a la frase de síntesis" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Del párrafo a la frase de síntesis">
+      <header class="sh">
+        <div class="kick mono" data-a>07 · MODELAMIENTO 2 DE 4 · SÍNTESIS</div>
+        <h2 class="title" data-a="title">De un párrafo a una <em>frase propia</em></h2>
+      </header>
+      <div class="sy-grid">
+        <div class="win sy-src" data-a>
+          <div class="wbar"><i></i><i></i><i></i><span class="wt">fuente-ficticia.txt</span></div>
+          <div class="wbody">
+            <div class="tag mono">PÁRRAFO DE UNA FUENTE (FICTICIA) · SUBRAYA LO CLAVE</div>
+            <p class="sy-para" id="syPara"></p>
+            <p class="sy-hint" id="syMarks">Toca las frases que usarías. Marcadas: 0</p>
+          </div>
+        </div>
+        <div class="sy-right" data-a>
+          <div class="sy-cand" id="syCand" role="group" aria-label="Frases candidatas"></div>
+          <p class="sy-fb" id="syFb" aria-live="polite">Elige la frase de síntesis que mejor comunica la idea.</p>
+          <div class="win sy-mine">
+            <div class="wbar"><i></i><i></i><i></i><span class="wt">mi-sintesis.txt</span></div>
+            <div class="wbody">
+              <textarea id="syMine" rows="2" placeholder="Ahora escribe tu propia frase de síntesis (sin copiar)…" aria-label="Mi frase de síntesis"></textarea>
+              <div class="sy-chk" id="syChk"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8 · MODELAMIENTO 3 · GRÁFICO 3D ===== -->
+    <section class="slide s-chart" data-title="Leer y diseñar un gráfico" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Leer y diseñar un gráfico">
+      <header class="sh">
+        <div class="kick mono" data-a>08 · MODELAMIENTO 3 DE 4 · GRÁFICO (DATOS FICTICIOS)</div>
+        <h2 class="title" data-a="title">Un gráfico que <em>concluye con prudencia</em></h2>
+      </header>
+      <div class="ch-grid">
+        <div class="win-dark ch-3d" data-a>
+          <canvas id="chCanvas" aria-label="Gráfico de barras en 3D con datos ficticios"></canvas>
+          <div class="lbls" id="chLabels"></div>
+          <span class="hint">Arrastra para girar · toca una barra</span>
+        </div>
+        <div class="ch-side" data-a>
+          <div class="tag mono">ACTIVA LAS PARTES DEL GRÁFICO</div>
+          <ul class="ch-parts" id="chParts"></ul>
+          <div class="win ch-card"><div class="wbar"><i></i><i></i><i></i><span class="wt" id="chBar">lectura-del-grafico</span></div>
+            <div class="wbody"><p id="chText">Toca una barra para leerla. Frase modelo: «en este caso ficticio se observa…».</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 9 · MODELAMIENTO 4 · REFERENCIA ===== -->
+    <section class="slide s-ref" data-title="Citar de manera simple" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Citar de manera simple">
+      <header class="sh sh-row">
+        <div><div class="kick mono" data-a>09 · MODELAMIENTO 4 DE 4 · REFERENCIA SIMPLE</div>
+        <h2 class="title" data-a="title">Armar una <em>referencia</em> que se pueda comprobar</h2></div>
+        <div class="progress mono" data-a><span id="rfStat">0 / 5</span><i class="gm"><i id="rfBar"></i></i></div>
+      </header>
+      <div class="rf-grid">
+        <div class="win rf-fields" data-a>
+          <div class="wbar"><i></i><i></i><i></i><span class="wt">documento-consultado (ficticio)</span></div>
+          <div class="wbody"><p class="rf-doc" id="rfDoc"></p><div id="rfFields"></div></div>
+        </div>
+        <div class="rf-right" data-a>
+          <div class="win rf-out"><div class="wbar"><i></i><i></i><i></i><span class="wt">diapositiva-7 · fuentes-consultadas</span></div>
+            <div class="wbody"><p class="rf-full" id="rfOut"></p>
+              <button class="btn sm" id="rfCopy" disabled>Copiar referencia</button></div></div>
+          <div class="rf-foot-wrap"><span class="tag mono">AL PIE DE CADA DIAPOSITIVA (REFERENCIA CORTA)</span>
+            <div class="rf-slide"><div class="rf-ln"></div><div class="rf-ln s"></div><div class="rf-foot" id="rfFoot">Fuente: —</div></div></div>
+          <p class="rf-msg" id="rfMsg" aria-live="polite">Elige una opción en cada campo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10 · ACTIVIDAD 1 · TABLERO ===== -->
+    <section class="slide s-board" data-title="Las siete diapositivas" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Las siete diapositivas">
+      <header class="sh sh-row">
+        <div><div class="kick mono" data-a>10 · ACTIVIDAD CENTRAL 1 DE 3 · CONSTRUCCIÓN DEL PPT</div>
+        <h2 class="title" data-a="title">Siete diapositivas, <em>una responsabilidad</em> cada una</h2></div>
+        <div class="b-ring" data-a><div class="ring"><svg viewBox="0 0 64 64"><circle class="r-bg" cx="32" cy="32" r="28"/><circle class="r-fg" id="tbRing" cx="32" cy="32" r="28"/></svg><b id="tbPct">0%</b></div></div>
+      </header>
+      <div class="b-names" data-a>
+        <span class="tag mono">INTEGRANTES (INICIALES O «INTEGRANTE N»)</span>
+        <div id="tbNames"></div>
+        <div class="stepper"><button class="icon-btn txt" id="tbMinus" aria-label="Menos integrantes">−</button><b id="tbTeam">4</b><button class="icon-btn txt" id="tbPlus" aria-label="Más integrantes">+</button></div>
+      </div>
+      <div class="b-grid">
+        <div class="b-table" id="tbRows" data-a role="list"></div>
+        <div class="win b-card" data-a>
+          <div class="wbar"><i></i><i></i><i></i><span class="wt" id="tbBar">diapositiva</span></div>
+          <div class="wbody">
+            <h3 id="tbTitle">Elige una diapositiva</h3>
+            <ul class="ckl small" id="tbMust"></ul>
+            <p class="b-tip" id="tbTip"></p>
+            <p class="b-cover" id="tbCover" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 11 · ACTIVIDAD 2 · BALANZA ===== -->
+    <section class="slide s-bal" data-title="Mito y evidencia" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Mito y evidencia">
+      <header class="sh">
+        <div class="kick mono" data-a>11 · ACTIVIDAD CENTRAL 2 DE 3 · DIAPOSITIVA 4 (EJEMPLOS ILUSTRATIVOS)</div>
+        <h2 class="title" data-a="title">Un mito pesa menos que la <em>evidencia confiable</em></h2>
+      </header>
+      <div class="bl-grid">
+        <div class="bl-left" data-a>
+          <div class="bl-myths" id="blMyths" role="tablist" aria-label="Mitos frecuentes"></div>
+          <div class="win-dark bl-3d">
+            <canvas id="blCanvas" aria-label="Balanza 3D: mito frente a evidencia"></canvas>
+            <div class="lbls" id="blLabels"></div>
+            <span class="hint">Arrastra para girar la balanza</span>
+          </div>
+          <p class="bl-msg" id="blMsg" aria-live="polite"></p>
+        </div>
+        <div class="bl-right" data-a>
+          <div class="tag mono">PON EVIDENCIA EN LA BALANZA</div>
+          <div class="bl-ev" id="blEv"></div>
+          <div class="win bl-draft"><div class="wbar"><i></i><i></i><i></i><span class="wt">diapositiva-4-borrador.txt</span></div>
+            <div class="wbody"><textarea id="blDraft" rows="5" aria-label="Borrador de la diapositiva 4"></textarea>
+              <button class="btn sm" id="blCopy">Copiar borrador</button></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 12 · ACTIVIDAD 3 · AUTOCUIDADO Y AYUDA ===== -->
+    <section class="slide s-care" data-title="Autocuidado sin miedo y dónde buscar ayuda" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Autocuidado sin miedo y dónde buscar ayuda">
+      <header class="sh">
+        <div class="kick mono" data-a>12 · ACTIVIDAD CENTRAL 3 DE 3 · DIAPOSITIVAS 6 Y 7</div>
+        <h2 class="title" data-a="title">Autocuidado <em>sin miedo ni estigma</em>, y dónde pedir ayuda</h2>
+      </header>
+      <div class="cr-grid">
+        <div class="win cr-msg" data-a>
+          <div class="wbar"><i></i><i></i><i></i><span class="wt">revisar-mensajes (ficticios)</span></div>
+          <div class="wbody">
+            <div class="cr-top"><span class="tag mono" id="msTag">MENSAJE 1 DE 5</span><span class="flag" id="msFlag"></span><span class="dots" id="msDots"></span></div>
+            <p class="cr-bad" id="msBad"></p>
+            <div class="tag mono">ELIGE LA MEJOR REESCRITURA</div>
+            <div class="cr-opts" id="msOpts"></div>
+            <p class="cr-fb" id="msFb" aria-live="polite"></p>
+            <div class="btn-row"><button class="btn" id="msNext" disabled>Siguiente mensaje →</button><button class="btn ghost" id="msReset">Reiniciar</button></div>
+          </div>
+        </div>
+        <div class="win cr-help" data-a>
+          <div class="wbar"><i></i><i></i><i></i><span class="wt">diapositiva-7 · ayuda-y-fuentes</span></div>
+          <div class="wbody">
+            <div class="tag mono">¿QUÉ SÍ VA EN «DÓNDE BUSCAR AYUDA»?</div>
+            <div class="hp-list" id="hpList"></div>
+            <p class="hp-msg" id="hpMsg" aria-live="polite">Marca cada opción: ✓ va · ✕ no va.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 13 · PUESTA EN COMÚN · BANQUITO ===== -->
+    <section class="slide s-rev" data-title="Revisión entre grupos" data-phase="comun" aria-roledescription="diapositiva" aria-label="Revisión entre grupos">
+      <header class="sh">
+        <div class="kick mono" data-a>13 · PUESTA EN COMÚN · EXACTITUD · RESPETO · CLARIDAD</div>
+        <h2 class="title" data-a="title">Si una pata es corta, el mensaje <em>cojea</em></h2>
+      </header>
+      <div class="rv-grid">
+        <div class="win-dark rv-3d" data-a>
+          <canvas id="stCanvas" aria-label="Banquito 3D de tres patas: exactitud, respeto y claridad"></canvas>
+          <div class="lbls" id="stLabels"></div>
+          <span class="hint">Arrastra para girar</span>
+        </div>
+        <div class="rv-right" data-a>
+          <div class="rv-tabs" id="rvTabs" role="tablist" aria-label="Diapositivas ficticias para revisar"></div>
+          <div class="win rv-slide"><div class="wbar"><i></i><i></i><i></i><span class="wt" id="rvBar">diapositiva</span>
+            <label class="hi-sw"><input type="checkbox" id="rvHi"> Resaltar afirmaciones absolutas</label></div>
+            <div class="wbody"><p id="rvSlide"></p></div></div>
+          <div class="rv-crit" id="rvCrit"></div>
+          <p class="rv-fb" id="rvFb" aria-live="polite">Califica cada pata y mira el banquito.</p>
+          <div class="rv-pend"><span class="tag mono">DIAPOSITIVAS DEL PPT QUE QUEDAN PENDIENTES</span><div class="chips" id="pdList"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 14 · TICKET Y AVISO ===== -->
+    <section class="slide s-end" data-title="Ticket de salida y aviso" data-phase="ticket" aria-roledescription="diapositiva" aria-label="Ticket de salida y aviso">
+      <header class="sh">
+        <div class="kick mono" data-a>14 · TICKET DE SALIDA Y AVISO</div>
+        <h2 class="title" data-a="title">Ticket de salida: ¿qué <em>mejoramos</em> primero?</h2>
+      </header>
+      <div class="end-grid">
+        <div class="win tk" data-a>
+          <div class="wbar"><i></i><i></i><i></i><span class="wt">ticket-de-salida.txt</span></div>
+          <div class="wbody">
+            <p class="tk-line" id="tkLine">Antes de presentar necesitamos mejorar <u>…</u>.</p>
+            <div class="chips" id="tkFoci" role="group" aria-label="Focos de mejora"></div>
+            <input id="tkOwn" type="text" maxlength="90" placeholder="…o escribe otro foco (máx. 90 caracteres)" aria-label="Otro foco de mejora">
+            <div class="tag mono tk-h">AUTOEVALUACIÓN DEL GRUPO (CRITERIOS DEL PLAN)</div>
+            <div class="tk-self" id="tkSelf"></div>
+          </div>
+        </div>
+        <div class="end-right" data-a>
+          <div class="win tk-sum"><div class="wbar"><i></i><i></i><i></i><span class="wt">resumen-del-grupo</span></div>
+            <div class="wbody"><p id="tkSum"></p><div class="btn-row"><button class="btn sm" id="tkDl">Descargar registro (.txt)</button></div></div></div>
+          <div class="notice">
+            <span class="tag mono">PRÓXIMA CLASE · 27</span>
+            <p id="tkNotice"></p>
+            <ul><li>Trae tu archivo guardado y respaldado en la carpeta del grupo.</li><li>Ten a mano las fuentes y la lista de pendientes.</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+<script>/*__JS__*/</script>
+</body>
+</html>

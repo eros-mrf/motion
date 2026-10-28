@@ -193,6 +193,32 @@ Pruebas: `DECK=clase-25.html npm run verify` y `npm run interact:25`.
 
 ---
 
+# Clase 26 · Computación: PPT «Autocuidado informado»
+
+OA 1–3 · OAH e, f, g, h, l. Meta: elaborar un PPT científico de autocuidado que comunique información correcta, respetuosa y respaldada por fuentes oficiales. Identidad: **pizarra verde de sala de computación** (verde petróleo, ventanas de papel con barra de título y coral), Instrument Serif + DM Sans + DM Mono; títulos que se «teclean» con cursor y la frase destacada queda como texto seleccionado; transición de persiana; fondo de puntos de semitono con ventanas fantasma.
+Todas las páginas, mensajes, gráficos y evidencias son **ficticios (ilustrativos)**; las ideas son paráfrasis de orientación general y el docente proyecta las fuentes oficiales vigentes (Currículum Nacional, MINSAL/DIPRECE, organismos sanitarios). Semáforos, balanza y banquito son **orientativos**.
+
+| # | Momento | Contenido interactivo |
+|---|---|---|
+| 1 | Portada | Ventana de editor con las siete diapositivas del PPT (miniaturas que informan su contenido) |
+| 2 | Ruta | Meta, cuidados (✓ / ✕), 5 pasos del plan y barra de 90 min |
+| 3 | Activación | Navegador con 6 pestañas ficticias: elegir 2 fuentes institucionales, razones de confiabilidad (con trampa) y checklist «¿Información o rumor?» que habilita «Empezar a crear» |
+| 4 | Preguntas | Las 5 preguntas del plan; cada una marca en qué diapositivas del PPT se responde + respuesta guardada |
+| 5 | Vocabulario | 7 términos del plan: definición → término, con pista y «uso en el PPT» |
+| 6 | Modelamiento 1 | Anatomía de una diapositiva (5 partes con marcadores) frente a una versión cargada de texto, con medidores de palabras / ideas / fuente |
+| 7 | Modelamiento 2 | De un párrafo a una frase de síntesis: subrayar, comparar 4 frases y revisor orientativo (copia, absolutos/estigma, largo) |
+| 8 | Modelamiento 3 | **Three.js:** gráfico de barras 3D (datos ficticios); se activan título, ejes con unidad, fuente y «ilustrativo» |
+| 9 | Modelamiento 4 | Armar una referencia simple campo por campo (con opciones inválidas) y pie corto de diapositiva |
+| 10 | Actividad 1 | Tablero de las 7 diapositivas: requisitos, responsable por integrante (3–6) y estado; avance en anillo |
+| 11 | Actividad 2 | **Three.js:** balanza mito–evidencia (4 mitos, fuentes oficiales / con cuidado / sin respaldo) y borrador de la diapositiva 4 |
+| 12 | Actividad 3 | Reescribir 5 mensajes (miedo, estigma, absoluto, vergüenza, sin fuente) y decidir qué va en «dónde buscar ayuda» |
+| 13 | Puesta en común | **Three.js:** banquito de tres patas (exactitud, respeto, claridad) con 3 diapositivas ficticias, clave orientativa, resaltado de absolutos y registro de pendientes |
+| 14 | Ticket + aviso | Ticket «Antes de presentar necesitamos mejorar ___», autoevaluación con los 4 criterios del plan, registro descargable y aviso de la clase 27 |
+
+Pruebas: `DECK=clase-26.html npm run verify` y `npm run interact:26`.
+
+---
+
 ## Código compartido
 
 `core/` reúne el motor común (navegación, HUD, notas, reloj, movimiento reducido), el kit de escenas Three.js y el CSS base. Las clases nuevas (desde la 25) lo usan; las anteriores siguen autónomas. Ver `CLAUDE.md`.

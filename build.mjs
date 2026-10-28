@@ -1,5 +1,5 @@
 // Empaqueta cada clase en UN solo archivo HTML autocontenido (JS + CSS + fuentes en base64).
-// Uso: node build.mjs [18|19|20|21|22|25|all]  →  index.html (clase 18) · clase-19.html · clase-20.html · clase-21.html
+// Uso: node build.mjs [18|19|20|21|22|25|26|all]  →  index.html (clase 18) · clase-19.html · clase-20.html · clase-21.html
 import { build } from 'esbuild';
 import fs from 'node:fs';
 
@@ -57,6 +57,15 @@ const CLASSES = {
       face('Inter', '100 900', '@fontsource-variable/inter', 'inter-latin-wght-normal.woff2') +
       face('JetBrains Mono', '500', '@fontsource/jetbrains-mono', 'jetbrains-mono-latin-500-normal.woff2') +
       face('JetBrains Mono', '700', '@fontsource/jetbrains-mono', 'jetbrains-mono-latin-700-normal.woff2'),
+  },
+  26: {
+    dir: 'clase-26/src', out: 'clase-26.html', core: true,
+    fonts: () =>
+      face('Instrument Serif', '400', '@fontsource/instrument-serif', 'instrument-serif-latin-400-normal.woff2') +
+      `@font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(data:font/woff2;base64,${font('@fontsource/instrument-serif', 'instrument-serif-latin-400-italic.woff2')}) format('woff2');}\n` +
+      face('DM Sans', '100 1000', '@fontsource-variable/dm-sans', 'dm-sans-latin-wght-normal.woff2') +
+      face('DM Mono', '400', '@fontsource/dm-mono', 'dm-mono-latin-400-normal.woff2') +
+      face('DM Mono', '500', '@fontsource/dm-mono', 'dm-mono-latin-500-normal.woff2'),
   },
 };
 

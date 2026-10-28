@@ -18,7 +18,9 @@
     "build:22": "node build.mjs 22",
     "interact:22": "node tools/interact22.mjs",
     "build:25": "node build.mjs 25",
-    "interact:25": "node tools/interact25.mjs"
+    "interact:25": "node tools/interact25.mjs",
+    "build:26": "node build.mjs 26",
+    "interact:26": "node tools/interact26.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",
