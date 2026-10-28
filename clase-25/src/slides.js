@@ -188,7 +188,7 @@ function initVocab() {
       grid.appendChild(r); return r;
     });
     shuffle(D.VOCAB.map((_, i) => i), rnd).forEach((i) => {
-      const c = mk('button', 'vchip', esc(D.VOCAB[i].t)); c.dataset.i = i; bank.appendChild(c);
+      const c = mk('button', 'vchip no-swipe', esc(D.VOCAB[i].t)); c.dataset.i = i; bank.appendChild(c);
       c.addEventListener('click', () => { if (c.classList.contains('dragging')) return; selChip = selChip === i ? -1 : i; $$('.vchip', bank).forEach((x) => x.classList.toggle('sel', +x.dataset.i === selChip)); });
       drags.push(Draggable.create(c, {
         type: 'x,y', zIndexBoost: true,
@@ -448,7 +448,7 @@ function initRoles() {
   let selRole = null, drags = [];
   const assignedTo = (rid) => (S.roles[rid] !== undefined && S.roles[rid] < S.team ? S.roles[rid] : -1);
   function chip(r, inPerson) {
-    const c = mk('div', 'rchip', `<b>${esc(r.t)}</b><span>${esc(r.d)}</span>`); c.style.setProperty('--rc', CV[r.c]); c.dataset.id = r.id; c.tabIndex = 0; c.setAttribute('role', 'button');
+    const c = mk('div', 'rchip no-swipe', `<b>${esc(r.t)}</b><span>${esc(r.d)}</span>`); c.style.setProperty('--rc', CV[r.c]); c.dataset.id = r.id; c.tabIndex = 0; c.setAttribute('role', 'button');
     if (selRole === r.id) c.classList.add('sel');
     const toggle = () => { selRole = selRole === r.id ? null : r.id; render(); };
     c.addEventListener('click', () => { if (c.classList.contains('dragging')) return; toggle(); });

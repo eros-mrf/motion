@@ -1,0 +1,63 @@
+/* core/base.css · estructura y comportamiento comunes de las presentaciones (escenario 1920×1080, HUD, notas, índice, avisos).
+   El aspecto lo define cada clase con variables en :root y con sus propias reglas (paleta, tipografías, marca, regla de diapositivas).
+   Variables: --bg --txt --txt2 --dim --accent --accent-ink --hud-bg --hud-hover --line --line2 --menu-bg --paper --ink --ink2
+              --notes-bg --notes-ink --notes-ink2 --notes-accent --f-display --f-body --f-mono --ease --slide-pad */
+:root{--bg:#10131c;--txt:#fff;--txt2:#d6dcec;--dim:#aab3cc;--accent:#ffd23f;--accent-ink:#111;--hud-bg:rgba(20,24,38,.7);--hud-hover:#222a40;--line:rgba(255,255,255,.25);--line2:rgba(255,255,255,.5);--menu-bg:rgba(10,12,20,.96);--paper:#fff;--ink:#111;--ink2:#444;--notes-bg:var(--paper);--notes-ink:var(--ink);--notes-ink2:var(--ink2);--notes-accent:var(--accent);--ease:cubic-bezier(.19,1,.22,1);--slide-pad:106px 110px 112px}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;color:var(--txt);font-family:var(--f-body,system-ui,sans-serif);-webkit-font-smoothing:antialiased;background:var(--bg)}
+::selection{background:var(--accent);color:var(--accent-ink)}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+kbd{font-family:var(--f-mono);font-size:.8em;padding:2px 9px;border:1.5px solid var(--line2);border-radius:5px;background:rgba(255,255,255,.12)}
+.mono{font-family:var(--f-mono);letter-spacing:.03em;font-size:16px}
+.dim{color:var(--dim)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+[hidden]{display:none!important}
+b{font-weight:700}
+#bg{position:fixed;inset:0;width:100%;height:100%;display:block}
+#rotate{display:none}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:center;transform:translate(-50%,-50%);overflow:hidden}
+#slides{position:absolute;inset:0}
+.slide{position:absolute;inset:0;padding:var(--slide-pad);display:none}
+.slide.active{display:block}
+.lbls{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hint{position:absolute;left:18px;bottom:12px;font-size:13px;color:var(--dim);pointer-events:none}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap}
+
+/* HUD */
+.hud{position:absolute;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 54px;pointer-events:none}
+.hud>*{pointer-events:auto}
+.hud-top{top:26px} .hud-bottom{bottom:24px}
+.brand{display:flex;align-items:center;gap:14px;font-family:var(--f-mono);font-size:13.5px;letter-spacing:.12em;color:var(--txt2);font-weight:500}
+.hud-right{display:flex;gap:14px;align-items:center}
+.chip{border:1.5px solid var(--line2);background:var(--hud-bg);border-radius:6px;padding:7px 16px;display:flex;gap:12px;align-items:center;font-family:var(--f-mono);font-size:13.5px;color:var(--txt)}
+.phase-chip::before{content:"";width:12px;height:12px;border-radius:2px;background:var(--phase,var(--accent))}
+.phase-chip .phase-min{font-weight:700;color:var(--accent)}
+.clock{font-family:var(--f-mono);font-size:13.5px;color:var(--txt2);padding:6px 14px;background:var(--hud-bg);border-radius:6px;border:1.5px solid var(--line)}
+.clock.run{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.nav-left,.nav-right{display:flex;gap:10px;align-items:center;min-width:440px}
+.nav-right{justify-content:flex-end}
+.icon-btn{width:44px;height:44px;border-radius:6px;border:1.5px solid var(--line2);background:var(--hud-bg);font-size:19px;display:grid;place-items:center;color:var(--txt);transition:transform .25s var(--ease),background .2s}
+.icon-btn.txt{width:auto;padding:0 15px;font-family:var(--f-mono);font-size:12px;height:38px}
+.icon-btn:hover{transform:translateY(-3px);background:var(--hud-hover)}
+.icon-btn[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.counter{font-family:var(--f-mono);font-size:13.5px;color:var(--txt2);margin-right:6px}
+.journey{position:relative;display:flex;align-items:flex-end}
+.journey .trk{position:absolute;left:0;right:0;bottom:0}
+
+/* Aviso, notas del docente e índice */
+.toast{position:absolute;left:50%;bottom:100px;transform:translateX(-50%);z-index:40;font-family:var(--f-mono);font-size:15px;padding:11px 22px;border-radius:6px;background:var(--accent);color:var(--accent-ink);font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s}
+.toast.show{opacity:1}
+.notes{position:absolute;left:54px;right:54px;bottom:90px;z-index:30;padding:20px 30px;background:var(--notes-bg);color:var(--notes-ink);border-radius:8px;border-top:5px solid var(--accent);box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.notes-head{display:flex;align-items:center;gap:18px;font-family:var(--f-mono);font-size:14px;margin-bottom:8px;color:var(--notes-accent)}
+.notes-head span{color:var(--notes-ink2);flex:1}
+.notes .icon-btn{color:var(--notes-ink);background:#fff;border-color:rgba(0,0,0,.25)}
+#notesBody{font-size:22px;line-height:1.5;max-width:1560px}
+.menu{position:absolute;inset:0;z-index:35;background:var(--menu-bg);padding:116px 110px}
+.menu-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.menu-grid button{text-align:left;padding:16px 20px;border-radius:8px;border:1.5px solid var(--line2);background:rgba(255,255,255,.08);display:flex;flex-direction:column;gap:6px;min-height:108px;color:var(--txt);transition:transform .25s var(--ease),border-color .2s}
+.menu-grid button:hover,.menu-grid button.on{transform:translateY(-4px);border-color:var(--c);background:rgba(255,255,255,.14)}
+.menu-grid .mn{font-family:var(--f-mono);font-size:12px;color:var(--c)}
+.menu-grid .mt{font-family:var(--f-display);font-size:26px;line-height:1.1;font-weight:800}
+#confetti{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+body.reduced *{animation-duration:.001s!important}

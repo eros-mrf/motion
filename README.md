@@ -190,3 +190,9 @@ Estilo propio: **plano de proyecto** — azul cobalto con cuadrícula técnica (
 | 14 | Ticket + aviso | Ticket «enseñará ___ / respaldaremos con ___», plan maestro descargable y aviso de la clase 26 |
 
 Pruebas: `DECK=clase-25.html npm run verify` y `npm run interact:25`.
+
+---
+
+## Código compartido
+
+`core/` reúne el motor común (navegación, HUD, notas, reloj, movimiento reducido), el kit de escenas Three.js y el CSS base. Las clases nuevas (desde la 25) lo usan; las anteriores siguen autónomas. Ver `CLAUDE.md`.

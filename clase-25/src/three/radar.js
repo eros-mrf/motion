@@ -1,20 +1,12 @@
 // Radar 3D de cinco criterios formativos. El pentágono se extruye y cambia a verde cuando el proyecto puede pasar a computación.
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { gsap } from 'gsap';
 import { motion } from '../../../src/util.js';
+import * as THREE from 'three';
+import { makeStage, projector } from '../../../core/scene-kit.js';
 
 export function createRadar(canvas, labelsEl, crit) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 60);
-  camera.position.set(0, 7.8, 7.8);
-  const controls = new OrbitControls(camera, canvas);
-  controls.enableDamping = true; controls.enablePan = false; controls.enableZoom = false; controls.target.set(0, 0.2, 0);
-  controls.minPolarAngle = 0.4; controls.maxPolarAngle = 1.35; controls.autoRotate = true; controls.autoRotateSpeed = 0.5;
-  scene.add(new THREE.AmbientLight(0xffffff, 1.0));
-  const sun = new THREE.DirectionalLight(0xffffff, 1.2); sun.position.set(3, 7, 4); scene.add(sun);
+  const { renderer, scene, camera, controls, resize } = makeStage(canvas, { fov: 34, pos: [0, 7.8, 7.8], target: [0, 0.2, 0], ambient: 1.0, sun: [1.2, [3, 7, 4]], orbit: { minPolarAngle: 0.4, maxPolarAngle: 1.35, autoRotate: true, autoRotateSpeed: 0.5 } });
+  const place = projector(canvas, camera);
 
   const N = crit.length, R = 2.7;
   const ang = (i) => (i / N) * Math.PI * 2 - Math.PI / 2;
@@ -59,17 +51,9 @@ export function createRadar(canvas, labelsEl, crit) {
   }
   function setGate(on) { const c = new THREE.Color(on ? 0x6ff0c8 : 0xffe14d); gsap.to(mat.color, { r: c.r, g: c.g, b: c.b, duration: 0.6 }); }
 
-  function resize() {
-    const w = canvas.clientWidth, h = canvas.clientHeight;
-    if (!w || !h) return;
-    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
-  }
-  new ResizeObserver(resize).observe(canvas); resize();
-
-  const v3 = new THREE.Vector3();
   function frame() {
     controls.autoRotate = !motion.reduced; controls.update(); camera.updateMatrixWorld();
-    els.forEach((el, i) => { const p = pt(i, 1.16); v3.copy(p); v3.y = 0.1; v3.project(camera); el.style.left = ((v3.x + 1) / 2) * canvas.clientWidth + 'px'; el.style.top = ((1 - v3.y) / 2) * canvas.clientHeight + 'px'; });
+    els.forEach((el, i) => { const p = pt(i, 1.16); p.y = 0.1; place(el, p); });
     renderer.render(scene, camera);
   }
   return { frame, resize, setValues, setGate };

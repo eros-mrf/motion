@@ -51,7 +51,7 @@ const CLASSES = {
       face('IBM Plex Mono', '600', '@fontsource/ibm-plex-mono', 'ibm-plex-mono-latin-600-normal.woff2'),
   },
   25: {
-    dir: 'clase-25/src', out: 'clase-25.html',
+    dir: 'clase-25/src', out: 'clase-25.html', core: true,
     fonts: () =>
       face('Manrope', '200 800', '@fontsource-variable/manrope', 'manrope-latin-wght-normal.woff2') +
       face('Inter', '100 900', '@fontsource-variable/inter', 'inter-latin-wght-normal.woff2') +
@@ -67,7 +67,7 @@ async function make(n) {
     target: 'es2020', write: false, legalComments: 'none',
   });
   const js = out.outputFiles[0].text.replace(/<\/script/gi, '<\\/script');
-  const css = c.fonts() + fs.readFileSync(`${c.dir}/styles.css`, 'utf8');
+  const css = c.fonts() + (c.core ? fs.readFileSync('core/base.css', 'utf8') : '') + fs.readFileSync(`${c.dir}/styles.css`, 'utf8');
   const html = fs.readFileSync(`${c.dir}/template.html`, 'utf8')
     .replace('/*__CSS__*/', () => css)
     .replace('/*__JS__*/', () => js);

@@ -1,7 +1,8 @@
 // Mesa de guion: siete láminas en fila (una por diapositiva). Se encienden cuando su oración objetivo cumple el criterio.
-import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { motion } from '../../../src/util.js';
+import * as THREE from 'three';
+import { makeStage, makePicker } from '../../../core/scene-kit.js';
 
 function drawCard(c, s, status, selected) {
   const g = c.getContext('2d'); const W = c.width, H = c.height;
@@ -22,13 +23,8 @@ function drawCard(c, s, status, selected) {
 }
 
 export function createTable(canvas, slides7, onPick) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 40);
-  camera.position.set(0, 0.35, 4.6); camera.lookAt(0, 0.1, 0);
-  scene.add(new THREE.AmbientLight(0xffffff, 1.0));
-  const sun = new THREE.DirectionalLight(0xffffff, 1.3); sun.position.set(2, 4, 5); scene.add(sun);
+  const st = makeStage(canvas, { fov: 30, pos: [0, 0.35, 4.6], target: [0, 0.1, 0], ambient: 1.0, sun: [1.3, [2, 4, 5]] });
+  const { renderer, scene, camera } = st;
 
   const W = 1.5, H = 0.95, SP = 1.98;
   const rail = new THREE.Mesh(new THREE.BoxGeometry(14.2, 0.06, 0.5), new THREE.MeshStandardMaterial({ color: 0x0a2373, roughness: 0.6 }));
@@ -51,23 +47,14 @@ export function createTable(canvas, slides7, onPick) {
   function setStatus(i, st) { const c = cards[i]; if (!c || c.status === st) return; c.status = st; c.redraw(); if (st === 2 && !motion.reduced) gsap.fromTo(c.group.scale, { x: 1.18, y: 1.18 }, { x: 1, y: 1, duration: 0.7, ease: 'elastic.out(1,.45)' }); }
   function setSelected(i) { cards.forEach((c, k) => { const on = k === i; if (c.sel !== on) { c.sel = on; c.redraw(); } gsap.to(c, { k: on ? 1 : 0, duration: motion.reduced ? 0.01 : 0.5, ease: 'power3.out' }); }); }
 
-  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
-  let down = null;
-  const pickI = (e) => { const r = canvas.getBoundingClientRect(); ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1); ray.setFromCamera(ndc, camera); const h = ray.intersectObjects(cards.map((c) => c.mesh), false)[0]; return h ? h.object.userData.i : -1; };
-  canvas.addEventListener('pointerdown', (e) => { down = [e.clientX, e.clientY]; });
-  canvas.addEventListener('pointerup', (e) => { if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6) return; const i = pickI(e); if (i >= 0) onPick?.(i); });
   let mx = 0;
-  canvas.addEventListener('pointermove', (e) => { const r = canvas.getBoundingClientRect(); mx = ((e.clientX - r.left) / r.width - 0.5) * 2; canvas.style.cursor = pickI(e) >= 0 ? 'pointer' : 'default'; });
+  makePicker(canvas, camera, () => cards.map((c) => c.mesh), { onPick, idle: 'default' });
+  canvas.addEventListener('pointermove', (e) => { const r = canvas.getBoundingClientRect(); mx = ((e.clientX - r.left) / r.width - 0.5) * 2; });
   canvas.addEventListener('pointerleave', () => { mx = 0; });
-
-  function resize() {
-    const w = canvas.clientWidth, h = canvas.clientHeight;
-    if (!w || !h) return;
-    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+  st.onResize = () => {
     const th = Math.tan((camera.fov * Math.PI) / 360);
     camera.position.z = Math.max(((7 * SP + 1.4) / 2) / (th * camera.aspect), (H * 1.5) / (2 * th));
-  }
-  new ResizeObserver(resize).observe(canvas); resize();
+  };
 
   let t = 0;
   function frame(dt) {
@@ -80,5 +67,5 @@ export function createTable(canvas, slides7, onPick) {
     });
     renderer.render(scene, camera);
   }
-  return { frame, resize, setStatus, setSelected };
+  return { frame, resize: st.resize, setStatus, setSelected };
 }

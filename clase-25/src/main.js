@@ -6,24 +6,12 @@ import { createBG } from './three/bg.js';
 import { createLayers } from './three/layers.js';
 import { createTable } from './three/table.js';
 import { createRadar } from './three/radar.js';
+import { safe } from '../../core/scene-kit.js';
 import { LAYERS, SLIDES7, FORM_CRIT } from './data.js';
 
 const three = { live: { lay: false, tb: false, rd: false }, bg: null, lay: null, tb: null, rd: null, onLayerPick: null, onCardPick: null };
 const MOOD = { intro: '#ffe14d', activacion: '#ffe14d', preguntas: '#ff9ccb', modelamiento: '#6ff0c8', actividad: '#9fd3ff', comun: '#ff9ccb', ticket: '#ffe14d' };
 
-// Si no hay WebGL la presentación sigue funcionando (solo se pierden las escenas 3D).
-function safe(label, fn, canvas) {
-  try { return fn(); } catch (err) {
-    console.warn(`[${label}] WebGL no disponible`, err);
-    if (canvas?.parentElement) {
-      const m = document.createElement('div');
-      m.style.cssText = 'position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:40px;color:#dbe5ff;font-size:22px';
-      m.textContent = 'La escena 3D no está disponible en este equipo. El resto de la actividad funciona igual.';
-      canvas.parentElement.appendChild(m);
-    }
-    return null;
-  }
-}
 const noop = () => {};
 three.bg = safe('bg', () => createBG($('#bg')));
 three.lay = safe('lay', () => createLayers($('#layCanvas'), $('#layLabels'), LAYERS, (i) => three.onLayerPick?.(i)), $('#layCanvas')) || { frame: noop, resize: noop, setStep: noop, assemble: noop, highlight: noop, reset: noop };

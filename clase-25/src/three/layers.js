@@ -1,9 +1,9 @@
 // Modelo 3D de UNA diapositiva en cinco capas: propósito → idea científica → evidencia → fuente → mensaje.
 // Las capas caen una a una; al completar, la pila se compacta como una diapositiva armada.
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { gsap } from 'gsap';
 import { motion } from '../../../src/util.js';
+import * as THREE from 'three';
+import { makeStage, makePicker, projector } from '../../../core/scene-kit.js';
 
 const HEX = { hi: 0xffe14d, mint: 0x6ff0c8, sky: 0x9fd3ff, pink: 0xff9ccb, lilac: 0xc9b8ff };
 const CSS = { hi: '#ffe14d', mint: '#6ff0c8', sky: '#9fd3ff', pink: '#ff9ccb', lilac: '#c9b8ff' };
@@ -26,16 +26,8 @@ function plateTexture(i, L) {
 }
 
 export function createLayers(canvas, labelsEl, layers, onPick) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 1.75));
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 60);
-  camera.position.set(0, 8.0, 13.6);
-  const controls = new OrbitControls(camera, canvas);
-  controls.enableDamping = true; controls.enablePan = false; controls.enableZoom = false; controls.target.set(0, 1.4, 0);
-  controls.minPolarAngle = 0.5; controls.maxPolarAngle = 1.45; controls.autoRotate = true; controls.autoRotateSpeed = 0.45;
-  scene.add(new THREE.AmbientLight(0xffffff, 1.05));
-  const sun = new THREE.DirectionalLight(0xffffff, 1.2); sun.position.set(4, 9, 6); scene.add(sun);
+  const { renderer, scene, camera, controls, resize } = makeStage(canvas, { fov: 36, pos: [0, 8.0, 13.6], target: [0, 1.4, 0], ambient: 1.05, sun: [1.2, [4, 9, 6]], orbit: { minPolarAngle: 0.5, maxPolarAngle: 1.45, autoRotate: true, autoRotateSpeed: 0.45 } });
+  const place = projector(canvas, camera);
 
   // mesa de dibujo
   const floor = new THREE.Mesh(new THREE.CylinderGeometry(4.2, 4.3, 0.12, 64), new THREE.MeshStandardMaterial({ color: 0x0e2f94, roughness: 0.7 }));
@@ -76,21 +68,8 @@ export function createLayers(canvas, labelsEl, layers, onPick) {
   function highlight(i) { plates.forEach((p, k) => gsap.to(p, { hot: k === i ? 1 : 0, duration: 0.35 })); }
   function reset() { setStep(0); assemble(false); highlight(-1); }
 
-  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
-  let down = null;
-  const pickI = (e) => { const r = canvas.getBoundingClientRect(); ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1); ray.setFromCamera(ndc, camera); const h = ray.intersectObjects(plates.filter((p) => p.shown).map((p) => p.mesh), false)[0]; return h ? h.object.userData.i : -1; };
-  canvas.addEventListener('pointerdown', (e) => { down = [e.clientX, e.clientY]; });
-  canvas.addEventListener('pointerup', (e) => { if (!down || Math.hypot(e.clientX - down[0], e.clientY - down[1]) > 6) return; const i = pickI(e); if (i >= 0) onPick?.(i); });
-  canvas.addEventListener('pointermove', (e) => { canvas.style.cursor = pickI(e) >= 0 ? 'pointer' : 'grab'; });
+  makePicker(canvas, camera, () => plates.filter((p) => p.shown).map((p) => p.mesh), { onPick });
 
-  function resize() {
-    const w = canvas.clientWidth, h = canvas.clientHeight;
-    if (!w || !h) return;
-    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
-  }
-  new ResizeObserver(resize).observe(canvas); resize();
-
-  const v3 = new THREE.Vector3();
   let t = 0;
   function frame(dt) {
     t += dt * (motion.reduced ? 0.2 : 1);
@@ -100,8 +79,7 @@ export function createLayers(canvas, labelsEl, layers, onPick) {
       p.mesh.position.set(0, p.y + drop + p.hot * 0.35 + Math.sin(t * 1.4 + i) * 0.02, 0);
       p.ghost.position.set(0, p.y, 0); p.ghost.visible = !p.shown || p.k < 1; p.ghost.rotation.y = p.mesh.rotation.y;
       p.mesh.rotation.y = (i % 2 ? -1 : 1) * (st.gap > 0.5 ? 0.05 * i : 0.01 * i);
-      v3.set(-2.35, p.mesh.position.y, 1.45).project(camera);
-      p.el.style.left = ((v3.x + 1) / 2) * canvas.clientWidth + 'px'; p.el.style.top = ((1 - v3.y) / 2) * canvas.clientHeight + 'px';
+      place(p.el, new THREE.Vector3(-2.35, p.mesh.position.y, 1.45));
       p.el.style.display = st.gap < 0.5 ? 'none' : '';
     });
     renderer.render(scene, camera);
