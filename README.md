@@ -219,6 +219,32 @@ Pruebas: `DECK=clase-26.html npm run verify` y `npm run interact:26`.
 
 ---
 
+# Clase 27 · Taller editorial y ensayo científico: terminamos y mejoramos
+
+OA 1–3 · OAH e, f, g, j, k, l, m. Meta: finalizar y mejorar el PPT científico verificando exactitud, calidad de fuentes, claridad visual, lenguaje respetuoso y preparación oral antes de la feria. Identidad: **taller editorial** (amarillo de rotulador, hojas rayadas en 3D de fondo, papel blanco con pestañas de archivo, tinta negra y marcas de corrección en rojo/azul/verde), Syne + DM Sans + Space Mono; los títulos entran como un borrador (letras desordenadas) que se «edita» y queda subrayado con lápiz rojo; transición de tiras horizontales.
+Todos los borradores, comentarios, grupos y ejemplos son **ficticios (ilustrativos)**; las ideas son paráfrasis de orientación general y el docente proyecta las fuentes oficiales vigentes. Semáforos, revisores y claves son **orientativos**; el sello de «aprobado para ensayo» lo da el docente.
+
+| # | Momento | Contenido interactivo |
+|---|---|---|
+| 1 | Portada | Abanico de 7 pliegos (las diapositivas del PPT), cada uno con su pregunta de revisión |
+| 2 | Ruta | Meta, cuidados, 5 pasos del plan (marcables) y barra de 90 min |
+| 3 | Semáforo y meta | **Three.js:** torre de 7 bloques + semáforo; estado, responsable y tarea por diapositiva (avisa si todos hacen lo mismo), meta concreta con revisor y grupo de 3–6 |
+| 4 | Preguntas | Cinco preguntas de autocontrol; cada «no» o «no lo sé» crea un pendiente marcable |
+| 5 | Vocabulario | 8 términos del plan: completar 8 frases eligiendo entre 3 opciones |
+| 6 | Modelamiento 1 | Control científico final: clasificar 5 fragmentos de un borrador (afirmación, fuente, fecha, coherencia con OA, lenguaje) con cambio sugerido |
+| 7 | Modelamiento 2 | **Three.js:** técnica 3C — tres cajas (Correcto, Claro, Cambiar), seis comentarios y una sola mejora prioritaria |
+| 8 | Modelamiento 3 | Retroalimentación específica y realizable: 4 comentarios vagos y revisor de dónde / qué / para qué |
+| 9 | Actividad 1 | Bloque de finalización: 12 tareas (información, gráfico, fuentes, diseño) + pendientes de las preguntas; anillo de avance |
+| 10 | Actividad 2 | Punto de control docente: 9 controles en 3 compuertas; «listo para el docente» y solicitud de revisión |
+| 11 | Actividad 3 | Revisión cruzada 3C (una mejora prioritaria con revisor) y generador de nombre estandarizado de la copia final |
+| 12 | Actividad 4 | **Three.js:** anillo del ensayo de 3 a 4 min con tiempo por integrante, balance de participación y registro de quien controla (Demo ×10) |
+| 13 | Puesta en común | Estado final por grupo (listo / casi listo / corrección importante), orden de presentación y rol de cada integrante |
+| 14 | Ticket + aviso | «La mejora más importante fue ___ / en el ensayo debemos recordar ___», autoevaluación, registro descargable y aviso de la Feria (clase 28) |
+
+Pruebas: `DECK=clase-27.html npm run verify` y `npm run interact:27`.
+
+---
+
 ## Código compartido
 
 `core/` reúne el motor común (navegación, HUD, notas, reloj, movimiento reducido), el kit de escenas Three.js y el CSS base. Las clases nuevas (desde la 25) lo usan; las anteriores siguen autónomas. Ver `CLAUDE.md`.

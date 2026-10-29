@@ -1,5 +1,5 @@
 // Empaqueta cada clase en UN solo archivo HTML autocontenido (JS + CSS + fuentes en base64).
-// Uso: node build.mjs [18|19|20|21|22|25|26|all]  →  index.html (clase 18) · clase-19.html · clase-20.html · clase-21.html
+// Uso: node build.mjs [18|19|20|21|22|25|26|27|all]  →  index.html (clase 18) · clase-19.html · clase-20.html · clase-21.html
 import { build } from 'esbuild';
 import fs from 'node:fs';
 
@@ -66,6 +66,14 @@ const CLASSES = {
       face('DM Sans', '100 1000', '@fontsource-variable/dm-sans', 'dm-sans-latin-wght-normal.woff2') +
       face('DM Mono', '400', '@fontsource/dm-mono', 'dm-mono-latin-400-normal.woff2') +
       face('DM Mono', '500', '@fontsource/dm-mono', 'dm-mono-latin-500-normal.woff2'),
+  },
+  27: {
+    dir: 'clase-27/src', out: 'clase-27.html', core: true,
+    fonts: () =>
+      face('Syne', '400 800', '@fontsource-variable/syne', 'syne-latin-wght-normal.woff2') +
+      face('DM Sans', '100 1000', '@fontsource-variable/dm-sans', 'dm-sans-latin-wght-normal.woff2') +
+      face('Space Mono', '400', '@fontsource/space-mono', 'space-mono-latin-400-normal.woff2') +
+      face('Space Mono', '700', '@fontsource/space-mono', 'space-mono-latin-700-normal.woff2'),
   },
 };
 

@@ -1,7 +1,7 @@
 # Presentaciones interactivas · Unidad 4 Ciencias Naturales 7° (Sexualidad y autocuidado)
 
 Una presentación HTML por clase (14 diapositivas, español), con motion graphics y 3 escenas Three.js ligadas al contenido más un fondo. Cada clase se entrega como **un solo HTML autocontenido que funciona sin internet** (JS, CSS y fuentes incrustados por `build.mjs`).
-Hechas: 18 (`index.html`), 19, 20, 21, 22, 25, 26. Pendientes según el plan: 23 (prueba), 24, 27–29. Los textos pedagógicos salen del plan docx que adjunta el usuario (`python-docx` → texto plano en el scratchpad; buscar `Clase NN:`).
+Hechas: 18 (`index.html`), 19, 20, 21, 22, 25, 26, 27. Pendientes según el plan: 23 (prueba), 24, 28–29. Los textos pedagógicos salen del plan docx que adjunta el usuario (`python-docx` → texto plano en el scratchpad; buscar `Clase NN:`).
 
 ## Reglas de ahorro de contexto (lee esto primero)
 - **Una sesión nueva por clase.** Con este archivo y el README basta; no arrastres el historial de clases anteriores.
@@ -17,7 +17,7 @@ core/scene-kit.js   makeStage (cámara+luces+OrbitControls), makePicker (clic en
 core/base.css       estructura y comportamiento del HUD/notas/índice/aviso, tematizable con variables CSS
 src/util.js         $, $$, clamp, rng, motion.reduced, toast, confetti (compartido por todas)
 clase-NN/src/       data.js · template.html · styles.css · deck.js · slides.js · main.js · three/*.js
-build.mjs           node build.mjs [18|19|20|21|22|25|26|all] → HTML único (esbuild IIFE + CSS + fuentes base64)
+build.mjs           node build.mjs [18|19|20|21|22|25|26|27|all] → HTML único (esbuild IIFE + CSS + fuentes base64)
 tools/              verify.mjs (capturas; DECK=archivo.html) · interact<NN>.mjs (pruebas con Playwright)
 ```
 - Clases 18–22 son **anteriores a `core/`** y llevan su propio `deck.js`/CSS (no tocarlas salvo pedido). Las clases nuevas usan `core/`: en `build.mjs` poner `core: true` y fuentes en `fonts()`.
@@ -27,7 +27,7 @@ tools/              verify.mjs (capturas; DECK=archivo.html) · interact<NN>.mjs
 
 ## Cada clase tiene identidad propia, misma estructura
 Misma estructura: HUD (fase, reloj, regla, índice, notas, movimiento reducido), 14 diapositivas por momentos (ruta, activación, preguntas, modelamiento, actividad central, puesta en común, ticket + aviso), actividades interactivas con retroalimentación, 3 escenas 3D + fondo, atajos de teclado, `prefers-reduced-motion`.
-Distinta identidad (no repetir): 18 azul marino/cian/brasa · 19 negro/verde lima CRT · 20 papel crema neobrutalista · 21 pastel amanecer + vidrio · 22 vino oscuro + ámbar (tablero de andén) · 25 azul cobalto plano de proyecto + marcador amarillo · 26 verde pizarra de sala de computación + ventanas de papel + coral (títulos que se teclean). Elegir paleta, tipografías (`@fontsource*` ya instaladas), efecto de títulos y transición nuevos. **Legibilidad primero:** contraste alto, texto ≥ 18 px en escenario, sin desbordes (el escenario mide 1920×1080 y el HUD ocupa ~70 px abajo).
+Distinta identidad (no repetir): 18 azul marino/cian/brasa · 19 negro/verde lima CRT · 20 papel crema neobrutalista · 21 pastel amanecer + vidrio · 22 vino oscuro + ámbar (tablero de andén) · 25 azul cobalto plano de proyecto + marcador amarillo · 26 verde pizarra de sala de computación + ventanas de papel + coral (títulos que se teclean) · 27 amarillo de rotulador + hojas en 3D + marcas de corrección (títulos que se «editan»). Elegir paleta, tipografías (`@fontsource*` ya instaladas), efecto de títulos y transición nuevos. **Legibilidad primero:** contraste alto, texto ≥ 18 px en escenario, sin desbordes (el escenario mide 1920×1080 y el HUD ocupa ~70 px abajo).
 
 ## Cuidado pedagógico (obligatorio)
 Casos, mensajes, datos y productos **ficticios** y marcados «ilustrativo»; sin relatos íntimos, fotos clínicas explícitas ni redes sociales como evidencia principal; temas dentro de OA 1–3 y nivel 7°. Las ideas son paráfrasis de orientación general: el docente proyecta las fuentes oficiales vigentes (Currículum Nacional, MINSAL/DIPRECE, OMS). Semáforos y heurísticas son **orientativos**. No incluir preguntas reales de las pruebas. Avisar de esto en el resumen final.

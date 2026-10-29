@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clase 27 · Taller editorial y ensayo científico: terminamos y mejoramos</title>
+<meta name="description" content="Ciencias Naturales 7° básico · Unidad 4 · Clase 27: taller de finalización, control científico, revisión 3C y ensayo del PPT «Autocuidado informado» antes de la feria. Presentación interactiva autocontenida; borradores y comentarios ficticios.">
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="rotate" role="note"><div><b>↻</b>Gira el dispositivo<br><small>Esta presentación está diseñada para pantalla horizontal.</small></div></div>
+
+<main id="stage" aria-label="Presentación Clase 27">
+
+  <!-- ============ HUD ============ -->
+  <div class="hud hud-top">
+    <div class="brand"><span class="brand-mark"></span><span>CLASE 27 · TALLER EDITORIAL Y ENSAYO · UNIDAD 4</span></div>
+    <div class="hud-right">
+      <button class="chip phase-chip" id="phaseChip" title="Iniciar / pausar reloj de clase (T)"><span class="phase-name">Inicio</span><span class="phase-min">5 min</span></button>
+      <span class="clock" id="clock" aria-label="Reloj de clase">00:00 / 90:00</span>
+    </div>
+  </div>
+  <div class="hud hud-bottom">
+    <div class="nav-left">
+      <button class="icon-btn" id="btnPrev" aria-label="Diapositiva anterior (←)">←</button>
+      <button class="icon-btn" id="btnNext" aria-label="Diapositiva siguiente (→)">→</button>
+    </div>
+    <div class="journey" id="journey" role="tablist" aria-label="Diapositivas"><i class="trk"></i><i class="pin" id="pin"></i></div>
+    <div class="nav-right">
+      <span class="counter" id="counter">01 / 14</span>
+      <button class="icon-btn txt" id="btnMenu" aria-label="Índice (G)">Índice</button>
+      <button class="icon-btn txt" id="btnNotes" aria-label="Notas del docente (N)">Notas</button>
+      <button class="icon-btn txt" id="btnMotion" aria-pressed="false" aria-label="Reducir movimiento (M)">Movimiento</button>
+      <button class="icon-btn txt" id="btnFs" aria-label="Pantalla completa (F)">⛶</button>
+    </div>
+  </div>
+
+  <aside id="notes" class="notes" hidden aria-label="Notas del docente">
+    <div class="notes-head"><b>NOTAS DEL DOCENTE</b><span id="notesPhase"></span><button class="icon-btn" id="notesClose" aria-label="Cerrar notas">×</button></div>
+    <div id="notesBody"></div>
+  </aside>
+  <nav id="menu" class="menu" hidden aria-label="Índice de diapositivas"><div class="menu-grid" id="menuGrid"></div></nav>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <div id="shortcuts" class="toast" aria-live="polite"></div>
+  <div id="pane" aria-hidden="true"></div>
+
+  <div id="slides">
+
+    <!-- ===== 1 · PORTADA ===== -->
+    <section class="slide s-cover" data-title="Portada" data-phase="intro" aria-roledescription="diapositiva" aria-label="Portada">
+      <div class="cover-kicker mono" data-a>OA 1 · 2 · 3 &nbsp;|&nbsp; OAH e · f · g · j · k · l · m &nbsp;|&nbsp; CLASE 27 DE 29</div>
+      <h1 class="cover-title title" data-a="title" aria-label="Taller editorial y ensayo científico">Taller editorial<br>y <em>ensayo científico</em></h1>
+      <p class="cover-sub" data-a>Terminamos, revisamos y ensayamos el PPT <b>antes de la feria</b>: exactitud, fuentes, claridad y lenguaje respetuoso.</p>
+      <p class="cv-info" id="cvInfo" data-a aria-live="polite">Toca un pliego: cada diapositiva tiene una pregunta de revisión.</p>
+      <div class="fan" id="cvFan" data-a role="list" aria-label="Las siete diapositivas del PPT, con su pregunta de revisión"></div>
+      <div class="cover-foot" data-a>
+        <span class="mono">Pulsa <kbd>→</kbd> o <kbd>espacio</kbd> para comenzar</span>
+        <span class="mono">Toca el fondo: las hojas se agitan</span>
+      </div>
+    </section>
+
+    <!-- ===== 2 · RUTA ===== -->
+    <section class="slide s-route" data-title="Ruta de clase" data-phase="intro" aria-roledescription="diapositiva" aria-label="Ruta de clase">
+      <header class="sh">
+        <div class="kick mono" data-a>02 · RUTA DE CLASE</div>
+        <h2 class="title" data-a="title">Cinco pasos para terminar y <em>mejorar</em></h2>
+      </header>
+      <div class="route-grid">
+        <div class="route-left">
+          <div class="sheet goal" data-a><span class="stab">META DE CLASE</span>
+            <p>Finalizar y mejorar el PPT científico verificando <b>exactitud, calidad de fuentes, claridad visual, lenguaje respetuoso y preparación oral</b> antes de la feria.</p></div>
+          <div class="sheet care" data-a><span class="stab">CUIDADOS</span><ul>
+            <li class="yes">Usamos las <b>fuentes institucionales</b> ya trabajadas</li>
+            <li class="yes">Cada integrante puede explicar su parte</li>
+            <li class="no">No compartimos <b>experiencias personales</b></li>
+            <li class="no">Sin ejemplos <b>identificables</b> de compañeros</li>
+          </ul></div>
+        </div>
+        <ol class="steps" id="routeSteps" data-a aria-label="Ruta de clase"></ol>
+      </div>
+      <div class="timeline" id="routeTime" data-a aria-label="Los 90 minutos de la clase"></div>
+    </section>
+
+    <!-- ===== 3 · SEMÁFORO Y META ===== -->
+    <section class="slide s-sem" data-title="Semáforo de avance y meta" data-phase="activacion" aria-roledescription="diapositiva" aria-label="Semáforo de avance y meta">
+      <header class="sh">
+        <div class="kick mono" data-a>03 · SEMÁFORO DE AVANCE GRUPAL</div>
+        <h2 class="title" data-a="title"><em>Semáforo</em> de avance y meta</h2>
+      </header>
+      <div class="sem-grid">
+        <div class="sem-left" data-a>
+          <div class="panel-dark sem-3d">
+            <canvas id="twCanvas" aria-label="Torre 3D con las siete diapositivas y un semáforo"></canvas>
+            <div class="lbls" id="twLabels"></div>
+            <span class="hint">Toca un bloque para cambiar su estado · arrastra para girar</span>
+          </div>
+          <p class="sem-txt" id="semTxt" aria-live="polite"></p>
+        </div>
+        <div class="sem-right" data-a>
+          <div class="sheet sem-rows"><span class="stab">ESTADO DE CADA DIAPOSITIVA Y QUIÉN SE HACE CARGO</span>
+            <div id="semRows"></div></div>
+          <div class="sheet sem-meta"><span class="stab">META CONCRETA DE LA SESIÓN</span>
+            <textarea id="metaTxt" rows="2" placeholder="Ej.: Terminar las diapositivas 4 y 5 y citar la fuente de cada gráfico antes del ensayo." aria-label="Meta concreta de la sesión"></textarea>
+            <div class="chk3" id="metaChk"></div>
+            <div class="team"><span class="tag mono">INTEGRANTES</span><div id="teamNames"></div>
+              <div class="stepper"><button class="icon-btn txt" id="teamMinus" aria-label="Menos integrantes">−</button><b id="teamN">4</b><button class="icon-btn txt" id="teamPlus" aria-label="Más integrantes">+</button></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 4 · PREGUNTAS DE AUTOCONTROL ===== -->
+    <section class="slide s-q" data-title="Preguntas iniciales" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Preguntas iniciales">
+      <header class="sh">
+        <div class="kick mono" data-a>04 · PREGUNTAS INICIALES</div>
+        <h2 class="title" data-a="title">Cinco preguntas de <em>autocontrol</em></h2>
+      </header>
+      <div class="q-grid">
+        <div class="q-list" id="qList" data-a></div>
+        <div class="sheet q-todo" data-a><span class="stab">LISTA DE PENDIENTES</span>
+          <p class="q-count" id="qCount">Responde las cinco preguntas mirando tu PPT.</p>
+          <ul class="todo" id="qTodo"></ul></div>
+      </div>
+    </section>
+
+    <!-- ===== 5 · VOCABULARIO ===== -->
+    <section class="slide s-vocab" data-title="Vocabulario clave" data-phase="preguntas" aria-roledescription="diapositiva" aria-label="Vocabulario clave">
+      <header class="sh sh-row">
+        <div><div class="kick mono" data-a>05 · VOCABULARIO CLAVE</div>
+        <h2 class="title" data-a="title">Ocho términos del <em>taller editorial</em></h2></div>
+        <div class="progress mono" data-a><span id="vProg">0 / 8</span><i class="gm"><i id="vBar"></i></i></div>
+      </header>
+      <div class="v-grid" id="vGrid" data-a></div>
+    </section>
+
+    <!-- ===== 6 · CONTROL CIENTÍFICO ===== -->
+    <section class="slide s-ctl" data-title="Control científico final" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Control científico final">
+      <header class="sh">
+        <div class="kick mono" data-a>06 · MODELAMIENTO 1 DE 3 · BORRADOR FICTICIO</div>
+        <h2 class="title" data-a="title">Control <em>científico</em> final</h2>
+      </header>
+      <div class="ctl-grid">
+        <div class="sheet ctl-draft" data-a><span class="stab">DIAPOSITIVA BORRADOR (ILUSTRATIVA) · TOCA LO SUBRAYADO</span>
+          <h3>Pubertad: ¿qué cambia?</h3>
+          <ul id="ctlFrags"></ul>
+          <div class="ctl-stamp" id="ctlStamp" hidden>REVISADO</div></div>
+        <div class="ctl-right" data-a>
+          <div class="tag mono" id="ctlStep">1. ELIGE UN FRAGMENTO</div>
+          <div class="ctl-btns" id="ctlBtns" role="group" aria-label="Tipo de control"></div>
+          <div class="sheet ctl-fb"><span class="stab" id="ctlTab">RETROALIMENTACIÓN</span><p id="ctlFb">Cada fragmento falla en un control distinto. Elígelo y decide cuál aplica.</p></div>
+          <p class="ctl-prog mono" id="ctlProg">0 de 5 fragmentos corregidos</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 7 · TÉCNICA 3C ===== -->
+    <section class="slide s-c3" data-title="Técnica 3C" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Técnica 3C">
+      <header class="sh">
+        <div class="kick mono" data-a>07 · MODELAMIENTO 2 DE 3 · REVISIÓN ENTRE PARES</div>
+        <h2 class="title" data-a="title">Técnica <em>3C</em>: Correcto, Claro, Cambiar</h2>
+      </header>
+      <div class="c3-grid">
+        <div class="c3-left" data-a>
+          <div class="panel-dark c3-3d">
+            <canvas id="biCanvas" aria-label="Tres cajas 3D: Correcto, Claro y Cambiar"></canvas>
+            <div class="lbls" id="biLabels"></div>
+            <span class="hint">Arrastra para girar</span>
+          </div>
+          <div class="c3-btns" id="c3Btns" role="group" aria-label="Caja de destino"></div>
+        </div>
+        <div class="c3-right" data-a>
+          <div class="tag mono" id="c3Step">1. TOCA UN COMENTARIO Y ELIGE SU CAJA</div>
+          <ul class="c3-notes" id="c3Notes"></ul>
+          <p class="c3-fb" id="c3Fb" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8 · RETROALIMENTACIÓN ÚTIL ===== -->
+    <section class="slide s-fb" data-title="Retroalimentación útil" data-phase="modelamiento" aria-roledescription="diapositiva" aria-label="Retroalimentación útil">
+      <header class="sh">
+        <div class="kick mono" data-a>08 · MODELAMIENTO 3 DE 3 · ESPECÍFICA Y REALIZABLE</div>
+        <h2 class="title" data-a="title">Una retroalimentación <em>útil</em></h2>
+      </header>
+      <div class="fb-grid">
+        <div class="sheet fb-card" data-a><span class="stab" id="fbTag">COMENTARIO VAGO 1 DE 4</span>
+          <p class="fb-vague" id="fbVague"></p>
+          <div class="tag mono">ELIGE LA REESCRITURA ESPECÍFICA Y REALIZABLE</div>
+          <div class="fb-opts" id="fbOpts"></div>
+          <p class="fb-res" id="fbRes" aria-live="polite"></p>
+          <div class="btn-row"><button class="btn" id="fbNext" disabled>Siguiente →</button><button class="btn ghost" id="fbReset">Reiniciar</button></div>
+        </div>
+        <div class="sheet fb-mine" data-a><span class="stab">ESCRIBE EL TUYO</span>
+          <p class="fb-ask">Comentario vago: <b>«Está confuso.»</b> Reescríbelo para otro grupo (dónde, qué cambiar y para qué).</p>
+          <textarea id="fbMine" rows="3" placeholder="En la diap. … cambia … para que …" aria-label="Mi retroalimentación"></textarea>
+          <div class="chk3" id="fbChk"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 9 · TABLERO DE FINALIZACIÓN ===== -->
+    <section class="slide s-board" data-title="Bloque de finalización" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Bloque de finalización">
+      <header class="sh sh-row">
+        <div><div class="kick mono" data-a>09 · ACTIVIDAD CENTRAL 1 DE 4 · TERMINAR Y VERIFICAR</div>
+        <h2 class="title" data-a="title">Bloque de <em>finalización</em></h2></div>
+        <div class="b-ring" data-a><div class="ring"><svg viewBox="0 0 64 64"><circle class="r-bg" cx="32" cy="32" r="28"/><circle class="r-fg" id="bdRing" cx="32" cy="32" r="28"/></svg><b id="bdPct">0%</b></div></div>
+      </header>
+      <div class="bd-grid">
+        <div class="bd-cats" id="bdCats" data-a></div>
+        <div class="sheet bd-extra" data-a><span class="stab">DESDE LAS PREGUNTAS INICIALES</span>
+          <ul class="todo" id="bdExtra"></ul>
+          <p class="bd-msg" id="bdMsg" aria-live="polite"></p></div>
+      </div>
+    </section>
+
+    <!-- ===== 10 · PUNTO DE CONTROL ===== -->
+    <section class="slide s-gate" data-title="Punto de control docente" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Punto de control docente">
+      <header class="sh">
+        <div class="kick mono" data-a>10 · ACTIVIDAD CENTRAL 2 DE 4 · ANTES DEL ENSAYO</div>
+        <h2 class="title" data-a="title">Punto de <em>control</em> docente</h2>
+      </header>
+      <div class="gate-grid" id="gateGrid" data-a></div>
+      <div class="gate-stamp" data-a>
+        <div class="stamp" id="gStamp">PENDIENTE</div>
+        <p id="gMsg" aria-live="polite"></p>
+        <button class="btn" id="gAsk" disabled>Pedir revisión al docente</button>
+      </div>
+    </section>
+
+    <!-- ===== 11 · REVISIÓN CRUZADA ===== -->
+    <section class="slide s-cross" data-title="Revisión cruzada y copia final" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Revisión cruzada y copia final">
+      <header class="sh">
+        <div class="kick mono" data-a>11 · ACTIVIDAD CENTRAL 3 DE 4 · UNA SOLA MEJORA PRIORITARIA</div>
+        <h2 class="title" data-a="title">Revisión <em>cruzada</em> y copia final</h2>
+      </header>
+      <div class="cr-grid">
+        <div class="sheet cr-form" data-a><span class="stab">REGISTRO DE REVISIÓN 3C (OTRO GRUPO REVISA)</span>
+          <label class="f-lbl gr" for="crOk">Correcto: lo que está exacto y respaldado</label>
+          <input id="crOk" type="text" maxlength="140" placeholder="Ej.: La fuente es institucional y tiene año.">
+          <label class="f-lbl bl" for="crClear">Claro: lo que se entiende de un vistazo</label>
+          <input id="crClear" type="text" maxlength="140" placeholder="Ej.: El gráfico tiene título y unidad.">
+          <div class="f-lbl rd">Cambiar: elige UNA mejora prioritaria (la marcada)</div>
+          <div class="cr-ch" id="crChg"></div>
+          <div class="chk3" id="crChk"></div>
+        </div>
+        <div class="sheet cr-name" data-a><span class="stab">COPIA FINAL CON NOMBRE ESTANDARIZADO</span>
+          <p class="cr-note">Formato de ejemplo (usa el que indique el docente): sin espacios ni tildes.</p>
+          <div class="cr-sel"><label>Tema <select id="nmTema"></select></label><label>Grupo <select id="nmGrupo"></select></label></div>
+          <div class="file"><span class="ico">PPTX</span><b id="nmOut"></b></div>
+          <p class="cr-fb" id="nmFb" aria-live="polite"></p>
+          <button class="btn sm" id="nmCopy">Copiar nombre</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 12 · ENSAYO ===== -->
+    <section class="slide s-rehe" data-title="Ensayo de 3 a 4 minutos" data-phase="actividad" aria-roledescription="diapositiva" aria-label="Ensayo de tres a cuatro minutos">
+      <header class="sh">
+        <div class="kick mono" data-a>12 · ACTIVIDAD CENTRAL 4 DE 4 · TODOS PARTICIPAN</div>
+        <h2 class="title" data-a="title">Ensayo de <em>3 a 4 minutos</em></h2>
+      </header>
+      <div class="re-grid">
+        <div class="panel-dark re-3d" data-a>
+          <canvas id="rgCanvas" aria-label="Anillo 3D del ensayo: tiempo por integrante y zona de 3 a 4 minutos"></canvas>
+          <div class="lbls" id="rgLabels"></div>
+          <span class="hint">Cada color es un integrante · zona verde: de 3 a 4 minutos</span>
+        </div>
+        <div class="re-right" data-a>
+          <div class="re-time"><b id="reTime">00:00</b><span class="mono" id="reState">Listo para ensayar</span></div>
+          <div class="re-spk" id="reSpk" role="group" aria-label="Quién habla"></div>
+          <div class="btn-row"><button class="btn" id="reGo">Iniciar ensayo</button><button class="btn ghost" id="reEnd">Terminar</button>
+            <label class="demo"><input type="checkbox" id="reDemo"> Demo ×10</label></div>
+          <p class="re-res" id="reRes" aria-live="polite"></p>
+          <div class="sheet re-ctl"><span class="stab">QUIEN CONTROLA REGISTRA</span><ul class="todo" id="reCtl"></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 13 · ESTADO FINAL Y ORDEN ===== -->
+    <section class="slide s-order" data-title="Estado final y orden de presentación" data-phase="comun" aria-roledescription="diapositiva" aria-label="Estado final y orden de presentación">
+      <header class="sh">
+        <div class="kick mono" data-a>13 · PUESTA EN COMÚN · LISTO / CASI LISTO / CORRECCIÓN IMPORTANTE</div>
+        <h2 class="title" data-a="title">Estado final y <em>orden</em> de presentación</h2>
+      </header>
+      <div class="or-grid">
+        <div class="sheet or-list" data-a><span class="stab">ORDEN DE PRESENTACIÓN (GRUPOS ILUSTRATIVOS)</span>
+          <div class="or-head"><span class="mono">GRUPOS</span><div class="stepper"><button class="icon-btn txt" id="grMinus" aria-label="Menos grupos">−</button><b id="grN">6</b><button class="icon-btn txt" id="grPlus" aria-label="Más grupos">+</button></div></div>
+          <div id="orRows"></div>
+          <p class="or-sum" id="orSum" aria-live="polite"></p></div>
+        <div class="sheet or-roles" data-a><span class="stab">ROL DE CADA INTEGRANTE EN LA FERIA</span>
+          <div id="roRows"></div>
+          <p class="or-sum" id="roMsg" aria-live="polite"></p></div>
+      </div>
+    </section>
+
+    <!-- ===== 14 · TICKET Y AVISO ===== -->
+    <section class="slide s-end" data-title="Ticket de salida y aviso" data-phase="ticket" aria-roledescription="diapositiva" aria-label="Ticket de salida y aviso">
+      <header class="sh">
+        <div class="kick mono" data-a>14 · TICKET DE SALIDA Y AVISO</div>
+        <h2 class="title" data-a="title">Ticket de salida y <em>aviso</em></h2>
+      </header>
+      <div class="end-grid">
+        <div class="sheet tk" data-a><span class="stab">TICKET DE SALIDA</span>
+          <p class="tk-line">La mejora más importante que incorporamos fue <u id="tkA">…</u>.</p>
+          <div class="chips" id="tkAc" role="group" aria-label="Mejora incorporada"></div>
+          <p class="tk-line">Durante el ensayo debemos recordar <u id="tkB">…</u>.</p>
+          <div class="chips" id="tkBc" role="group" aria-label="Qué recordar en el ensayo"></div>
+          <div class="tag mono tk-h">AUTOEVALUACIÓN DEL GRUPO (CRITERIOS DEL PLAN)</div>
+          <div class="tk-self" id="tkSelf"></div>
+        </div>
+        <div class="end-right" data-a>
+          <div class="sheet tk-sum"><span class="stab">RESUMEN DEL GRUPO</span><p id="tkSum"></p><div class="btn-row"><button class="btn sm" id="tkDl">Descargar registro (.txt)</button></div></div>
+          <div class="notice">
+            <span class="tag mono">PRÓXIMA CLASE · 28 · FERIA</span>
+            <p id="tkNotice"></p>
+            <ul><li>Copia final guardada y respaldada.</li><li>Cada integrante conoce su parte y el orden.</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+<script>/*__JS__*/</script>
+</body>
+</html>
